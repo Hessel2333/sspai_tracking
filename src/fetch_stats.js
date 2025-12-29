@@ -137,17 +137,101 @@ async function fetchUserInfo(slug) {
     console.log(`Fetching public info for user: ${slug}...`);
     try {
         const url = `https://sspai.com/api/v1/user/slug/info/get?slug=${slug}`;
-        const response = await fetchUrl(url);
-        if (response.error === 0 && response.data) {
-            return {
-                nickname: response.data.nickname,
-                avatar: normalizeAvatarUrl(response.data.avatar)
+        const json = await fetchUrl(url);
+        if (json.error === 0 && json.data) {
+            const baseInfo = {
+                nickname: json.data.nickname,
+                avatar: normalizeAvatarUrl(json.data.avatar),
+                slug: json.data.slug,
+                // Achievements Data
+                created_at: json.data.created_at, // Joined timestamp
+                liked_count: json.data.liked_count, // Total charging (获得充电)
+                article_view_count: json.data.article_view_count, // Total views (Official stat)
+                article_count: json.data.released_article_count, // Total articles (Official stat)
+                user_reward_badges: json.data.user_reward_badges || [] // Badges
             };
+
+            // Fetch Additional Engagement Data
+            console.log(`  Fetching full engagement data...`);
+
+            // 1. Following (Paginated)
+            let allFollowing = [];
+            let followOffset = 0;
+            const followLimit = 20;
+            let followTotal = 0;
+
+            try {
+                const firstFollowRes = await fetchUrl(`https://sspai.com/api/v1/user/follow/page/get?limit=${followLimit}&offset=0&slug=${slug}`);
+                followTotal = firstFollowRes.total || 0;
+                allFollowing = firstFollowRes.data || [];
+
+                while (allFollowing.length < followTotal) {
+                    followOffset += followLimit;
+                    const res = await fetchUrl(`https://sspai.com/api/v1/user/follow/page/get?limit=${followLimit}&offset=${followOffset}&slug=${slug}`);
+                    if (!res.data || res.data.length === 0) break;
+                    allFollowing = allFollowing.concat(res.data);
+                    await new Promise(r => setTimeout(r, 300));
+                }
+            } catch (e) { console.error("Following fetch error:", e); }
+
+            const following = {
+                total: followTotal,
+                list: allFollowing.slice(0, 5).map(u => ({
+                    nickname: u.nickname,
+                    slug: u.slug,
+                    avatar: normalizeAvatarUrl(u.avatar)
+                }))
+            };
+
+            // 2. Activities (Paginated)
+            let allActivities = [];
+            let activityOffset = 0;
+            const activityLimit = 20;
+            let activityTotal = 0;
+
+            try {
+                const firstActivityRes = await fetchUrl(`https://sspai.com/api/v1/information/user/activity/page/get?limit=${activityLimit}&offset=0&slug=${slug}`);
+                activityTotal = firstActivityRes.total || 0;
+                allActivities = firstActivityRes.data || [];
+
+                while (allActivities.length < activityTotal) {
+                    activityOffset += activityLimit;
+                    const res = await fetchUrl(`https://sspai.com/api/v1/information/user/activity/page/get?limit=${activityLimit}&offset=${activityOffset}&slug=${slug}`);
+                    if (!res.data || res.data.length === 0) break;
+                    allActivities = allActivities.concat(res.data);
+                    await new Promise(r => setTimeout(r, 300));
+                    if (allActivities.length >= 2000) break; // Increased safety cap
+                }
+            } catch (e) { console.error("Activity fetch error:", e); }
+
+            const engagement = {
+                following,
+                likes_given_total: allActivities.filter(a => a.key === 'like_article').length,
+                comments_made_total: allActivities.filter(a => ['comment_article', 'community_comment_topic', 'community_reply_topic_comment', 'community_comment_topic_comment'].includes(a.key)).length,
+                all_activities: allActivities.map(a => {
+                    let commentContent = a.data?.comment || null;
+                    if (commentContent && typeof commentContent === 'object') {
+                        commentContent = commentContent.body || commentContent.content || null;
+                    }
+
+                    return {
+                        key: a.key,
+                        action: a.action,
+                        created_at: a.created_at,
+                        target_title: a.data?.title || a.data?.article_title || a.data?.topic?.title || a.data?.topic?.content || a.data?.content || null,
+                        target_id: a.data?.id || a.data?.article_id || a.data?.topic?.id || null,
+                        comment_content: commentContent,
+                        type: a.key.includes('topic') ? 'topic' : 'article'
+                    };
+                })
+            };
+
+            return { ...baseInfo, engagement };
         }
     } catch (e) {
         console.error('Error fetching user info:', e);
     }
-    return { nickname: slug, avatar: '' };
+    return { nickname: slug, avatar: '', engagement: {} };
 }
 
 async function main() {

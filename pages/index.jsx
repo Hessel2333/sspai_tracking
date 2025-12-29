@@ -7,7 +7,7 @@ import StatsChart from '../components/StatsChart';
 import dayjs from 'dayjs';
 import { useLanguage } from '../contexts/LanguageContext';
 
-export default function Home({ history, latest, previous, latestTimestamp, slug, nickname, avatarUrl, topTags, topEditors }) {
+export default function Home({ history, latest, previous, latestTimestamp, slug, nickname, avatarUrl, topTags, topEditors, userData }) {
     const { t, toggleLang, lang } = useLanguage();
     const totals = latest.totals || latest;
     const prevTotals = previous ? (previous.totals || previous) : null;
@@ -48,7 +48,7 @@ export default function Home({ history, latest, previous, latestTimestamp, slug,
     return (
         <div className="min-h-screen">
             <Head>
-                <title>{nickname} 的内容分析 - {t('title')}</title>
+                <title>{`${nickname} 的内容分析 - ${t('title')}`}</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
@@ -76,18 +76,97 @@ export default function Home({ history, latest, previous, latestTimestamp, slug,
                 </header>
 
                 {/* --- Profile Section --- */}
-                <div className="profile-section">
-                    <img
-                        src={avatarUrl}
-                        alt={nickname}
-                        className="avatar"
-                    />
-                    <div className="profile-info">
-                        <h3>{nickname}</h3>
-                        <p>{t('bio')}</p>
-                        <a href={`https://sspai.com/u/${slug}/posts`} target="_blank" className="btn-profile">
-                            {t('viewProfile')} ↗
-                        </a>
+                <div className="profile-section" style={{ position: 'relative' }}>
+                    <div style={{ display: 'flex', gap: 24, alignItems: 'flex-start' }}>
+                        <div style={{ flexShrink: 0 }}>
+                            <img
+                                src={avatarUrl}
+                                alt={nickname}
+                                className="avatar"
+                                style={{ width: 90, height: 90, borderRadius: '50%', objectFit: 'cover' }}
+                            />
+                        </div>
+                        <div className="profile-info" style={{ flex: 1 }}>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                                <div style={{ flex: 1 }}>
+                                    <h3 style={{ margin: 0, fontSize: 24 }}>{nickname}</h3>
+                                    <p style={{ margin: '8px 0', color: 'var(--text-secondary)' }}>{t('bio')}</p>
+                                </div>
+
+                                {userData.user_reward_badges && userData.user_reward_badges.length > 0 && (
+                                    <div className="profile-badges-deck" style={{
+                                        display: 'flex',
+                                        gap: 8,
+                                        marginLeft: 24,
+                                        flexWrap: 'wrap',
+                                        justifyContent: 'flex-end',
+                                        maxWidth: 200
+                                    }}>
+                                        {userData.user_reward_badges.map(badge => (
+                                            <div key={badge.id} className="badge-wrapper" style={{ position: 'relative' }}>
+                                                <img
+                                                    src={badge.icon}
+                                                    alt={badge.name}
+                                                    title={badge.name}
+                                                    style={{ width: 44, height: 44, cursor: 'help' }}
+                                                />
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
+
+                            {/* Inline Stats */}
+                            <div className="profile-stats-inline" style={{
+                                display: 'flex',
+                                gap: 24,
+                                marginTop: 16,
+                                borderTop: '1px solid var(--border-color)',
+                                paddingTop: 16
+                            }}>
+                                <div className="stat-item">
+                                    <span className="stat-label">{t('joinedLabel')}</span>
+                                    <span className="stat-value" style={{ fontSize: 16 }}>
+                                        {userData.created_at ? Math.floor((dayjs().unix() - userData.created_at) / 86400) : '-'}{t('days')}
+                                    </span>
+                                </div>
+                                <div className="stat-item">
+                                    <span className="stat-label">{t('chargingLabel')}</span>
+                                    <span className="stat-value" style={{ fontSize: 16 }}>{userData.liked_count || 0} ⚡</span>
+                                </div>
+                                <div className="stat-item">
+                                    <span className="stat-label">{t('viewLabel')}</span>
+                                    <span className="stat-value" style={{ fontSize: 16 }}>
+                                        {userData.article_view_count
+                                            ? (userData.article_view_count > 10000 ? (userData.article_view_count / 10000).toFixed(1) + (lang === 'zh' ? t('unitTenThousandZh') : t('unitTenThousand')) : userData.article_view_count)
+                                            : (totals.views > 10000 ? (totals.views / 10000).toFixed(1) + (lang === 'zh' ? t('unitTenThousandZh') : t('unitTenThousand')) : totals.views)}
+                                    </span>
+                                </div>
+                                <div className="stat-item">
+                                    <span className="stat-label">{t('followedUsers')}</span>
+                                    <span className="stat-value" style={{ fontSize: 16 }}>
+                                        {userData.engagement?.following?.total || 0}
+                                    </span>
+                                </div>
+                                <div className="stat-item">
+                                    <span className="stat-label">{t('personalComments')}</span>
+                                    <span className="stat-value" style={{ fontSize: 16 }}>
+                                        {userData.engagement?.comments_made_total || 0}
+                                    </span>
+                                </div>
+                                <div className="stat-item">
+                                    <span className="stat-label">{t('likedGiven')}</span>
+                                    <span className="stat-value" style={{ fontSize: 16 }}>
+                                        {userData.engagement?.likes_given_total || 0}
+                                    </span>
+                                </div>
+                                <div style={{ marginLeft: 'auto' }}>
+                                    <a href={`https://sspai.com/u/${slug}/posts`} target="_blank" className="btn-profile" style={{ fontSize: 12, padding: '4px 12px' }}>
+                                        {t('viewProfile')} ↗
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -104,7 +183,7 @@ export default function Home({ history, latest, previous, latestTimestamp, slug,
                         title={t('totalLikes')}
                         value={totals.likes || totals.total_likes}
                         prevValue={prevTotals ? (prevTotals.likes || prevTotals.total_likes) : null}
-                        icon="❤️"
+                        icon="⚡"
                         t={t}
                     />
                     <Card
@@ -130,6 +209,56 @@ export default function Home({ history, latest, previous, latestTimestamp, slug,
                             </div>
                             <div style={{ fontSize: 32 }}>🏆</div>
                         </Link>
+                    </div>
+                )}
+
+                {/* --- Recent Activity Timeline --- */}
+                {userData.engagement?.all_activities && userData.engagement.all_activities.length > 0 && (
+                    <div className="section" style={{ marginBottom: 24 }}>
+                        <div className="section-header">
+                            <span className="card-title">{t('engagement')}</span>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+                                <span className="meta-text">{t('activeOn')} {userData.engagement.all_activities.length} {t('dataPoints')}</span>
+                                <Link href="/activities" className="article-link text-accent" style={{ fontSize: 12, marginBottom: 0 }}>
+                                    {t('viewAllActivities')} →
+                                </Link>
+                            </div>
+                        </div>
+                        <div className="activity-timeline">
+                            {userData.engagement.all_activities.slice(0, 10).map((act, i) => (
+                                <div key={i} className="timeline-item">
+                                    <div className="timeline-time">{dayjs.unix(act.created_at).format('MM-DD HH:mm')}</div>
+                                    <div className="timeline-content">
+                                        <span className="timeline-action">{act.action}</span>
+                                        {act.target_title && (
+                                            <span className="timeline-target">
+                                                {act.target_id ? (
+                                                    <a href={`https://sspai.com/post/${act.target_id}`} target="_blank" className="timeline-link">
+                                                        「{act.target_title}」
+                                                    </a>
+                                                ) : (
+                                                    `「${act.target_title}」`
+                                                )}
+                                            </span>
+                                        )}
+                                        {act.comment_content && (
+                                            <div className="timeline-comment-preview" style={{
+                                                fontSize: 12,
+                                                color: 'var(--text-secondary)',
+                                                marginTop: 4,
+                                                paddingLeft: 12,
+                                                borderLeft: '2px solid var(--border-color)',
+                                                fontStyle: 'italic',
+                                                display: '-webkit-box',
+                                                WebkitLineClamp: 2,
+                                                WebkitBoxOrient: 'vertical',
+                                                overflow: 'hidden'
+                                            }} dangerouslySetInnerHTML={{ __html: act.comment_content }} />
+                                        )}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 )}
 
@@ -256,8 +385,8 @@ export default function Home({ history, latest, previous, latestTimestamp, slug,
                         © {new dayjs().format('YYYY')} {nickname} • Powered by <a href="https://github.com/Hessel2333/sspai_tracking" target="_blank" style={{ color: 'inherit', textDecoration: 'none' }}>SSPAI Tracker</a>
                     </div>
                 </footer>
-            </main>
-        </div>
+            </main >
+        </div >
     );
 }
 
@@ -364,7 +493,8 @@ export async function getStaticProps() {
             nickname: process.env.SSPAI_NICKNAME || scrapedUser.nickname || process.env.SSPAI_SLUG || 'Hessel',
             avatarUrl: process.env.SSPAI_AVATAR || scrapedUser.avatar || 'https://cdn.sspai.com/static/avatar/default.png',
             topTags,
-            topEditors
+            topEditors,
+            userData: scrapedUser // Pass complete user data for achievements
         },
     };
 }

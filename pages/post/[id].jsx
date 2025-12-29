@@ -14,7 +14,7 @@ export default function ArticleDetail({ article, history, latestTimestamp }) {
     return (
         <div className="min-h-screen bg-gray-50">
             <Head>
-                <title>{article.title} - {t('title')}</title>
+                <title>{`${article.title} - ${t('title')}`}</title>
             </Head>
 
             <main className="container">
@@ -59,7 +59,7 @@ export default function ArticleDetail({ article, history, latestTimestamp }) {
 
                 <div className="grid">
                     <Card title={t('totalViews')} value={article.views} icon="👀" />
-                    <Card title={t('totalLikes')} value={article.likes} icon="❤️" />
+                    <Card title={t('totalLikes')} value={article.likes} icon="⚡" />
                     <Card title={t('totalComments')} value={article.comments} icon="💬" />
                 </div>
 
@@ -106,7 +106,7 @@ export default function ArticleDetail({ article, history, latestTimestamp }) {
                                         <span className="comment-nickname">{comment.nickname}</span>
                                     </div>
                                     <div className="comment-likes">
-                                        ❤️ {comment.likes}
+                                        ⚡ {comment.likes}
                                     </div>
                                 </div>
                                 <div className="comment-body">
