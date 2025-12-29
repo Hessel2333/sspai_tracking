@@ -2,27 +2,23 @@
 
 本项目是一个自动化的数据追踪工具，用于记录、存储并可视化你在 [少数派 (SSPAI)](https://sspai.com) 发布的文章数据（阅读量、点赞数、评论数）。
 
-它结合了 **Node.js 爬虫**（运行在 GitHub Actions 上）与 **Next.js 数据看板**，为你提供美观、直观的历史数据增长分析。
+它不仅是一个数据分析工具，更是一个**个人写作里程碑看板**，旨在为你提供更有温度、更具美感的创作反馈。
 
 ## ✨ 功能亮点
 
-- **全自动数据采集**：通过 GitHub Actions 每小时自动运行一次，获取最新数据。
-- **隐私与权限**：使用你自己的 Cookie 进行身份验证，因此可以准确获取包含“私有/草稿”文章在内的真实阅读量。
-- **历史趋势回溯**：将每次采集的数据存储为 JSON 历史档案，让你能看到数据随时间变化的完整曲线。
-- **交互式数据看板**：
-    - **总览卡片**：展示总阅读量、总点赞、总评论数。
-    - **趋势图表**：直观的折线图展示整体流量增长趋势。
-    - **文章列表**：支持按标题、发布时间、阅读量等字段进行**排序**。
-    - **单篇详情分析**：点击任意文章，即可查看该篇文章专属的各项数据增长详情页。
-- **精致 UI 设计**：遵循 Apple Human Interface Guidelines 设计规范，风格极简、优雅，在大屏幕与移动端均有良好表现。
+- **全自动数据采集**：通过 GitHub Actions 自动运行，全天候记录数据点。
+- **个人品牌化设计**：集成**作者名片**（Profile）、个人简介（Bio），使页面更具个人博客色彩。
+- **精选作品置顶**：自动识别阅读量最高的“镇站之宝”作为精选力作突出展示。
+- **国际化支持 (i18n)**：内置中英文双语切换，默认中文。
+- **动态增长感**：卡片实时对比上次采样，显示阅读量、点赞和评论的**增量偏移 (▲ Delta)**。
+- **科学图表分析**：
+    - **真实时间轴**：X轴按真实采样时间比例排列，准确反映增长斜率。
+    - **整数刻度**：Y轴自动优化，强制显示整数分段，展示清晰。
+    - **写实连线**：采用直线连接，真实表现离散型数据的阶梯式增长，无视觉失真。
+- **文章作品集**：支持智能排序，点击可进入单篇文章的**深度挖掘页**。
+- **精致 UI 设计**：基于 Vanilla CSS 修饰的 Apple/SSPAI 极简风格，完美支持深色/浅色视觉平衡及移动端适配。
 
 ## 🚀 快速开始
-
-### 准备工作
-
-- 本地已安装 Node.js环境。
-- 一个 GitHub 账号（用于托管代码和运行自动爬虫）。
-- 一个 Vercel 账号（可选，用于部署前端网页）。
 
 ### 本地安装与运行
 
@@ -38,56 +34,32 @@
     ```
 
 3.  **配置环境变量**：
-    在项目根目录创建一个 `.env` 文件，填入以下内容：
+    创建 `.env` 文件：
     ```bash
-    # 从 sspai.com 的请求 Cookie 中获取（在浏览器 F12 中找到包含 'sspai_jwt_token' 的完整 Cookie 字符串）
-    SSPAI_COOKIE="your_full_cookie_string_here"
-    
-    # 你的少数派个人主页 User Slug (例如 sspai.com/u/yourname 中的 yourname)
-    SSPAI_SLUG="your_slug_here"
+    # SSPAI_COOKIE: 包含 'sspai_jwt_token' 的完整 Cookie
+    SSPAI_COOKIE="your_cookie"
+    # SSPAI_SLUG: 你的用户唯一标识 (如 sspai.com/u/xxx)
+    SSPAI_SLUG="your_slug"
     ```
 
-4.  **测试爬虫脚本**：
-    ```bash
-    npm run scrape
-    ```
-    运行成功后，`data/history.json` 文件中应会出现新的数据记录。
-
-5.  **启动前端看板**：
+4.  **运行项目**：
     ```bash
     npm run dev
     ```
-    浏览器打开 [http://localhost:3000](http://localhost:3000) 即可查看你的数据大屏。
 
 ## ⚙️ 工作原理
 
-1.  **抓取**：`src/fetch_stats.js` 脚本会利用你的 Token 调用少数派私有 API 获取文章列表数据。
-2.  **调度**：`.github/workflows/scrape.yml` 配置了 Cron 任务，指示 GitHub Actions 每小时（`30 * * * *`）执行一次抓取脚本。
-3.  **存储**：抓取完成后，脚本会自动将更新后的 `data/history.json` 提交（Commit）回 GitHub 仓库。
-4.  **展示**：Next.js 前端应用读取该 JSON 文件，渲染出漂亮的图表和列表。
-
-## 📦 部署指南
-
-### 1. 启用 GitHub Actions (自动爬虫)
-- 将本项目代码 Push 到你的 GitHub 仓库。
-- 进入仓库的 **Settings > Secrets and variables > Actions**。
-- 添加 Repository Secrets (仓库密钥)：
-    - `SSPAI_COOKIE`: 填入你的完整 Cookie 字符串。
-    - `SSPAI_SLUG`: 填入你的用户 Slug。
-- 配置完成后，爬虫即会每小时自动运行。
-
-### 2. 部署前端看板 (Vercel)
-- 登录 [Vercel](https://vercel.com) 并点击 "Add New Project"。
-- 导入你的 GitHub 仓库。
-- Vercel 会自动识别 Next.js 框架，直接点击 **Deploy** 即可。
-- **注意**：由于数据来源于 Git 仓库中的 JSON 文件，每当 GitHub Actions 更新数据并 Commit 时，Vercel 也会自动检测到代码变更并重新构建部署，从而保证页面数据是最新的。
+1.  **抓取**：Node.js 脚本调用少数派 API 进行数据镜像。
+2.  **调度**：GitHub Actions 每小时运行一次，保证数据颗粒度。
+3.  **存储**：数据持久化于 Git 仓库中的 `data/history.json`。
+4.  **分发**：Vercel 检测到 Git 变动自动触发增量构建。
 
 ## 🛠 技术栈
 
-- **前端**：Next.js, React, Chart.js (react-chartjs-2), Day.js
-- **脚本/后端**：Node.js, Axios
-- **CI/CD**：GitHub Actions
-- **样式**：Vanilla CSS (Apple Design 风格)
+- **Core**: Next.js, React, Context API
+- **Chart**: Chart.js (Time Scale Engine)
+- **Data**: Node.js, GitHub Actions (CI), Day.js
+- **Design**: Vanilla CSS (Apple Aesthetic)
 
 ## 📝 开源协议
 
