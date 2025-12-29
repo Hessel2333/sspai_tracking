@@ -301,6 +301,24 @@ a.article-link:hover {
     background: rgba(0, 0, 0, 0.05);
 }
 
+/* Tags */
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.tag-badge {
+    padding: 2px 8px;
+    background: rgba(0, 0, 0, 0.05);
+    color: var(--text-secondary);
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+
 /* Featured Section */
 .featured-header {
     margin-bottom: 12px;

@@ -149,30 +149,76 @@ async function main() {
         const articles = await fetchAllArticles();
         console.log(`\nTotal articles found: ${articles.length}`);
 
+        // Phase 5: Deep Analytics - Fetch tags, editor, and comment likes for each article
+        const detailedArticles = [];
+        console.log(`\nFetching deep analytics for each article (this may take a moment)...`);
+
+        for (const art of articles) {
+            console.log(`  Deep dive: ${art.title} (ID: ${art.id})`);
+
+            let tags = [];
+            let editor = null;
+            let commentLikesTotal = 0;
+
+            try {
+                // 1. Fetch Article Info (Tags & Editor)
+                const infoUrl = `https://sspai.com/api/v1/article/info/get?id=${art.id}&support_webp=true&view=second`;
+                const infoRes = await fetchUrl(infoUrl);
+                if (infoRes.error === 0 && infoRes.data) {
+                    tags = infoRes.data.tags ? infoRes.data.tags.map(t => t.title) : [];
+                    editor = infoRes.data.author ? infoRes.data.author.nickname : null;
+                }
+
+                // 2. Fetch Hot Comments (to count interaction likes)
+                const commentUrl = `https://sspai.com/api/v1/comment/user/article/hot/page/get?limit=50&offset=0&article_id=${art.id}&flag_model=1`;
+                const commentRes = await fetchUrl(commentUrl);
+                if (commentRes.error === 0 && commentRes.data) {
+                    commentLikesTotal = commentRes.data.reduce((sum, c) => sum + (c.likes_count || 0), 0);
+                }
+            } catch (e) {
+                console.warn(`    Failed to fetch deep stats for ${art.id}: ${e.message}`);
+            }
+
+            detailedArticles.push({
+                ...art,
+                tags,
+                editor,
+                comment_likes_total: commentLikesTotal
+            });
+
+            // Be nice: 500ms delay between articles
+            await new Promise(r => setTimeout(r, 500));
+        }
+
         const now = new Date().toISOString();
 
         // 1. Calculate Aggregates
-        const totalViews = articles.reduce((sum, art) => sum + (art.view_count || 0), 0);
-        const totalLikes = articles.reduce((sum, art) => sum + (art.like_count || 0), 0);
-        const totalComments = articles.reduce((sum, art) => sum + (art.comment_count || 0), 0);
-        const articleCount = articles.length;
+        const totalViews = detailedArticles.reduce((sum, art) => sum + (art.view_count || 0), 0);
+        const totalLikes = detailedArticles.reduce((sum, art) => sum + (art.like_count || 0), 0);
+        const totalComments = detailedArticles.reduce((sum, art) => sum + (art.comment_count || 0), 0);
+        const totalCommentLikes = detailedArticles.reduce((sum, art) => sum + (art.comment_likes_total || 0), 0);
+        const articleCount = detailedArticles.length;
 
         const statsEntry = {
             timestamp: now,
-            user: userInfo, // Include fetched nickname and avatar
+            user: userInfo,
             totals: {
                 article_count: articleCount,
                 views: totalViews,
                 likes: totalLikes,
-                comments: totalComments
+                comments: totalComments,
+                comment_likes: totalCommentLikes
             },
-            articles: articles.map(art => ({
+            articles: detailedArticles.map(art => ({
                 id: art.id,
                 title: art.title,
                 views: art.view_count,
                 likes: art.like_count,
                 comments: art.comment_count,
-                created_at: art.created_time // Useful for sorting by age later
+                created_at: art.created_time,
+                tags: art.tags,
+                editor: art.editor,
+                comment_likes: art.comment_likes_total
             }))
         };
 
@@ -194,9 +240,8 @@ async function main() {
         fs.writeFileSync(HISTORY_FILE, JSON.stringify(history, null, 2));
         console.log(`Updated ${HISTORY_FILE}`);
 
-        // 3. Write detailed snapshot (optional, good for debugging or detailed frontend view)
-        // We can save the full list if we want to track individual article performance later
-        fs.writeFileSync(CURRENT_STATS_FILE, JSON.stringify(articles, null, 2));
+        // 3. Write detailed snapshot
+        fs.writeFileSync(CURRENT_STATS_FILE, JSON.stringify(detailedArticles, null, 2));
         console.log(`Updated ${CURRENT_STATS_FILE}`);
 
     } catch (err) {

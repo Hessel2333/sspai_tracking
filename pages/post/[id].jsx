@@ -31,6 +31,18 @@ export default function ArticleDetail({ article, history, latestTimestamp }) {
                         <p className="subtitle">
                             ID: {article.id} • {t('published')}: {dayjs.unix(article.created_at).format('YYYY-MM-DD')} • {t('lastUpdated')}: {dayjs(latestTimestamp).format('HH:mm')}
                         </p>
+                        {article.editor && (
+                            <p className="subtitle" style={{ marginTop: 4 }}>
+                                {t('editor')}: <strong>@{article.editor}</strong>
+                            </p>
+                        )}
+                        {article.tags && article.tags.length > 0 && (
+                            <div className="tags-container" style={{ marginTop: 12 }}>
+                                {article.tags.map(tag => (
+                                    <span key={tag} className="tag-badge">#{tag}</span>
+                                ))}
+                            </div>
+                        )}
                     </div>
                     <a href={`https://sspai.com/post/${article.id}`} target="_blank" className="article-link text-accent">
                         {t('viewOnSSPAI')} ↗
@@ -42,6 +54,7 @@ export default function ArticleDetail({ article, history, latestTimestamp }) {
                     <Card title={t('totalViews')} value={article.views} icon="👀" />
                     <Card title={t('totalLikes')} value={article.likes} icon="❤️" />
                     <Card title={t('totalComments')} value={article.comments} icon="💬" />
+                    <Card title={t('totalCommentLikes')} value={article.comment_likes} icon="🌟" />
                 </div>
 
                 {/* --- Charts --- */}
@@ -57,7 +70,7 @@ export default function ArticleDetail({ article, history, latestTimestamp }) {
                     </div>
                 </div>
 
-                <div className="grid" style={{ gridTemplateColumns: '1fr 1fr', marginBottom: 40 }}>
+                <div className="grid" style={{ gridTemplateColumns: '1fr 1fr', marginBottom: 24 }}>
                     <div className="section" style={{ marginBottom: 0 }}>
                         <div className="section-header">
                             <span className="card-title">{t('likesGrowth')}</span>
@@ -73,6 +86,15 @@ export default function ArticleDetail({ article, history, latestTimestamp }) {
                         <div style={{ padding: 24 }}>
                             <StatsChart history={history} title={t('totalComments')} dataKey="comments" color="rgb(0, 122, 255)" />
                         </div>
+                    </div>
+                </div>
+
+                <div className="section" style={{ marginBottom: 40 }}>
+                    <div className="section-header">
+                        <span className="card-title">{t('commentLikesGrowth')}</span>
+                    </div>
+                    <div style={{ padding: 24 }}>
+                        <StatsChart history={history} title={t('totalCommentLikes')} dataKey="comment_likes" color="rgb(255, 159, 64)" />
                     </div>
                 </div>
 
@@ -131,7 +153,8 @@ export async function getStaticProps({ params }) {
                 timestamp: snapshot.timestamp,
                 views: art.views,
                 likes: art.likes,
-                comments: art.comments
+                comments: art.comments,
+                comment_likes: art.comment_likes || 0
             };
         }
         return null;

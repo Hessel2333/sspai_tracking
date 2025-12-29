@@ -172,6 +172,13 @@ export default function Home({ history, latest, previous, latestTimestamp, slug,
                                                 <Link href={`/post/${article.id}`} className="article-link">
                                                     {article.title}
                                                 </Link>
+                                                {article.tags && article.tags.length > 0 && (
+                                                    <div className="tags-container" style={{ marginTop: 2, gap: 4 }}>
+                                                        {article.tags.slice(0, 2).map(tag => (
+                                                            <span key={tag} className="tag-badge" style={{ fontSize: 9, padding: '1px 4px' }}>#{tag}</span>
+                                                        ))}
+                                                    </div>
+                                                )}
                                             </td>
                                             <td className="meta-text">{dayjs.unix(article.created_at).format('YYYY-MM-DD')}</td>
                                             <td className="stat-cell">{article.views.toLocaleString()}</td>
