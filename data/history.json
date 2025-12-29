@@ -998,5 +998,170 @@
         ]
       }
     ]
+  },
+  {
+    "timestamp": "2025-12-29T07:45:55.385Z",
+    "user": {
+      "nickname": "Hessel",
+      "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png"
+    },
+    "totals": {
+      "article_count": 4,
+      "views": 178868,
+      "likes": 288,
+      "comments": 190
+    },
+    "articles": [
+      {
+        "id": 104232,
+        "title": "借 AntiGravity，给个人消费一次「年度盘点」",
+        "views": 8587,
+        "likes": 33,
+        "comments": 12,
+        "created_at": 1764643711,
+        "tags": [
+          "应用推荐",
+          "记账"
+        ],
+        "editor": {
+          "nickname": "克莱德",
+          "slug": "clyde"
+        },
+        "top_comments": [
+          {
+            "nickname": "XCSS",
+            "avatar": "https://cdnfile.sspai.com/2022/04/20/9870b25447439b2022a0ad65a47d17c3.jpeg",
+            "content": "已star，希望增加docker版，方便本地部署和更新。另外是否考虑出个分析银行卡账单的功能呢？因为像抖音/美团/小红书之类都支持直接银行卡扣款，这部分就容易遗漏统计了。",
+            "likes": 0
+          },
+          {
+            "nickname": "天际",
+            "avatar": "https://cdnfile.sspai.com/2023/10/03/c2f804cd909aadcea797ccc4d0d1f02c.png",
+            "content": "大佬，请问能否支持zeabur平台一键部署呢。您的项目想安利给更多的朋友用，但是他们由于没有代码基础，部署起来比较困难",
+            "likes": 0
+          },
+          {
+            "nickname": "奶黄包",
+            "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
+            "content": "很强。希望能够增加抖音和招行的账单支持",
+            "likes": 0
+          }
+        ]
+      },
+      {
+        "id": 96151,
+        "title": "新的一年，不妨试试自己分析支付宝账单",
+        "views": 42068,
+        "likes": 68,
+        "comments": 25,
+        "created_at": 1738996270,
+        "tags": [
+          "共创25",
+          "Matrix首页推荐",
+          "开发者"
+        ],
+        "editor": {
+          "nickname": "Lotta",
+          "slug": "ppfv4au3"
+        },
+        "top_comments": [
+          {
+            "nickname": "Just7Fans",
+            "avatar": "https://cdnfile.sspai.com/2022/10/09/6c4384d9b1cbad6ba46aed452fd18bd8.jpeg",
+            "content": "结果是种草了Cursor🥹",
+            "likes": 3
+          },
+          {
+            "nickname": "Enc3lMag1k",
+            "avatar": "https://cdnfile.sspai.com/2025/03/07/avatar/daeeaa527b1b99ccf37127c557669802.jpeg",
+            "content": "非常好的项目，点赞😎",
+            "likes": 1
+          },
+          {
+            "nickname": "samClover",
+            "avatar": "https://cdnfile.sspai.com/2023/04/06/avatar/c150eb68dc135ddf5b53805ca04f28ae.",
+            "content": "微信有吗",
+            "likes": 1
+          }
+        ]
+      },
+      {
+        "id": 86747,
+        "title": "自我记录、量化与回溯的数字之旅",
+        "views": 76562,
+        "likes": 110,
+        "comments": 36,
+        "created_at": 1709106003,
+        "tags": [
+          "热门文章",
+          "健康",
+          "量化自我",
+          "iOS",
+          "应用推荐"
+        ],
+        "editor": {
+          "nickname": "waychane",
+          "slug": "waychane"
+        },
+        "top_comments": [
+          {
+            "nickname": "SSShooter",
+            "avatar": "https://cdnfile.sspai.com/2024/03/19/9f8fe9d0b410dbce4769e5e56a68c9f3.jpg",
+            "content": "作者不会有一种应用下架之后数据付之一炬的焦虑吗",
+            "likes": 3
+          },
+          {
+            "nickname": "肥猫不爱吃干鱼",
+            "avatar": "https://cdnfile.sspai.com/2023/06/05/45fa147857976c58f47aa97f31012c6c.JPG",
+            "content": "用Day One做照片Gallery学到了！",
+            "likes": 3
+          },
+          {
+            "nickname": "Sennhei",
+            "avatar": "https://cdnfile.sspai.com/2022/04/01/avatar/d78f810ab0ada0c299071a51664cc058.png",
+            "content": "好多软件我也在用，Rond前段时间更新了导出至日历功能我觉得相当好；上面任意一个app我都没信心说到我老的时候还能存活，但是日历app肯定可以，以后不用苹果了日历也能轻松导出，现在所有能在日历显示的类目（睡眠时间，影视记录评分，上下班打卡，每天吃的东西，汽车里程变化等等）我都在日历上记录了，回顾起来更加方便",
+            "likes": 2
+          }
+        ]
+      },
+      {
+        "id": 85355,
+        "title": "App+1 | Rond 与世界迷雾：现实世界的塞尔达传说地图册",
+        "views": 51651,
+        "likes": 77,
+        "comments": 117,
+        "created_at": 1703551973,
+        "tags": [
+          "热门文章",
+          "App+1",
+          "Matrix首页推荐",
+          "我和 App 的故事"
+        ],
+        "editor": {
+          "nickname": "北鸮",
+          "slug": "thebaldingken"
+        },
+        "top_comments": [
+          {
+            "nickname": "Hessel",
+            "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
+            "content": "各位有付费意愿的朋友可以稍等一下下，我跟作者大大私信了这篇文章，他觉得写得很好，可能可以搞一些优惠活动给大家😆。",
+            "likes": 16
+          },
+          {
+            "nickname": "Hessel",
+            "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
+            "content": "答应大家的福利来啦：<p style=\"margin: 0;height: 20px;\"></p >1. 点击一下链接可以以首年28元的价格购买Rond年费会员，不限名额：<a href=\"https://apps.apple.com/redeem?ctx=offercodes&amp;id=1669903815&amp;code=HESSEL\" target=\"_blank\">https://apps.apple.com/redeem?ctx=offercodes&amp;id=1669903815&amp;code=HESSEL</a>；<p style=\"margin: 0;height: 20px;\"></p >2. 作者还提供了三个永久会员的免费兑换码，我个人比较想送给真正有需求的同学，所以希望大家评论区踊跃评论，一周后会抽取三位私信送出兑换码。<p style=\"margin: 0;height: 20px;\"></p >再次感谢作者大大的福利，这是Rond的小红书主页，欢迎大家去关注：<a href=\"https://www.xiaohongshu.com/user/profile/63df172c0000000027028da1?xhsshare=CopyLink&amp;appuid=58c8430d5e87e757513d6cc4&amp;apptime=1704093756\" target=\"_blank\">https://www.xiaohongshu.com/user/profile/63df172c0000000027028da1?xhsshare=CopyLink&amp;appuid=58c8430d5e87e757513d6cc4&amp;apptime=1704093756</a>",
+            "likes": 7
+          },
+          {
+            "nickname": "EMON鲤鱼先生",
+            "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
+            "content": "        我感觉迷雾世界和Rond，应该算是两个完全不同的导向和目的的App。<p style=\"margin: 0;height: 20px;\"></p >        前者是带点收藏癖和松鼠党性质的，用于展示自己到过这个世界的足迹，而后者，是真正的用于数据化自己的生活，或者说人生的。所以从目的或者导向上来说，后者应该是囊括前者的存在。<p style=\"margin: 0;height: 20px;\"></p >        因此我觉得Rond应该更多地比较我目前在用的一款App，Life Cycle，两者都是自己生活的数据化和可视化。<p style=\"margin: 0;height: 20px;\"></p >        从数据化可视化自己生活的角度来说，我觉得要展示的是三个点：何时、何地、何事，即我们什么时候在哪里做了什么事，通过对这三个要素的记录，来实现我们对于生活的那种掌控感。<p style=\"margin: 0;height: 20px;\"></p >        而要达到对自己生活完全数据化，我觉得有三个难点。<p style=\"margin: 0;height: 20px;\"></p >        1.数据的可实现性（获取和分析）：从这个角度来说，我觉得，一方面，数据的记录必须是自动化的、无感的。只有这样才能减轻使用者的负担，比如说时间块这个App，也是对自己生活的数据化，分类自己所做的事，虽然开发者已经在尽量简化操作的步骤和逻辑，但是仍然需要使用者自己手动选择，这就大大增加了使用者的负担和难度，一旦使用者因为各种原因中断了，就容易破坏记录的完整性，影响使用者持续使用的惯性。而好的记录App，应该是只要你设定好相关的参数设置，他就能在后台默默运行，无事不扰。<p style=\"margin: 0;height: 20px;\"></p >        另一方面，数据的呈现必须是综合的，可分析利用的。对自己生活的数据可视化，记录是基础，而综合和可分析才是这类App的精髓，通过可视化的数据和图表等，对自己的生活进行分析总结，以便进行相应的检视和调整。同时，数据最好是囊括大部分我们生活的一些活动，包括工作、睡眠、就餐、逛街、旅游等等，便于深度分析和检视自己的生活。<p style=\"margin: 0;height: 20px;\"></p >        2.数据的细化（颗粒度）：推动数据的细化，或者说缩小数据的颗粒度，那么我们就可以最大限度地对自己的生活的状态进行检视分析。所谓两点一线，难道大家真的就只是学习、睡觉或者说工作、睡觉么，其中当然还囊括了我们其他诸如就餐、运动、逛街、游戏，甚至恋爱、摸鱼等各种活动。因此，只有足够细化的数据，才能够真实地反映我们的生活，而细化的程度和获取的渠道和难点是成正比，比如楼上有评论说到的，同一个地点，有多种活动的，我逛了商城，既有购物、又有游戏、还有就餐，而App只能记录，几时几分至几时几分，你在这个购物中心，并不能分辨你到底在这里的具体活动。<p style=\"margin: 0;height: 20px;\"></p >        3.数据的精度（准确度）：而数据的精度，也对保证自己生活的完整性和真实性至关重要，比如我使用的Life Cycle，在使用中会出现定位偏移和不准的问题，我在路口等了红绿灯，你却想确认我在这里做了点什么之前没干过的事；我在路边停车买了早点，你却显示我一路直达去上班，除了这种，还有那种明明我开了一上午的会，你却显示我在餐厅坐了半天，如果持续出现这种问题，难免让人对于数据的真实性产生质疑。<p style=\"margin: 0;height: 20px;\"></p >        而要解决2和3的问题，我觉得一方面，App的背后的判定逻辑和智能化程度需要进一步提升，比如我天天中午12点吃饭，但是今天上午9点到11点我在边上待了两个小时，那就算两个位置特别近，从逻辑判定上来说，也应该考虑我们是不是并没有吃了2个小时的饭，而类似这种比较违反逻辑和常规作息的活动，能有一个相对智能的判定机制，或者提示用户予以确认，我想应该能够有效提升数据的准确性。<p style=\"margin: 0;height: 20px;\"></p >        另一个方面，则是要不断丰富数据获取的渠道，除了常规手机的时间位置信息，还能够读取更多类型的数据，并且能够链接更多App和设备，比如说通过读取offscreen这类专注软件的数据，获取自己上班摸鱼的情况，通过读取喝水羊驼的数据，知晓自己喝水的频率和摄入量，通过读取autosleep，知晓自己的睡眠状况等等，同时也可以从各种手表、手环等外设装备上读取数据，甚至以后包括汽车的数据等等。就像StaySleep这个App，数据能够从手表、手机、autosleep、offscreen等各种获取数据。<p style=\"margin: 0;height: 20px;\"></p >        我个人觉得Rond应该是一款自身生活数据获取和分析的中心，以后奔着更稳定、更安静、更低功耗的持续运行，更广泛、更丰富、更精确的数据记录，更科学、更合理、更易用的数据分析这样的方向前进。<p style=\"margin: 0;height: 20px;\"></p >        而当记录的数据足够精准和足够多之后，不同的数据归纳、搭配、分析，应该会有更多的用法和意义。比如说睡眠数据和工作数据的结合，睡眠数据和心率血压数据的结合，来反映打工人压力和睡眠情况之类！<p style=\"margin: 0;height: 20px;\"></p >        以上，一家之言，随便瞎猜，如有不妥，欢迎交流！<p style=\"margin: 0;height: 20px;\"></p >        另外，说回Rond ，希望作者大大能够多给给福利，买断价还是有点小贵。希望Rond能够越来越好用，越来越易用，顺便，不知道什么时候能够让我导入lifecycle 的数据啊啊啊啊",
+            "likes": 7
+          }
+        ]
+      }
+    ]
   }
 ]
