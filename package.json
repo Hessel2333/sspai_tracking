@@ -17,6 +17,7 @@
   "license": "ISC",
   "dependencies": {
     "chart.js": "^4.5.1",
+    "chartjs-adapter-dayjs-4": "^1.0.4",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.19",
     "dotenv": "^17.2.3",

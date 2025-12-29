@@ -125,8 +125,27 @@ async function fetchAllArticles() {
     return allArticles;
 }
 
+// Fetch public user info (nickname, avatar)
+async function fetchUserInfo(slug) {
+    console.log(`Fetching public info for user: ${slug}...`);
+    try {
+        const url = `https://sspai.com/api/v1/user/slug/info/get?slug=${slug}`;
+        const response = await fetchUrl(url);
+        if (response.error === 0 && response.data) {
+            return {
+                nickname: response.data.nickname,
+                avatar: response.data.avatar
+            };
+        }
+    } catch (e) {
+        console.error('Error fetching user info:', e);
+    }
+    return { nickname: slug, avatar: '' };
+}
+
 async function main() {
     try {
+        const userInfo = await fetchUserInfo(SLUG);
         const articles = await fetchAllArticles();
         console.log(`\nTotal articles found: ${articles.length}`);
 
@@ -140,6 +159,7 @@ async function main() {
 
         const statsEntry = {
             timestamp: now,
+            user: userInfo, // Include fetched nickname and avatar
             totals: {
                 article_count: articleCount,
                 views: totalViews,
