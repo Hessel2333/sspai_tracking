@@ -7,7 +7,7 @@ import StatsChart from '../components/StatsChart';
 import dayjs from 'dayjs';
 import { useLanguage } from '../contexts/LanguageContext';
 
-export default function Home({ history, latest, previous, latestTimestamp, slug, nickname, avatarUrl }) {
+export default function Home({ history, latest, previous, latestTimestamp, slug, nickname, avatarUrl, topTags, topEditors }) {
     const { t, toggleLang, lang } = useLanguage();
     const totals = latest.totals || latest;
     const prevTotals = previous ? (previous.totals || previous) : null;
@@ -147,6 +147,59 @@ export default function Home({ history, latest, previous, latestTimestamp, slug,
                     </div>
                 </div>
 
+                {/* --- Creative DNA --- */}
+                <div className="dna-grid">
+                    <div className="dna-card">
+                        <div className="section-header" style={{ marginBottom: 16 }}>
+                            <span className="card-title">{t('topTags')}</span>
+                        </div>
+                        <div className="dna-list">
+                            {topTags.map((item, i) => (
+                                <div key={i} className="dna-item">
+                                    <div className="dna-label">
+                                        <a href={`https://sspai.com/tag/${item.name}`} target="_blank" style={{ color: 'inherit', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 4 }}>
+                                            <span>#{item.name}</span>
+                                            <span style={{ fontSize: 10, opacity: 0.5 }}>↗</span>
+                                        </a>
+                                    </div>
+                                    <div className="dna-bar-bg">
+                                        <div className="dna-bar-fill" style={{ width: `${(item.count / topTags[0].count) * 100}%` }}></div>
+                                    </div>
+                                    <span className="dna-count">{item.count} {t('articlesCount')}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="dna-card">
+                        <div className="section-header" style={{ marginBottom: 16 }}>
+                            <span className="card-title">{t('topEditors')}</span>
+                        </div>
+                        <div className="dna-list">
+                            {topEditors.map((item, i) => (
+                                <div key={i} className="dna-item">
+                                    <div className="dna-label">
+                                        {item.slug ? (
+                                            <a href={`https://sspai.com/u/${item.slug}/posts`} target="_blank" style={{ color: 'inherit', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 4 }}>
+                                                <span>@{item.name}</span>
+                                                <span style={{ fontSize: 10, opacity: 0.5 }}>↗</span>
+                                            </a>
+                                        ) : (
+                                            <span>@{item.name}</span>
+                                        )}
+                                    </div>
+                                    <div className="dna-bar-bg">
+                                        <div className="dna-bar-fill" style={{ width: `${(item.count / topEditors[0].count) * 100}%` }}></div>
+                                    </div>
+                                    <span className="dna-count">{item.count} {t('articlesCount')}</span>
+                                </div>
+                            ))}
+                            {topEditors.length === 0 && (
+                                <div style={{ color: '#999', fontSize: 13 }}>Pending data...</div>
+                            )}
+                        </div>
+                    </div>
+                </div>
+
                 {/* --- Article List --- */}
                 <div className="section" style={{ marginBottom: 0 }}>
                     <div className="section-header">
@@ -175,7 +228,7 @@ export default function Home({ history, latest, previous, latestTimestamp, slug,
                                                 {article.tags && article.tags.length > 0 && (
                                                     <div className="tags-container" style={{ marginTop: 2, gap: 4 }}>
                                                         {article.tags.slice(0, 2).map(tag => (
-                                                            <span key={tag} className="tag-badge" style={{ fontSize: 9, padding: '1px 4px' }}>#{tag}</span>
+                                                            <a href={`https://sspai.com/tag/${tag}`} target="_blank" key={tag} className="tag-badge" style={{ fontSize: 9, padding: '1px 4px', textDecoration: 'none' }}>#{tag}</a>
                                                         ))}
                                                     </div>
                                                 )}
@@ -252,6 +305,55 @@ export async function getStaticProps() {
     // Favor scraped user data from history.json if available
     const scrapedUser = latest.user || {};
 
+    // --- Aggregation Logic for Creative DNA ---
+    const tagCounts = {};
+    const editorCounts = {};
+
+    if (latest.articles) {
+        latest.articles.forEach(art => {
+            // Count Tags
+            if (art.tags && Array.isArray(art.tags)) {
+                art.tags.forEach(tag => {
+                    tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+                });
+            }
+            // Count Editors
+            if (art.editor) {
+                // Handle both legacy string and new object format
+                const name = typeof art.editor === 'object' ? art.editor.nickname : art.editor;
+                const slug = typeof art.editor === 'object' ? art.editor.slug : null;
+
+                if (!editorCounts[name]) {
+                    editorCounts[name] = { count: 0, slug: slug };
+                }
+                editorCounts[name].count += 1;
+                // Update slug if it was missing (e.g. mixed data types)
+                if (slug && !editorCounts[name].slug) {
+                    editorCounts[name].slug = slug;
+                }
+            }
+        });
+    }
+
+    const sortAndSlice = (counts) => {
+        // Tag counts are simple numbers
+        return Object.entries(counts)
+            .map(([name, val]) => ({ name, count: val }))
+            .sort((a, b) => b.count - a.count)
+            .slice(0, 5);
+    };
+
+    const sortAndSliceEditors = (counts) => {
+        // Editor counts are objects { count, slug }
+        return Object.entries(counts)
+            .map(([name, data]) => ({ name, count: data.count, slug: data.slug }))
+            .sort((a, b) => b.count - a.count)
+            .slice(0, 5);
+    };
+
+    const topTags = sortAndSlice(tagCounts);
+    const topEditors = sortAndSliceEditors(editorCounts);
+
     return {
         props: {
             history,
@@ -260,7 +362,9 @@ export async function getStaticProps() {
             latestTimestamp: latest.timestamp || null,
             slug: process.env.SSPAI_SLUG || 'Hessel',
             nickname: process.env.SSPAI_NICKNAME || scrapedUser.nickname || process.env.SSPAI_SLUG || 'Hessel',
-            avatarUrl: process.env.SSPAI_AVATAR || scrapedUser.avatar || 'https://cdn.sspai.com/static/avatar/default.png'
+            avatarUrl: process.env.SSPAI_AVATAR || scrapedUser.avatar || 'https://cdn.sspai.com/static/avatar/default.png',
+            topTags,
+            topEditors
         },
     };
 }

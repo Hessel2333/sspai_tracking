@@ -174,7 +174,15 @@ async function main() {
                 const infoRes = await fetchUrl(infoUrl);
                 if (infoRes.error === 0 && infoRes.data) {
                     tags = infoRes.data.tags ? infoRes.data.tags.map(t => t.title) : [];
-                    editor = infoRes.data.author ? infoRes.data.author.nickname : null;
+                    // Fix: Use article_follow_up_admin for "Editor" (责编), using object structure
+                    if (infoRes.data.article_follow_up_admin) {
+                        editor = {
+                            nickname: infoRes.data.article_follow_up_admin.nickname,
+                            slug: infoRes.data.article_follow_up_admin.slug
+                        };
+                    } else {
+                        editor = null;
+                    }
                 }
 
                 // 2. Fetch Hot Comments (to count interaction likes and get top comments)
@@ -216,7 +224,6 @@ async function main() {
         const totalViews = detailedArticles.reduce((sum, art) => sum + (art.view_count || 0), 0);
         const totalLikes = detailedArticles.reduce((sum, art) => sum + (art.like_count || 0), 0);
         const totalComments = detailedArticles.reduce((sum, art) => sum + (art.comment_count || 0), 0);
-        const totalCommentLikes = detailedArticles.reduce((sum, art) => sum + (art.comment_likes_total || 0), 0);
         const articleCount = detailedArticles.length;
 
         const statsEntry = {
@@ -226,8 +233,7 @@ async function main() {
                 article_count: articleCount,
                 views: totalViews,
                 likes: totalLikes,
-                comments: totalComments,
-                comment_likes: totalCommentLikes
+                comments: totalComments
             },
             articles: detailedArticles.map(art => ({
                 id: art.id,
@@ -238,7 +244,6 @@ async function main() {
                 created_at: art.created_time,
                 tags: art.tags,
                 editor: art.editor,
-                comment_likes: art.comment_likes_total,
                 top_comments: art.top_comments
             }))
         };
