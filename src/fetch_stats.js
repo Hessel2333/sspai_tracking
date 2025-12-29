@@ -1,7 +1,11 @@
-const https = require('https');
-const fs = require('fs');
-const path = require('path');
-require('dotenv').config();
+import https from 'https';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import 'dotenv/config';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 
 // --- Configuration ---
