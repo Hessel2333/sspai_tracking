@@ -4,6 +4,8 @@ import path from 'path';
 import Head from 'next/head';
 import Link from 'next/link';
 import StatsChart from '../components/StatsChart';
+import SocialRadar from '../components/SocialRadar';
+import SocialAvatarGrid from '../components/SocialAvatarGrid';
 import dayjs from 'dayjs';
 import { useLanguage } from '../contexts/LanguageContext';
 
@@ -219,8 +221,8 @@ export default function Home({ history, latest, previous, latestTimestamp, slug,
                             <span className="card-title">{t('engagement')}</span>
                             <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
                                 <span className="meta-text">{t('activeOn')} {userData.engagement.all_activities.length} {t('dataPoints')}</span>
-                                <Link href="/activities" className="article-link text-accent" style={{ fontSize: 12, marginBottom: 0 }}>
-                                    {t('viewAllActivities')} →
+                                <Link href="/activities" className="btn-secondary" style={{ padding: '6px 12px', fontSize: 13, fontWeight: 'bold' }}>
+                                    {t('socialVault')} ↗
                                 </Link>
                             </div>
                         </div>
@@ -328,6 +330,33 @@ export default function Home({ history, latest, previous, latestTimestamp, slug,
                         </div>
                     </div>
                 </div>
+
+                {/* --- Social DNA --- */}
+                {userData.engagement?.social_dna && (
+                    <div className="dna-grid" style={{ marginTop: 24, marginBottom: 24 }}>
+                        <div className="dna-card">
+                            <div className="section-header" style={{ marginBottom: 16 }}>
+                                <span className="card-title">{t('socialTags')}</span>
+                                <span className="meta-text" style={{ color: 'var(--accent-color)', fontWeight: 'bold' }}>{t('socialDNA')}</span>
+                            </div>
+                            <div style={{ padding: '0 10px' }}>
+                                <SocialRadar
+                                    data={userData.engagement.social_dna.top_tags.map(t => t.count)}
+                                    labels={userData.engagement.social_dna.top_tags.map(t => `#${t.name}`)}
+                                    title={t('interacts')}
+                                />
+                            </div>
+                        </div>
+
+                        <div className="dna-card">
+                            <div className="section-header" style={{ marginBottom: 16 }}>
+                                <span className="card-title">{t('socialAuthors')}</span>
+                                <span className="meta-text" style={{ color: 'var(--accent-color)', fontWeight: 'bold' }}>{t('socialDNA')}</span>
+                            </div>
+                            <SocialAvatarGrid authors={userData.engagement.social_dna.author_matrix} />
+                        </div>
+                    </div>
+                )}
 
                 {/* --- Article List --- */}
                 <div className="section" style={{ marginBottom: 0 }}>

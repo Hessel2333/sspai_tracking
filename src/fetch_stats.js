@@ -220,10 +220,111 @@ async function fetchUserInfo(slug) {
                         created_at: a.created_at,
                         target_title: a.data?.title || a.data?.article_title || a.data?.topic?.title || a.data?.topic?.content || a.data?.content || null,
                         target_id: a.data?.id || a.data?.article_id || a.data?.topic?.id || null,
+                        target_slug: a.data?.slug || a.data?.article_slug || null,
                         comment_content: commentContent,
-                        type: a.key.includes('topic') ? 'topic' : 'article'
+                        type: a.key.includes('topic') ? 'topic' : 'article',
+                        author: a.data?.author?.nickname || a.data?.article_author_nickname || null,
+                        author_slug: a.data?.author?.slug || a.data?.article_author_slug || null,
+                        author_avatar: a.data?.author?.avatar || a.data?.article_author_avatar || null,
+                        tags: a.data?.tags || []
                     };
                 })
+            };
+
+            // --- Aggregate Social DNA & Author Matrix ---
+            const socialTags = {};
+            const authorMatrix = {};
+            const uniqueArticleIds = new Set();
+            const uniqueAuthorSlugs = new Set();
+
+            engagement.all_activities.forEach(act => {
+                if (act.type === 'article' && act.target_id) uniqueArticleIds.add(act.target_id);
+                if (act.author_slug) uniqueAuthorSlugs.add(act.author_slug);
+            });
+
+            // Metadata cache
+            const articleMetadata = {};
+            const authorMetadata = {};
+
+            console.log(`  Fetching metadata for ${Math.min(uniqueArticleIds.size, 50)} articles and unique authors...`);
+
+            // 1. Fetch Article Metadata (for tags)
+            let artMetaCount = 0;
+            for (const id of uniqueArticleIds) {
+                if (artMetaCount >= 50) break;
+                try {
+                    const res = await fetchUrl(`https://sspai.com/api/v1/article/info/get?id=${id}`);
+                    if (res.data) {
+                        articleMetadata[id] = {
+                            tags: res.data.tags || [],
+                            author: res.data.author
+                        };
+                        // Prefill author cache if we got it
+                        if (res.data.author?.slug) {
+                            authorMetadata[res.data.author.slug] = {
+                                nickname: res.data.author.nickname,
+                                avatar: res.data.author.avatar
+                            };
+                        }
+                    }
+                    artMetaCount++;
+                    if (artMetaCount % 10 === 0) await new Promise(r => setTimeout(r, 100));
+                } catch (e) { }
+            }
+
+            // 2. Fetch Author Metadata fallbacks (if needed)
+            for (const aSlug of uniqueAuthorSlugs) {
+                if (authorMetadata[aSlug] || aSlug === slug) continue;
+                try {
+                    const res = await fetchUrl(`https://sspai.com/api/v1/user/slug/info/get?slug=${aSlug}`);
+                    if (res.data) {
+                        authorMetadata[aSlug] = {
+                            nickname: res.data.nickname,
+                            avatar: res.data.avatar
+                        };
+                    }
+                    await new Promise(r => setTimeout(r, 50));
+                } catch (e) { }
+            }
+
+            engagement.all_activities.forEach(act => {
+                const metaArt = act.type === 'article' ? articleMetadata[act.target_id] : null;
+                const metaAuth = authorMetadata[act.author_slug] || metaArt?.author || null;
+
+                const tags = (act.tags && act.tags.length > 0) ? act.tags : (metaArt?.tags || []);
+                const author = act.author || metaAuth?.nickname || null;
+                const author_slug = act.author_slug || metaAuth?.slug || null;
+                const author_avatar = (act.author_avatar || metaAuth?.avatar || null);
+
+                // Tags
+                if (tags && Array.isArray(tags)) {
+                    tags.forEach(tag => {
+                        const tagName = typeof tag === 'object' ? tag.title : tag;
+                        socialTags[tagName] = (socialTags[tagName] || 0) + 1;
+                    });
+                }
+                // Authors (Filter out self)
+                if (author && author !== baseInfo.nickname && author_slug !== slug) {
+                    if (!authorMatrix[author]) {
+                        authorMatrix[author] = {
+                            count: 0,
+                            slug: author_slug,
+                            avatar: author_avatar ? normalizeAvatarUrl(author_avatar) : null
+                        };
+                    }
+                    authorMatrix[author].count += 1;
+                }
+            });
+
+            engagement.social_dna = {
+                top_tags: Object.entries(socialTags)
+                    .map(([name, count]) => ({ name, count }))
+                    .sort((a, b) => b.count - a.count)
+                    .slice(0, 10),
+                author_matrix: Object.entries(authorMatrix)
+                    .map(([name, data]) => ({ name, count: data.count, slug: data.slug, avatar: data.avatar }))
+                    .sort((a, b) => b.count - a.count)
+                    .slice(0, 15)
             };
 
             return { ...baseInfo, engagement };
