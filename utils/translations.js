@@ -1,0 +1,60 @@
+export const translations = {
+    zh: {
+        title: "少数派文章追踪",
+        subtitle: "正在追踪",
+        articles: "篇文章",
+        lastUpdated: "最后更新",
+        viewGitHub: "查看 GitHub",
+        totalViews: "总阅读量",
+        totalLikes: "总点赞",
+        totalComments: "总评论",
+        viewsTrend: "总阅读量趋势",
+        trackedArticles: "文章列表",
+        noArticles: "暂无文章数据",
+        backToDashboard: "返回看板",
+        articleAnalysis: "文章分析",
+        published: "发布于",
+        viewOnSSPAI: "在少数派查看",
+        growthTrends: "增长趋势",
+        viewsGrowth: "阅读增长",
+        likesGrowth: "点赞增长",
+        commentsGrowth: "评论增长",
+        dataPoints: "个数据点",
+        columns: {
+            title: "标题",
+            date: "日期",
+            views: "阅读",
+            likes: "点赞",
+            comments: "评论"
+        }
+    },
+    en: {
+        title: "SSPAI Tracker",
+        subtitle: "Tracking",
+        articles: "articles",
+        lastUpdated: "Last updated",
+        viewGitHub: "GitHub",
+        totalViews: "Total Views",
+        totalLikes: "Total Likes",
+        totalComments: "Total Comments",
+        viewsTrend: "Total Views Trend",
+        trackedArticles: "Tracked Articles",
+        noArticles: "No article details available yet.",
+        backToDashboard: "Back to Dashboard",
+        articleAnalysis: "Article Analysis",
+        published: "Published",
+        viewOnSSPAI: "View on SSPAI",
+        growthTrends: "Growth Trends",
+        viewsGrowth: "Views Growth",
+        likesGrowth: "Likes Growth",
+        commentsGrowth: "Comments Growth",
+        dataPoints: "data points",
+        columns: {
+            title: "Title",
+            date: "Date",
+            views: "Views",
+            likes: "Likes",
+            comments: "Comments"
+        }
+    }
+};

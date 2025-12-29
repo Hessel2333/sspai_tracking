@@ -30,11 +30,19 @@ export default function StatsChart({ history, title = 'Trend', dataKey = 'views'
             {
                 label: title,
                 data: sortedHistory.map(h => {
-                    // If h has 'totals' (it's a daily snapshot), look in totals or articles
-                    // If dataKey suggests looking into a specific article, the history passed here should already be "article history" (flat objects)
-                    // or "global history".
-                    // Let's assume the parent prepares the data correctly: an array of objects { timestamp, [dataKey]: value }
-                    return h[dataKey] !== undefined ? h[dataKey] : 0;
+                    // Helper to access nested properties safely
+                    const getNested = (obj, path) => path.split('.').reduce((o, i) => (o ? o[i] : undefined), obj);
+
+                    let val = getNested(h, dataKey);
+
+                    // Fallback for legacy flat structure (e.g. totals.views -> total_views)
+                    if (val === undefined) {
+                        if (dataKey === 'totals.views') val = h.total_views;
+                        if (dataKey === 'totals.likes') val = h.total_likes;
+                        if (dataKey === 'totals.comments') val = h.total_comments;
+                    }
+
+                    return val !== undefined ? val : 0;
                 }),
                 borderColor: color,
                 backgroundColor: color.replace('rgb', 'rgba').replace(')', ', 0.5)'),

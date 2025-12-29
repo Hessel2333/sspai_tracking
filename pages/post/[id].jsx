@@ -4,71 +4,74 @@ import Head from 'next/head';
 import Link from 'next/link';
 import StatsChart from '../../components/StatsChart';
 import dayjs from 'dayjs';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 export default function ArticleDetail({ article, history, latestTimestamp }) {
+    const { t } = useLanguage();
+
     if (!article) return <div className="container" style={{ padding: 40 }}>Article not found.</div>;
 
     return (
         <div className="min-h-screen bg-gray-50">
             <Head>
-                <title>{article.title} - SSPAI Tracker</title>
+                <title>{article.title} - {t('title')}</title>
             </Head>
 
             <main className="container">
                 <div style={{ marginTop: 40, marginBottom: 20 }}>
                     <Link href="/" className="back-link">
-                        ← Back to Dashboard
+                        ← {t('backToDashboard')}
                     </Link>
                 </div>
 
                 <header>
                     <div>
-                        <span className="badge">Article Analysis</span>
+                        <span className="badge">{t('articleAnalysis')}</span>
                         <h1 style={{ marginTop: 12 }}>{article.title}</h1>
                         <p className="subtitle">
-                            ID: {article.id} • Published: {dayjs.unix(article.created_at).format('YYYY-MM-DD')} • Last Updated: {dayjs(latestTimestamp).format('HH:mm')}
+                            ID: {article.id} • {t('published')}: {dayjs.unix(article.created_at).format('YYYY-MM-DD')} • {t('lastUpdated')}: {dayjs(latestTimestamp).format('HH:mm')}
                         </p>
                     </div>
                     <a href={`https://sspai.com/post/${article.id}`} target="_blank" className="article-link text-accent">
-                        View on SSPAI ↗
+                        {t('viewOnSSPAI')} ↗
                     </a>
                 </header>
 
                 {/* --- Key Metrics --- */}
                 <div className="grid">
-                    <Card title="Total Views" value={article.views} icon="👀" />
-                    <Card title="Total Likes" value={article.likes} icon="❤️" />
-                    <Card title="Total Comments" value={article.comments} icon="💬" />
+                    <Card title={t('totalViews')} value={article.views} icon="👀" />
+                    <Card title={t('totalLikes')} value={article.likes} icon="❤️" />
+                    <Card title={t('totalComments')} value={article.comments} icon="💬" />
                 </div>
 
                 {/* --- Charts --- */}
-                <h2 style={{ marginBottom: 16 }}>Growth Trends</h2>
+                <h2 style={{ marginBottom: 16 }}>{t('growthTrends')}</h2>
 
                 <div className="section">
                     <div className="section-header">
-                        <span className="card-title">Views Growth</span>
-                        <span className="meta-text">{history.length} data points</span>
+                        <span className="card-title">{t('viewsGrowth')}</span>
+                        <span className="meta-text">{history.length} {t('dataPoints')}</span>
                     </div>
                     <div style={{ padding: 24 }}>
-                        <StatsChart history={history} title="Views" dataKey="views" color="rgb(217, 48, 37)" />
+                        <StatsChart history={history} title={t('totalViews')} dataKey="views" color="rgb(217, 48, 37)" />
                     </div>
                 </div>
 
                 <div className="grid" style={{ gridTemplateColumns: '1fr 1fr', marginBottom: 40 }}>
                     <div className="section" style={{ marginBottom: 0 }}>
                         <div className="section-header">
-                            <span className="card-title">Likes Growth</span>
+                            <span className="card-title">{t('likesGrowth')}</span>
                         </div>
                         <div style={{ padding: 24 }}>
-                            <StatsChart history={history} title="Likes" dataKey="likes" color="rgb(52, 199, 89)" />
+                            <StatsChart history={history} title={t('totalLikes')} dataKey="likes" color="rgb(52, 199, 89)" />
                         </div>
                     </div>
                     <div className="section" style={{ marginBottom: 0 }}>
                         <div className="section-header">
-                            <span className="card-title">Comments Growth</span>
+                            <span className="card-title">{t('commentsGrowth')}</span>
                         </div>
                         <div style={{ padding: 24 }}>
-                            <StatsChart history={history} title="Comments" dataKey="comments" color="rgb(0, 122, 255)" />
+                            <StatsChart history={history} title={t('totalComments')} dataKey="comments" color="rgb(0, 122, 255)" />
                         </div>
                     </div>
                 </div>
@@ -100,7 +103,6 @@ export async function getStaticPaths() {
         history = JSON.parse(fs.readFileSync(historyPath, 'utf8'));
     } catch (e) { }
 
-    // Get all unique article IDs from the LATEST snapshot (assuming it contains all)
     const latest = history.length > 0 ? history[history.length - 1] : { articles: [] };
     const paths = (latest.articles || []).map(article => ({
         params: { id: article.id.toString() }
@@ -119,12 +121,9 @@ export async function getStaticProps({ params }) {
 
     const articleId = parseInt(params.id);
 
-    // 1. Find latest metadata for this article
     const latestSnapshot = history.length > 0 ? history[history.length - 1] : {};
     const article = (latestSnapshot.articles || []).find(a => a.id === articleId) || null;
 
-    // 2. Build history for this specific article
-    // We iterate through ALL history snapshots and extract data for this articleId
     const articleHistory = history.map(snapshot => {
         const art = (snapshot.articles || []).find(a => a.id === articleId);
         if (art) {
