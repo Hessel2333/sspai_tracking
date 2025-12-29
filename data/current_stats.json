@@ -4,9 +4,9 @@
     "title": "借 AntiGravity，给个人消费一次「年度盘点」",
     "banner": "2025/12/23/d1cf2d168cd12a352894e4fd6d50f899.png",
     "summary": "写在最前转眼又到年底，去年的年度征文获奖仿佛还在昨天。那段时间网站的访问量激增，GitHub星标数的跳动也让一度我兴奋得彻夜难眠。然而那个项目的推进却陷入了漫长的停滞：我已经解决了第一时间遇到的痛点— ...",
-    "comment_count": 13,
+    "comment_count": 14,
     "like_count": 37,
-    "view_count": 9723,
+    "view_count": 9829,
     "free": true,
     "post_type": 1,
     "important": 1,
@@ -75,6 +75,12 @@
     "comment_likes_total": 0,
     "top_comments": [
       {
+        "nickname": "少数派_890319",
+        "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
+        "content": "怎么本地部署请教如何做本地部署嘞",
+        "likes": 0
+      },
+      {
         "nickname": "长尾夹",
         "avatar": "https://cdnfile.sspai.com/ui/otter_avatar_placeholder.png",
         "content": "我真是没想到会消费这么多次",
@@ -84,12 +90,6 @@
         "nickname": "XCSS",
         "avatar": "https://cdnfile.sspai.com/2022/04/20/9870b25447439b2022a0ad65a47d17c3.jpeg",
         "content": "已star，希望增加docker版，方便本地部署和更新。另外是否考虑出个分析银行卡账单的功能呢？因为像抖音/美团/小红书之类都支持直接银行卡扣款，这部分就容易遗漏统计了。",
-        "likes": 0
-      },
-      {
-        "nickname": "天际",
-        "avatar": "https://cdnfile.sspai.com/2023/10/03/c2f804cd909aadcea797ccc4d0d1f02c.png",
-        "content": "大佬，请问能否支持zeabur平台一键部署呢。您的项目想安利给更多的朋友用，但是他们由于没有代码基础，部署起来比较困难",
         "likes": 0
       }
     ]
@@ -101,7 +101,7 @@
     "summary": "编注：本文是「2024年度征文」共创赛道的入围文章。文章代表作者个人观点，少数派仅对标题和排版略作修改。前情提要&引子在之前的文章中「自我记录、量化与回溯的数字之旅」，我提到了在用过一段时间的记账类A ...",
     "comment_count": 25,
     "like_count": 68,
-    "view_count": 42097,
+    "view_count": 42105,
     "free": true,
     "post_type": 1,
     "important": 1,
