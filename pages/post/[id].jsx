@@ -98,6 +98,27 @@ export default function ArticleDetail({ article, history, latestTimestamp }) {
                     </div>
                 </div>
 
+                {article.top_comments && article.top_comments.length > 0 && (
+                    <div className="comments-section">
+                        <h2 style={{ marginBottom: 16 }}>{t('topComments')}</h2>
+                        {article.top_comments.map((comment, idx) => (
+                            <div key={idx} className="comment-card">
+                                <div className="comment-header">
+                                    <div className="comment-user">
+                                        <img src={comment.avatar} alt={comment.nickname} className="comment-avatar" />
+                                        <span className="comment-nickname">{comment.nickname}</span>
+                                    </div>
+                                    <div className="comment-likes">
+                                        ❤️ {comment.likes}
+                                    </div>
+                                </div>
+                                <div className="comment-body">
+                                    {comment.content}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                )}
             </main>
         </div>
     );

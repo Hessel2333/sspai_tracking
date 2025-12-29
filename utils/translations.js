@@ -30,6 +30,7 @@ export const translations = {
         commentLikesGrowth: "评论获赞增长",
         dataPoints: "个采样数据点",
         totalCommentLikes: "评论获赞总计",
+        topComments: "黄金热评",
         columns: {
             title: "作品标题",
             date: "发布日期",
@@ -69,6 +70,7 @@ export const translations = {
         commentLikesGrowth: "Comment Likes Growth",
         dataPoints: "data samples",
         totalCommentLikes: "Total Comment Likes",
+        topComments: "Golden Comments",
         columns: {
             title: "Article Title",
             date: "Published At",

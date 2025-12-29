@@ -125,6 +125,13 @@ async function fetchAllArticles() {
     return allArticles;
 }
 
+// Helper to ensure avatar URL is absolute
+function normalizeAvatarUrl(url) {
+    if (!url) return 'https://cdn.sspai.com/static/avatar/default.png';
+    if (url.startsWith('http')) return url;
+    return `https://cdnfile.sspai.com/${url}`;
+}
+
 // Fetch public user info (nickname, avatar)
 async function fetchUserInfo(slug) {
     console.log(`Fetching public info for user: ${slug}...`);
@@ -134,7 +141,7 @@ async function fetchUserInfo(slug) {
         if (response.error === 0 && response.data) {
             return {
                 nickname: response.data.nickname,
-                avatar: response.data.avatar
+                avatar: normalizeAvatarUrl(response.data.avatar)
             };
         }
     } catch (e) {
@@ -159,6 +166,7 @@ async function main() {
             let tags = [];
             let editor = null;
             let commentLikesTotal = 0;
+            let topComments = [];
 
             try {
                 // 1. Fetch Article Info (Tags & Editor)
@@ -169,11 +177,22 @@ async function main() {
                     editor = infoRes.data.author ? infoRes.data.author.nickname : null;
                 }
 
-                // 2. Fetch Hot Comments (to count interaction likes)
+                // 2. Fetch Hot Comments (to count interaction likes and get top comments)
                 const commentUrl = `https://sspai.com/api/v1/comment/user/article/hot/page/get?limit=50&offset=0&article_id=${art.id}&flag_model=1`;
                 const commentRes = await fetchUrl(commentUrl);
                 if (commentRes.error === 0 && commentRes.data) {
                     commentLikesTotal = commentRes.data.reduce((sum, c) => sum + (c.likes_count || 0), 0);
+
+                    // Sort by likes and take top 3
+                    topComments = commentRes.data
+                        .sort((a, b) => (b.likes_count || 0) - (a.likes_count || 0))
+                        .slice(0, 3)
+                        .map(c => ({
+                            nickname: c.user?.nickname || 'Unknown',
+                            avatar: normalizeAvatarUrl(c.user?.avatar || ''),
+                            content: c.comment,
+                            likes: c.likes_count || 0
+                        }));
                 }
             } catch (e) {
                 console.warn(`    Failed to fetch deep stats for ${art.id}: ${e.message}`);
@@ -183,7 +202,8 @@ async function main() {
                 ...art,
                 tags,
                 editor,
-                comment_likes_total: commentLikesTotal
+                comment_likes_total: commentLikesTotal,
+                top_comments: topComments
             });
 
             // Be nice: 500ms delay between articles
@@ -218,7 +238,8 @@ async function main() {
                 created_at: art.created_time,
                 tags: art.tags,
                 editor: art.editor,
-                comment_likes: art.comment_likes_total
+                comment_likes: art.comment_likes_total,
+                top_comments: art.top_comments
             }))
         };
 

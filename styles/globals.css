@@ -301,6 +301,60 @@ a.article-link:hover {
     background: rgba(0, 0, 0, 0.05);
 }
 
+/* Comments Section */
+.comments-section {
+    margin-top: 32px;
+}
+
+.comment-card {
+    background: rgba(0, 0, 0, 0.02);
+    padding: 14px 16px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 12px;
+    border-left: 3px solid var(--accent-color);
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.comment-user {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.comment-avatar {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.comment-nickname {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.comment-likes {
+    font-size: 11px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.comment-body {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text-primary);
+}
+
+
 /* Tags */
 .tags-container {
     display: flex;
