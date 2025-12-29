@@ -106,10 +106,10 @@
     ]
   },
   {
-    "timestamp": "2025-12-29T03:09:03.394Z",
+    "timestamp": "2025-12-29T03:02:32.177Z",
     "totals": {
       "article_count": 4,
-      "views": 177420,
+      "views": 177372,
       "likes": 282,
       "comments": 187
     },
@@ -117,7 +117,7 @@
       {
         "id": 104232,
         "title": "借 AntiGravity，给个人消费一次「年度盘点」",
-        "views": 7202,
+        "views": 7154,
         "likes": 27,
         "comments": 9,
         "created_at": 1764643711
