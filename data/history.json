@@ -1,54 +1,5 @@
 [
   {
-    "timestamp": "2025-12-29T02:33:33.364Z",
-    "article_count": 20,
-    "total_views": 0,
-    "total_likes": 553,
-    "total_comments": 407
-  },
-  {
-    "timestamp": "2025-12-29T02:38:18.702Z",
-    "article_count": 0,
-    "total_views": 0,
-    "total_likes": 0,
-    "total_comments": 0
-  },
-  {
-    "timestamp": "2025-12-29T02:38:41.607Z",
-    "article_count": 0,
-    "total_views": 0,
-    "total_likes": 0,
-    "total_comments": 0
-  },
-  {
-    "timestamp": "2025-12-29T02:44:47.600Z",
-    "article_count": 0,
-    "total_views": 0,
-    "total_likes": 0,
-    "total_comments": 0
-  },
-  {
-    "timestamp": "2025-12-29T02:45:10.372Z",
-    "article_count": 0,
-    "total_views": 0,
-    "total_likes": 0,
-    "total_comments": 0
-  },
-  {
-    "timestamp": "2025-12-29T02:47:45.010Z",
-    "article_count": 0,
-    "total_views": 0,
-    "total_likes": 0,
-    "total_comments": 0
-  },
-  {
-    "timestamp": "2025-12-29T02:49:16.611Z",
-    "article_count": 0,
-    "total_views": 0,
-    "total_likes": 0,
-    "total_comments": 0
-  },
-  {
     "timestamp": "2025-12-29T02:50:40.619Z",
     "article_count": 4,
     "total_views": 177274,
