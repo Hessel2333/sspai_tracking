@@ -54,20 +54,20 @@ export default function Home({ history, latest, previous, latestTimestamp, slug,
 
             <main className="container">
                 <header>
-                    <div>
+                    <div style={{ display: 'flex', alignItems: 'baseline', gap: 12 }}>
                         <h1>{t('title')}</h1>
-                        <p className="subtitle">
-                            {t('lastUpdated')}: {dayjs(latestTimestamp).format('YYYY-MM-DD HH:mm')}
+                        <p className="subtitle" style={{ fontSize: 12 }}>
+                            {dayjs(latestTimestamp).format('YYYY-MM-DD HH:mm')} 更新
                         </p>
                     </div>
                     <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
                         <button onClick={toggleLang} className="btn-secondary" style={{
-                            padding: '6px 12px',
-                            fontSize: 13,
+                            padding: '4px 10px',
+                            fontSize: 12,
                             cursor: 'pointer',
                             background: 'rgba(0,0,0,0.05)',
                             border: 'none',
-                            borderRadius: 6,
+                            borderRadius: 4,
                             fontWeight: 600
                         }}>
                             {lang === 'zh' ? 'EN' : '中'}
