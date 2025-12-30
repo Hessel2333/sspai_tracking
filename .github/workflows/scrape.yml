@@ -30,8 +30,6 @@ jobs:
         run: node src/fetch_stats.js
 
       - name: Generate Digital Persona (Weekly on Monday)
-        if: github.event_name == 'workflow_dispatch' || (github.event.schedule == '30 * * * *' && contains(fromJSON('["Mon"]'), formatDateTime(github.event.timestamp, 'ddd')))
-        # Note: GitHub Actions doesn't have a built-in 'is_monday', so we can use a simpler shell check
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
