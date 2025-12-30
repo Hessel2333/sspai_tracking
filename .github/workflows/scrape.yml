@@ -29,11 +29,23 @@ jobs:
           SSPAI_SLUG: ${{ secrets.SSPAI_SLUG }}
         run: node src/fetch_stats.js
 
+      - name: Generate Digital Persona (Weekly on Monday)
+        if: github.event_name == 'workflow_dispatch' || (github.event.schedule == '30 * * * *' && contains(fromJSON('["Mon"]'), formatDateTime(github.event.timestamp, 'ddd')))
+        # Note: GitHub Actions doesn't have a built-in 'is_monday', so we can use a simpler shell check
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          if [ "$(date +%u)" = "1" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            node src/generate_persona.js
+          else
+            echo "Skipping Digital Persona generation (not Monday)."
+          fi
+
       - name: Commit and Push if changed
         run: |
           git config user.name "Automated"
           git config user.email "actions@users.noreply.github.com"
           git add data/
           timestamp=$(date -u)
-          git commit -m "Latest data: ${timestamp}" || exit 0
+          git commit -m "Latest stats & insights: ${timestamp}" || exit 0
           git push

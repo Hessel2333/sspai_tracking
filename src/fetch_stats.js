@@ -437,25 +437,44 @@ async function main() {
 
         console.log('Stats Summary:', statsEntry.totals);
 
-        // 2. Update History File
-        let history = [];
-        if (fs.existsSync(HISTORY_FILE)) {
-            try {
-                history = JSON.parse(fs.readFileSync(HISTORY_FILE, 'utf8'));
-            } catch (e) {
-                console.warn('Could not parse existing history, starting fresh.');
+        // --- Intelligent Frequency Logic ---
+        const lastArticle = detailedArticles.length > 0
+            ? Math.max(...detailedArticles.map(a => a.created_time)) * 1000 // SSPAI uses seconds
+            : 0;
+
+        const hoursSinceLastPost = (new Date() - new Date(lastArticle)) / (1000 * 60 * 60);
+        const isRushHour = hoursSinceLastPost < 48; // Within 48 hours of a new post
+        const isDailySync = new Date().getUTCHours() === 0; // Daily backup at 00:00 UTC
+        const isForceSave = process.env.FORCE_SAVE === 'true';
+
+        console.log(`Last post: ${new Date(lastArticle).toLocaleString()}`);
+        console.log(`Hours since last post: ${hoursSinceLastPost.toFixed(1)}h`);
+
+        if (isRushHour || isDailySync || isForceSave) {
+            console.log(isRushHour ? '>> RUSH HOUR DETECTED: Intensive tracking active.' : '>> Daily maintenance sync.');
+
+            // 2. Update History File
+            let history = [];
+            if (fs.existsSync(HISTORY_FILE)) {
+                try {
+                    history = JSON.parse(fs.readFileSync(HISTORY_FILE, 'utf8'));
+                } catch (e) {
+                    console.warn('Could not parse existing history, starting fresh.');
+                }
             }
+
+            history.push(statsEntry);
+
+            // Write back history
+            fs.writeFileSync(HISTORY_FILE, JSON.stringify(history, null, 2));
+            console.log(`Updated ${HISTORY_FILE}`);
+
+            // 3. Write detailed snapshot
+            fs.writeFileSync(CURRENT_STATS_FILE, JSON.stringify(detailedArticles, null, 2));
+            console.log(`Updated ${CURRENT_STATS_FILE}`);
+        } else {
+            console.log('>> NORMAL PERIOD: Skipping persistent save to reduce noise. (Set FORCE_SAVE=true to override)');
         }
-
-        history.push(statsEntry);
-
-        // Write back history
-        fs.writeFileSync(HISTORY_FILE, JSON.stringify(history, null, 2));
-        console.log(`Updated ${HISTORY_FILE}`);
-
-        // 3. Write detailed snapshot
-        fs.writeFileSync(CURRENT_STATS_FILE, JSON.stringify(detailedArticles, null, 2));
-        console.log(`Updated ${CURRENT_STATS_FILE}`);
 
     } catch (err) {
         console.error('Main execution failed:', err);
