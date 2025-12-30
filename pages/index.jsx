@@ -3,13 +3,14 @@ import fs from 'fs';
 import path from 'path';
 import Head from 'next/head';
 import Link from 'next/link';
+import DigitalPersona from '../components/DigitalPersona';
 import StatsChart from '../components/StatsChart';
 import SocialRadar from '../components/SocialRadar';
 import SocialAvatarGrid from '../components/SocialAvatarGrid';
 import dayjs from 'dayjs';
 import { useLanguage } from '../contexts/LanguageContext';
 
-export default function Home({ history, latest, previous, latestTimestamp, slug, nickname, avatarUrl, topTags, topEditors, userData }) {
+export default function Home({ history, latest, previous, latestTimestamp, slug, nickname, avatarUrl, topTags, topEditors, userData, personaData }) {
     const { t, toggleLang, lang } = useLanguage();
     const totals = latest.totals || latest;
     const prevTotals = previous ? (previous.totals || previous) : null;
@@ -172,6 +173,9 @@ export default function Home({ history, latest, previous, latestTimestamp, slug,
                     </div>
                 </div>
 
+                {/* --- AI Digital Persona --- */}
+                {personaData && <DigitalPersona data={personaData} />}
+
                 {/* --- Summary Cards --- */}
                 <div className="grid">
                     <Card
@@ -198,79 +202,83 @@ export default function Home({ history, latest, previous, latestTimestamp, slug,
                 </div>
 
                 {/* --- Featured Article --- */}
-                {topArticle && (
-                    <div className="featured-grid">
-                        <div className="featured-header">
-                            <h2>{t('featuredWork')}</h2>
-                        </div>
-                        <Link href={`/post/${topArticle.id}`} className="featured-card">
-                            <div className="featured-content">
-                                <span className="featured-badge">{t('topArticle')}</span>
-                                <h4>{topArticle.title}</h4>
-                                <p>{topArticle.views.toLocaleString()} {t('columns.views')} • {topArticle.likes.toLocaleString()} {t('columns.likes')}</p>
+                {
+                    topArticle && (
+                        <div className="featured-grid">
+                            <div className="featured-header">
+                                <h2>{t('featuredWork')}</h2>
                             </div>
-                            <div style={{ fontSize: 32 }}>🏆</div>
-                        </Link>
-                    </div>
-                )}
+                            <Link href={`/post/${topArticle.id}`} className="featured-card">
+                                <div className="featured-content">
+                                    <span className="featured-badge">{t('topArticle')}</span>
+                                    <h4>{topArticle.title}</h4>
+                                    <p>{topArticle.views.toLocaleString()} {t('columns.views')} • {topArticle.likes.toLocaleString()} {t('columns.likes')}</p>
+                                </div>
+                                <div style={{ fontSize: 32 }}>🏆</div>
+                            </Link>
+                        </div>
+                    )
+                }
 
                 {/* --- Recent Activity Timeline --- */}
-                {userData.engagement?.all_activities && userData.engagement.all_activities.length > 0 && (
-                    <div className="section" style={{ marginBottom: 24 }}>
-                        <div className="section-header">
-                            <span className="card-title">{t('engagement')}</span>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-                                <span className="meta-text">{t('activeOn')} {userData.engagement.all_activities.length} {t('dataPoints')}</span>
-                                <Link href="/activities" className="btn-secondary" style={{ padding: '6px 12px', fontSize: 13, fontWeight: 'bold' }}>
-                                    {t('socialVault')} ↗
-                                </Link>
+                {
+                    userData.engagement?.all_activities && userData.engagement.all_activities.length > 0 && (
+                        <div className="section" style={{ marginBottom: 24 }}>
+                            <div className="section-header">
+                                <span className="card-title">{t('engagement')}</span>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+                                    <span className="meta-text">{t('activeOn')} {userData.engagement.all_activities.length} {t('dataPoints')}</span>
+                                    <Link href="/activities" className="btn-secondary" style={{ padding: '6px 12px', fontSize: 13, fontWeight: 'bold' }}>
+                                        {t('socialVault')} ↗
+                                    </Link>
+                                </div>
+                            </div>
+                            <div className="activity-timeline">
+                                {userData.engagement.all_activities.slice(0, 10).map((act, i) => (
+                                    <div key={i} className="timeline-item">
+                                        <div className="timeline-time">{dayjs.unix(act.created_at).format('MM-DD HH:mm')}</div>
+                                        <div className="timeline-content">
+                                            <span className="timeline-action">{act.action}</span>
+                                            {act.target_title && (
+                                                <span className="timeline-target">
+                                                    {act.target_id ? (
+                                                        <a href={`https://sspai.com/post/${act.target_id}`} target="_blank" className="timeline-link">
+                                                            「{act.target_title}」
+                                                        </a>
+                                                    ) : act.key === 'follow_user' && act.target_slug ? (
+                                                        <a href={`https://sspai.com/u/${act.target_slug}/posts`} target="_blank" className="timeline-link">
+                                                            「{act.target_title}」
+                                                        </a>
+                                                    ) : act.key === 'follow_special_column' && act.target_slug ? (
+                                                        <a href={`https://sspai.com/column/${act.target_slug}`} target="_blank" className="timeline-link">
+                                                            「{act.target_title}」
+                                                        </a>
+                                                    ) : (
+                                                        `「${act.target_title}」`
+                                                    )}
+                                                </span>
+                                            )}
+                                            {act.comment_content && (
+                                                <div className="timeline-comment-preview" style={{
+                                                    fontSize: 12,
+                                                    color: 'var(--text-secondary)',
+                                                    marginTop: 4,
+                                                    paddingLeft: 12,
+                                                    borderLeft: '2px solid var(--border-color)',
+                                                    fontStyle: 'italic',
+                                                    display: '-webkit-box',
+                                                    WebkitLineClamp: 2,
+                                                    WebkitBoxOrient: 'vertical',
+                                                    overflow: 'hidden'
+                                                }} dangerouslySetInnerHTML={{ __html: act.comment_content }} />
+                                            )}
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
                         </div>
-                        <div className="activity-timeline">
-                            {userData.engagement.all_activities.slice(0, 10).map((act, i) => (
-                                <div key={i} className="timeline-item">
-                                    <div className="timeline-time">{dayjs.unix(act.created_at).format('MM-DD HH:mm')}</div>
-                                    <div className="timeline-content">
-                                        <span className="timeline-action">{act.action}</span>
-                                        {act.target_title && (
-                                            <span className="timeline-target">
-                                                {act.target_id ? (
-                                                    <a href={`https://sspai.com/post/${act.target_id}`} target="_blank" className="timeline-link">
-                                                        「{act.target_title}」
-                                                    </a>
-                                                ) : act.key === 'follow_user' && act.target_slug ? (
-                                                    <a href={`https://sspai.com/u/${act.target_slug}/posts`} target="_blank" className="timeline-link">
-                                                        「{act.target_title}」
-                                                    </a>
-                                                ) : act.key === 'follow_special_column' && act.target_slug ? (
-                                                    <a href={`https://sspai.com/column/${act.target_slug}`} target="_blank" className="timeline-link">
-                                                        「{act.target_title}」
-                                                    </a>
-                                                ) : (
-                                                    `「${act.target_title}」`
-                                                )}
-                                            </span>
-                                        )}
-                                        {act.comment_content && (
-                                            <div className="timeline-comment-preview" style={{
-                                                fontSize: 12,
-                                                color: 'var(--text-secondary)',
-                                                marginTop: 4,
-                                                paddingLeft: 12,
-                                                borderLeft: '2px solid var(--border-color)',
-                                                fontStyle: 'italic',
-                                                display: '-webkit-box',
-                                                WebkitLineClamp: 2,
-                                                WebkitBoxOrient: 'vertical',
-                                                overflow: 'hidden'
-                                            }} dangerouslySetInnerHTML={{ __html: act.comment_content }} />
-                                        )}
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                )}
+                    )
+                }
 
                 {/* --- Chart --- */}
                 <div className="section">
@@ -340,31 +348,33 @@ export default function Home({ history, latest, previous, latestTimestamp, slug,
                 </div>
 
                 {/* --- Social DNA --- */}
-                {userData.engagement?.social_dna && (
-                    <div className="dna-grid" style={{ marginTop: 24, marginBottom: 24 }}>
-                        <div className="dna-card">
-                            <div className="section-header" style={{ marginBottom: 16 }}>
-                                <span className="card-title">{t('socialTags')}</span>
-                                <span className="meta-text" style={{ color: 'var(--accent-color)', fontWeight: 'bold' }}>{t('socialDNA')}</span>
+                {
+                    userData.engagement?.social_dna && (
+                        <div className="dna-grid" style={{ marginTop: 24, marginBottom: 24 }}>
+                            <div className="dna-card">
+                                <div className="section-header" style={{ marginBottom: 16 }}>
+                                    <span className="card-title">{t('socialTags')}</span>
+                                    <span className="meta-text" style={{ color: 'var(--accent-color)', fontWeight: 'bold' }}>{t('socialDNA')}</span>
+                                </div>
+                                <div style={{ padding: '0 10px' }}>
+                                    <SocialRadar
+                                        data={userData.engagement.social_dna.top_tags.map(t => t.count)}
+                                        labels={userData.engagement.social_dna.top_tags.map(t => `#${t.name}`)}
+                                        title={t('interacts')}
+                                    />
+                                </div>
                             </div>
-                            <div style={{ padding: '0 10px' }}>
-                                <SocialRadar
-                                    data={userData.engagement.social_dna.top_tags.map(t => t.count)}
-                                    labels={userData.engagement.social_dna.top_tags.map(t => `#${t.name}`)}
-                                    title={t('interacts')}
-                                />
-                            </div>
-                        </div>
 
-                        <div className="dna-card">
-                            <div className="section-header" style={{ marginBottom: 16 }}>
-                                <span className="card-title">{t('socialAuthors')}</span>
-                                <span className="meta-text" style={{ color: 'var(--accent-color)', fontWeight: 'bold' }}>{t('socialDNA')}</span>
+                            <div className="dna-card">
+                                <div className="section-header" style={{ marginBottom: 16 }}>
+                                    <span className="card-title">{t('socialAuthors')}</span>
+                                    <span className="meta-text" style={{ color: 'var(--accent-color)', fontWeight: 'bold' }}>{t('socialDNA')}</span>
+                                </div>
+                                <SocialAvatarGrid authors={userData.engagement.social_dna.author_matrix} />
                             </div>
-                            <SocialAvatarGrid authors={userData.engagement.social_dna.author_matrix} />
                         </div>
-                    </div>
-                )}
+                    )
+                }
 
                 {/* --- Article List --- */}
                 <div className="section" style={{ marginBottom: 0 }}>
@@ -510,7 +520,7 @@ export async function getStaticProps() {
     };
 
     const sortAndSliceEditors = (counts) => {
-        // Editor counts are objects { count, slug }
+        // Editor counts are objects {count, slug}
         return Object.entries(counts)
             .map(([name, data]) => ({ name, count: data.count, slug: data.slug }))
             .sort((a, b) => b.count - a.count)
@@ -519,6 +529,17 @@ export async function getStaticProps() {
 
     const topTags = sortAndSlice(tagCounts);
     const topEditors = sortAndSliceEditors(editorCounts);
+
+    // Load Digital Persona Data
+    let personaData = null;
+    try {
+        const personaPath = path.join(process.cwd(), 'data/persona.json');
+        if (fs.existsSync(personaPath)) {
+            personaData = JSON.parse(fs.readFileSync(personaPath, 'utf8'));
+        }
+    } catch (e) {
+        console.error('Failed to load persona data:', e);
+    }
 
     return {
         props: {
@@ -531,7 +552,8 @@ export async function getStaticProps() {
             avatarUrl: process.env.SSPAI_AVATAR || scrapedUser.avatar || 'https://cdn.sspai.com/static/avatar/default.png',
             topTags,
             topEditors,
-            userData: scrapedUser // Pass complete user data for achievements
+            userData: scrapedUser, // Pass complete user data for achievements
+            personaData
         },
     };
 }
