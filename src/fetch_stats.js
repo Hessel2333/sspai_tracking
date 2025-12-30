@@ -214,19 +214,21 @@ async function fetchUserInfo(slug) {
                         commentContent = commentContent.body || commentContent.content || null;
                     }
 
+                    const rawData = Array.isArray(a.data) ? a.data[0] : a.data;
+
                     return {
                         key: a.key,
                         action: a.action,
                         created_at: a.created_at,
-                        target_title: a.data?.title || a.data?.article_title || a.data?.topic?.title || a.data?.topic?.content || a.data?.content || null,
-                        target_id: a.data?.id || a.data?.article_id || a.data?.topic?.id || null,
-                        target_slug: a.data?.slug || a.data?.article_slug || null,
+                        target_title: rawData?.title || rawData?.article_title || rawData?.topic?.title || rawData?.topic?.content || rawData?.content || rawData?.nickname || rawData?.user?.nickname || null,
+                        target_id: rawData?.id || rawData?.article_id || rawData?.topic?.id || null,
+                        target_slug: rawData?.slug || rawData?.article_slug || rawData?.user?.slug || null,
                         comment_content: commentContent,
                         type: a.key.includes('topic') ? 'topic' : 'article',
-                        author: a.data?.author?.nickname || a.data?.article_author_nickname || null,
-                        author_slug: a.data?.author?.slug || a.data?.article_author_slug || null,
-                        author_avatar: a.data?.author?.avatar || a.data?.article_author_avatar || null,
-                        tags: a.data?.tags || []
+                        author: rawData?.author?.nickname || rawData?.article_author_nickname || rawData?.nickname || rawData?.user?.nickname || null,
+                        author_slug: rawData?.author?.slug || rawData?.article_author_slug || rawData?.slug || rawData?.user?.slug || null,
+                        author_avatar: rawData?.author?.avatar || rawData?.article_author_avatar || rawData?.avatar || rawData?.user?.avatar || null,
+                        tags: rawData?.tags || []
                     };
                 })
             };

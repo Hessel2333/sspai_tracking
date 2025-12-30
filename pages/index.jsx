@@ -238,6 +238,14 @@ export default function Home({ history, latest, previous, latestTimestamp, slug,
                                                     <a href={`https://sspai.com/post/${act.target_id}`} target="_blank" className="timeline-link">
                                                         「{act.target_title}」
                                                     </a>
+                                                ) : act.key === 'follow_user' && act.target_slug ? (
+                                                    <a href={`https://sspai.com/u/${act.target_slug}/posts`} target="_blank" className="timeline-link">
+                                                        「{act.target_title}」
+                                                    </a>
+                                                ) : act.key === 'follow_special_column' && act.target_slug ? (
+                                                    <a href={`https://sspai.com/column/${act.target_slug}`} target="_blank" className="timeline-link">
+                                                        「{act.target_title}」
+                                                    </a>
                                                 ) : (
                                                     `「${act.target_title}」`
                                                 )}
