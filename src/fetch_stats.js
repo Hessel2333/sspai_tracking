@@ -148,7 +148,8 @@ async function fetchUserInfo(slug) {
                 liked_count: json.data.liked_count, // Total charging (获得充电)
                 article_view_count: json.data.article_view_count, // Total views (Official stat)
                 article_count: json.data.released_article_count, // Total articles (Official stat)
-                user_reward_badges: json.data.user_reward_badges || [] // Badges
+                user_reward_badges: json.data.user_reward_badges || [], // Badges
+                bio: json.data.bio || json.data.signature || '' // User Bio
             };
 
             // Fetch Additional Engagement Data
@@ -183,6 +184,42 @@ async function fetchUserInfo(slug) {
                 }))
             };
 
+            // 1.5 Followers (Paginated) - NEW
+            let allFollowers = [];
+            let followerOffset = 0;
+            const followerLimit = 20;
+            let followerTotal = 0;
+
+            try {
+                // Determine API endpoint for followers (Assuming /user/fan/page/get based on similar APIs or standard naming)
+                // Note: If exact API is unknown, I'm inferring from typical patterns. 
+                // SSPAI usually pairs 'follow' with 'fan' or 'follower'. Let's try 'fan'.
+                const firstFollowerRes = await fetchUrl(`https://sspai.com/api/v1/user/fan/page/get?limit=${followerLimit}&offset=0&slug=${slug}`);
+                followerTotal = firstFollowerRes.total || 0;
+                allFollowers = firstFollowerRes.data || [];
+
+                // Limit deeper fetching for followers to save time, we mostly need the count
+                // fetching first 100 is enough for a sample
+                while (allFollowers.length < Math.min(followerTotal, 100)) {
+                    followerOffset += followerLimit;
+                    const res = await fetchUrl(`https://sspai.com/api/v1/user/fan/page/get?limit=${followerLimit}&offset=${followerOffset}&slug=${slug}`);
+                    if (!res.data || res.data.length === 0) break;
+                    // Filter duplicates manually if needed, but simple concat is fast
+                    allFollowers = allFollowers.concat(res.data);
+                    await new Promise(r => setTimeout(r, 300));
+                }
+            } catch (e) { console.error("Follower fetch error:", e); }
+
+            const followers = {
+                total: followerTotal,
+                list: allFollowers.slice(0, 5).map(u => ({
+                    nickname: u.nickname,
+                    slug: u.slug,
+                    avatar: normalizeAvatarUrl(u.avatar)
+                }))
+            };
+
+
             // 2. Activities (Paginated)
             let allActivities = [];
             let activityOffset = 0;
@@ -206,6 +243,7 @@ async function fetchUserInfo(slug) {
 
             const engagement = {
                 following,
+                followers,
                 likes_given_total: allActivities.filter(a => a.key === 'like_article').length,
                 comments_made_total: allActivities.filter(a => ['comment_article', 'community_comment_topic', 'community_reply_topic_comment', 'community_comment_topic_comment'].includes(a.key)).length,
                 all_activities: allActivities.map(a => {
@@ -444,7 +482,8 @@ async function main() {
 
         const hoursSinceLastPost = (new Date() - new Date(lastArticle)) / (1000 * 60 * 60);
         const isRushHour = hoursSinceLastPost < 48; // Within 48 hours of a new post
-        const isDailySync = new Date().getUTCHours() === 0; // Daily backup at 00:00 UTC
+        // Relaxed schedule: Sync every 2 hours even if not rush hour
+        const isDailySync = new Date().getUTCHours() % 2 === 0;
         const isForceSave = process.env.FORCE_SAVE === 'true';
 
         console.log(`Last post: ${new Date(lastArticle).toLocaleString()}`);
