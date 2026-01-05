@@ -16,12 +16,16 @@ const CURRENT_STATS_FILE = path.join(__dirname, '../data/current_stats.json'); /
 // ---
 
 if (!SLUG) {
-    console.error('Error: SSPAI_SLUG environment variable is required.');
+    console.error('Error: SSPAI_SLUG is not set in environment variables.');
     process.exit(1);
+} else {
+    console.log(`Using SSPAI_SLUG: ${SLUG}`);
 }
 
 if (!COOKIE) {
     console.warn('Warning: SSPAI_COOKIE is not set. View counts will likely be 0.');
+} else {
+    console.log('SSPAI_COOKIE is present (length: ' + COOKIE.length + ')');
 }
 
 // Helper to extract JWT from cookie string
@@ -66,62 +70,50 @@ function fetchUrl(url) {
     });
 }
 
-// Fetch all articles for the user (handling pagination)
+// Fetch all articles for the user (using Public API for robustness)
 async function fetchAllArticles() {
     const limit = 20;
     let offset = 0;
     let allArticles = [];
     let hasMore = true;
 
-    console.log(`Fetching authenticated articles...`);
+    console.log(`Fetching articles for slug: ${SLUG} ...`);
 
     while (hasMore) {
-        // Correct Endpoint: Matrix Editor API
+        // Use Public Endpoint: api/v1/article/user/public/page/get
         const timestamp = Math.floor(Date.now() / 1000);
-        // User saw "type=5" in their console. Let's try to trust it, but if it returns empty, we log why.
-        const url = `https://sspai.com/api/v1/matrix/editor/article/self/page/get?limit=${limit}&offset=${offset}&type=5&created_at=${timestamp}`;
+        const url = `https://sspai.com/api/v1/article/user/public/page/get?limit=${limit}&offset=${offset}&slug=${SLUG}&created_at=${timestamp}&object_type=0`;
+
         try {
+            console.log(`  Fetching: ${url}`);
             const response = await fetchUrl(url);
 
-            if (!response.data || response.data.length === 0) {
-                console.log("Empty Data received. Raw Response:", JSON.stringify(response, null, 2));
-                // Try fallback to type=1 (Published?)
-                if (url.includes('type=5')) {
-                    console.log("Retrying with type=1...");
-                    const url2 = url.replace('type=5', 'type=1');
-                    const res2 = await fetchUrl(url2);
-                    if (res2.data && res2.data.length > 0) {
-                        console.log("Found articles with type=1!");
-                        response.data = res2.data;
-                    }
-                }
+            if (response.error !== 0) {
+                console.error('  API Error:', response.msg);
+                break;
             }
 
             if (!response.data || response.data.length === 0) {
+                console.log("  No more data.");
                 hasMore = false;
                 break;
             }
 
             const articles = response.data;
             allArticles = allArticles.concat(articles);
-            console.log(`  Fetched ${articles.length} articles (Total so far: ${allArticles.length})`);
+            console.log(`  Got ${articles.length} articles. Total: ${allArticles.length}`);
 
-            // FOR TESTING: Stop after 1 page
             if (articles.length < limit) {
                 hasMore = false;
             } else {
                 offset += limit;
+                await new Promise(resolve => setTimeout(resolve, 500));
             }
-
-            // Be nice to the API
-            await new Promise(r => setTimeout(r, 500));
-
-        } catch (e) {
-            console.error('Error fetching page:', e);
-            hasMore = false;
+        } catch (error) {
+            console.error('  Fetch failed:', error.message);
+            break;
         }
     }
-
     return allArticles;
 }
 
@@ -248,19 +240,33 @@ async function fetchUserInfo(slug) {
             let favoriteTotal = 0;
 
             try {
-                const firstFavRes = await fetchUrl(`https://sspai.com/api/v1/user/favorite/page/get?limit=${favoriteLimit}&offset=0&slug=${slug}`);
-                favoriteTotal = firstFavRes.total || 0;
-                allFavorites = firstFavRes.data || [];
+                // Use PUBLIC favorites endpoint discovered via browser inspection
+                // Requires: limit, offset, created_at, slug, type=all
+                const now = Math.floor(Date.now() / 1000);
+                const favUrl = (offset) => `https://sspai.com/api/v1/article/user/favorite/public/page/get?limit=${favoriteLimit}&offset=${offset}&created_at=${now}&slug=${slug}&type=all`;
+
+                console.log(`  Fetching favorites from: ${favUrl(0)}`);
+                const firstFavRes = await fetchUrl(favUrl(0));
+
+                if (firstFavRes.error !== 0) {
+                    console.error('Favorites API returned error:', firstFavRes.error, firstFavRes.msg);
+                } else {
+                    favoriteTotal = firstFavRes.total || 0;
+                    allFavorites = firstFavRes.data || [];
+                    console.log(`  Found ${favoriteTotal} favorites.`);
+                }
 
                 while (allFavorites.length < favoriteTotal) {
                     favoriteOffset += favoriteLimit;
-                    const res = await fetchUrl(`https://sspai.com/api/v1/user/favorite/page/get?limit=${favoriteLimit}&offset=${favoriteOffset}&slug=${slug}`);
+                    const res = await fetchUrl(favUrl(favoriteOffset));
                     if (!res.data || res.data.length === 0) break;
                     allFavorites = allFavorites.concat(res.data);
                     await new Promise(r => setTimeout(r, 300));
-                    if (allFavorites.length >= 200) break; // Limit to 200 for analysis to save API calls
+                    if (allFavorites.length >= 200) break; // Limit to 200 for analysis
                 }
-            } catch (e) { console.error("Favorites fetch error:", e); }
+            } catch (e) {
+                console.error("Favorites fetch error:", e);
+            }
 
             const favorites = {
                 total: favoriteTotal,
