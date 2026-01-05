@@ -54,6 +54,7 @@ export const translations = {
         tabArticles: '文章互动',
         tabTopics: '社区话题',
         tabSocial: '社交流通',
+        tabFavorites: '收藏与偏好', // Add this
         searchPlaceholder: '检索互动记录...',
         sortNewest: '最近优先',
         sortOldest: '最早优先',
@@ -82,12 +83,28 @@ export const translations = {
         unitTenThousand: 'w',
         unitTenThousandZh: '万',
         days: '天',
+        favoritesTimeline: '收藏时间轴',
+        topFavAuthors: '偏好作者',
+        favAuthors: '收藏作者',
+        favTags: '偏好标签',
+        totalFavorites: '总收藏',
+        recentFavorites: '最近收藏',
+        favoritesCount: '收藏数量',
+        noTagData: '无标签数据',
+        metricsGivenLikes: '送出充电',
+        metricsCommentsMade: '发表评论',
+        // ...
+        metricsFollowing: '正在关注',
+        noData: '暂无数据',
+        activityDensity: '活跃密度',
+        interactions: '次互动',
         columns: {
             title: "作品标题",
             date: "发布日期",
             views: "阅读",
             likes: "充电",
-            comments: "评论"
+            comments: "评论",
+            author: "作者"
         }
     },
     en: {
@@ -145,6 +162,7 @@ export const translations = {
         tabArticles: 'Articles',
         tabTopics: 'Topics',
         tabSocial: 'Social',
+        tabFavorites: 'Favorites', // Add this
         searchPlaceholder: 'Search archive...',
         sortNewest: 'Newest',
         sortOldest: 'Oldest',
@@ -173,12 +191,27 @@ export const translations = {
         unitTenThousand: 'w',
         unitTenThousandZh: 'w',
         days: 'days',
+        favoritesTimeline: 'Favorites Timeline',
+        topFavAuthors: 'Top Favorite Authors',
+        favAuthors: 'Favorite Authors',
+        favTags: 'Favorite Tags',
+        totalFavorites: 'Total Favorites',
+        recentFavorites: 'Recent Favorites',
+        favoritesCount: 'Favorites Count',
+        noTagData: 'No Tag Data',
+        metricsGivenLikes: 'Likes Given',
+        metricsCommentsMade: 'Comments Made',
+        metricsFollowing: 'Following',
+        noData: 'No Data',
+        activityDensity: 'Activity Density',
+        interactions: 'Interactions',
         columns: {
             title: "Article Title",
             date: "Published At",
             views: "Views",
             likes: "Charging",
-            comments: "Comments"
+            comments: "Comments",
+            author: "Author"
         }
     }
 };

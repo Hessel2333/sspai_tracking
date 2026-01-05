@@ -241,9 +241,44 @@ async function fetchUserInfo(slug) {
                 }
             } catch (e) { console.error("Activity fetch error:", e); }
 
+            // 3. Favorites (Paginated)
+            let allFavorites = [];
+            let favoriteOffset = 0;
+            const favoriteLimit = 20;
+            let favoriteTotal = 0;
+
+            try {
+                const firstFavRes = await fetchUrl(`https://sspai.com/api/v1/user/favorite/page/get?limit=${favoriteLimit}&offset=0&slug=${slug}`);
+                favoriteTotal = firstFavRes.total || 0;
+                allFavorites = firstFavRes.data || [];
+
+                while (allFavorites.length < favoriteTotal) {
+                    favoriteOffset += favoriteLimit;
+                    const res = await fetchUrl(`https://sspai.com/api/v1/user/favorite/page/get?limit=${favoriteLimit}&offset=${favoriteOffset}&slug=${slug}`);
+                    if (!res.data || res.data.length === 0) break;
+                    allFavorites = allFavorites.concat(res.data);
+                    await new Promise(r => setTimeout(r, 300));
+                    if (allFavorites.length >= 200) break; // Limit to 200 for analysis to save API calls
+                }
+            } catch (e) { console.error("Favorites fetch error:", e); }
+
+            const favorites = {
+                total: favoriteTotal,
+                list: allFavorites.map(f => ({
+                    id: f.id,
+                    title: f.title,
+                    slug: f.slug || f.id, // Fallback
+                    author: f.author,
+                    created_at: f.created_at,
+                    banner: f.banner,
+                    summary: f.summary
+                }))
+            };
+
             const engagement = {
                 following,
                 followers,
+                favorites, // Add this
                 likes_given_total: allActivities.filter(a => a.key === 'like_article').length,
                 comments_made_total: allActivities.filter(a => ['comment_article', 'community_comment_topic', 'community_reply_topic_comment', 'community_comment_topic_comment'].includes(a.key)).length,
                 all_activities: allActivities.map(a => {
@@ -280,6 +315,12 @@ async function fetchUserInfo(slug) {
             engagement.all_activities.forEach(act => {
                 if (act.type === 'article' && act.target_id) uniqueArticleIds.add(act.target_id);
                 if (act.author_slug) uniqueAuthorSlugs.add(act.author_slug);
+            });
+
+            // Add Favorites to Analysis
+            engagement.favorites.list.forEach(fav => {
+                if (fav.id) uniqueArticleIds.add(fav.id);
+                if (fav.author && fav.author.slug) uniqueAuthorSlugs.add(fav.author.slug);
             });
 
             // Metadata cache
@@ -348,11 +389,44 @@ async function fetchUserInfo(slug) {
                     if (!authorMatrix[author]) {
                         authorMatrix[author] = {
                             count: 0,
-                            slug: author_slug,
-                            avatar: author_avatar ? normalizeAvatarUrl(author_avatar) : null
+                            avatar: author_avatar || 'https://cdn.sspai.com/static/avatar/default.png',
+                            slug: author_slug
                         };
                     }
-                    authorMatrix[author].count += 1;
+                    authorMatrix[author].count += 1; // Interacted heavily
+                }
+            });
+
+            // Process Favorites for Analysis
+            engagement.favorites.list.forEach(fav => {
+                const metaArt = articleMetadata[fav.id];
+                const metaAuth = authorMetadata[fav.author?.slug] || metaArt?.author || null;
+
+                const tags = (metaArt?.tags || []);
+                const author = fav.author?.nickname || metaAuth?.nickname || null;
+                const author_slug = fav.author?.slug || metaAuth?.slug || null;
+                const author_avatar = fav.author?.avatar || metaAuth?.avatar || null;
+
+                // Tags
+                const cleanTags = [];
+                if (tags && Array.isArray(tags)) {
+                    tags.forEach(tag => {
+                        const tagName = typeof tag === 'object' ? tag.title : tag;
+                        socialTags[tagName] = (socialTags[tagName] || 0) + 1; // Favorites count as interest
+                        cleanTags.push(tagName);
+                    });
+                }
+                fav.tags = cleanTags; // Attach for frontend analysis
+                // Authors (Filter out self)
+                if (author && author !== baseInfo.nickname && author_slug !== slug) {
+                    if (!authorMatrix[author]) {
+                        authorMatrix[author] = {
+                            count: 0,
+                            avatar: author_avatar || 'https://cdn.sspai.com/static/avatar/default.png',
+                            slug: author_slug
+                        };
+                    }
+                    authorMatrix[author].count += 1; // Favorite implies strong endorsement
                 }
             });
 

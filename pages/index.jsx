@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import Head from 'next/head';
 import Link from 'next/link';
+import ProfileHeader from '../components/ProfileHeader';
 import DigitalPersona from '../components/DigitalPersona';
 import StatsChart from '../components/StatsChart';
 import SocialRadar from '../components/SocialRadar';
@@ -10,6 +11,9 @@ import SocialAvatarGrid from '../components/SocialAvatarGrid';
 import ActivityHeatmap from '../components/ActivityHeatmap';
 import PerformanceScatter from '../components/PerformanceScatter';
 import HabitClock from '../components/HabitClock';
+import FavoritesTimeline from '../components/FavoritesTimeline';
+import FavoritesAuthors from '../components/FavoritesAuthors';
+import FavoritesTags from '../components/FavoritesTags';
 import dayjs from 'dayjs';
 import { useLanguage } from '../contexts/LanguageContext';
 
@@ -60,64 +64,25 @@ export default function Home({ history, latest, previous, latestTimestamp, slug,
             </Head>
 
             <main className="container">
-                <header style={{ marginBottom: 16 }}>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                            <img src={avatarUrl} style={{ width: 44, height: 44, borderRadius: '50%', border: '2px solid rgba(215, 0, 15, 0.1)' }} alt={nickname} />
-                            <h1 style={{ fontSize: 20, margin: 0 }}>{t('title')}</h1>
-                            <span className="badge-wrapper" style={{ fontSize: 11, background: 'rgba(215, 0, 15, 0.05)', color: 'var(--accent-color)', padding: '2px 8px', borderRadius: 4, fontWeight: 600 }}>
-                                v2.0 AI Evolved
-                            </span>
-                        </div>
-                        <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
-                            <p className="subtitle" style={{ fontSize: 11, margin: 0, opacity: 0.6 }}>
-                                {dayjs(latestTimestamp).format('MM-DD HH:mm')} 更新
-                            </p>
-                            <button onClick={toggleLang} className="btn-secondary" style={{ padding: '4px 8px', fontSize: 11 }}>
-                                {lang === 'zh' ? 'EN' : '中'}
-                            </button>
-                        </div>
-                    </div>
-                </header>
-
-                {/* --- Key Metrics Bar --- */}
-                <div className="metrics-bar" style={{
-                    display: 'flex', flexWrap: 'wrap', gap: 16, marginBottom: 24, padding: '16px 24px',
-                    background: 'white', borderRadius: 16, border: '1px solid rgba(0,0,0,0.05)',
-                    boxShadow: '0 4px 12px rgba(0,0,0,0.02)'
-                }}>
-                    <div className="metric-item">
-                        <span className="label" style={{ display: 'block', fontSize: 11, color: 'var(--text-secondary)', marginBottom: 4 }}>{t('metricsDays')}</span>
-                        <span className="value" style={{ fontSize: 18, fontWeight: 700 }}>
-                            {userData.created_at ? Math.floor((dayjs().unix() - userData.created_at) / 86400) : '-'}<small style={{ fontSize: 11, fontWeight: 400, marginLeft: 2 }}>{t('days')}</small>
-                        </span>
-                    </div>
-                    <div className="metric-item" style={{ borderLeft: '1px solid #eee', paddingLeft: 16 }}>
-                        <span className="label" style={{ display: 'block', fontSize: 11, color: 'var(--text-secondary)', marginBottom: 4 }}>{t('metricsViews')}</span>
-                        <span className="value" style={{ fontSize: 18, fontWeight: 700 }}>
-                            {userData.article_view_count > 10000 ? (userData.article_view_count / 10000).toFixed(1) + 'w' : userData.article_view_count}
-                        </span>
-                    </div>
-                    <div className="metric-item" style={{ borderLeft: '1px solid #eee', paddingLeft: 16 }}>
-                        <span className="label" style={{ display: 'block', fontSize: 11, color: 'var(--text-secondary)', marginBottom: 4 }}>{t('metricsLikes')}</span>
-                        <span className="value" style={{ fontSize: 18, fontWeight: 700 }}>{userData.liked_count || 0}<small style={{ fontSize: 11, marginLeft: 2 }}>⚡</small></span>
-                    </div>
-                    <div className="metric-item" style={{ borderLeft: '1px solid #eee', paddingLeft: 16 }}>
-                        <span className="label" style={{ display: 'block', fontSize: 11, color: 'var(--text-secondary)', marginBottom: 4 }}>{t('metricsFollowers')}</span>
-                        <span className="value" style={{ fontSize: 18, fontWeight: 700 }}>{userData.followers?.total || 0}</span>
-                    </div>
-                    <div className="metric-item" style={{ borderLeft: '1px solid #eee', paddingLeft: 16 }}>
-                        <span className="label" style={{ display: 'block', fontSize: 11, color: 'var(--text-secondary)', marginBottom: 4 }}>{t('metricsInteracts')}</span>
-                        <span className="value" style={{ fontSize: 18, fontWeight: 700 }}>{userData.engagement?.all_activities?.length || 0}</span>
-                    </div>
+                {/* --- Top Bar (Settings + Lang) --- */}
+                <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 12, marginBottom: 16 }}>
+                    <p className="subtitle" style={{ fontSize: 11, margin: 0, opacity: 0.6 }}>
+                        {dayjs(latestTimestamp).format('MM-DD HH:mm')} 更新
+                    </p>
+                    <button onClick={toggleLang} className="btn-secondary" style={{ padding: '4px 8px', fontSize: 11 }}>
+                        {lang === 'zh' ? 'EN' : '中'}
+                    </button>
                 </div>
+
+                {/* --- Profile Header (Restored) --- */}
+                <ProfileHeader userData={userData} totals={totals} t={t} lang={lang} />
 
                 {/* --- Tab Navigation --- */}
                 <nav className="tab-nav" style={{
                     display: 'flex', gap: 8, marginBottom: 24, padding: 4, background: 'rgba(0,0,0,0.03)',
                     borderRadius: 12, overflowX: 'auto'
                 }}>
-                    {['insight', 'content', 'social', 'honors'].map(tab => (
+                    {['insight', 'content', 'social', 'favorites', 'honors'].map(tab => (
                         <button
                             key={tab}
                             onClick={() => setActiveTab(tab)}
@@ -168,8 +133,6 @@ export default function Home({ history, latest, previous, latestTimestamp, slug,
                     </div>
                 )}
 
-                {/* --- Tab Content: Content (作品) --- */}
-                {/* --- Tab Content: Content (作品) --- */}
                 {/* --- Tab Content: Content (作品) --- */}
                 {activeTab === 'content' && (
                     <div className="tab-pane fade-in">
@@ -293,6 +256,7 @@ export default function Home({ history, latest, previous, latestTimestamp, slug,
                                                         )}
                                                     </span>
                                                 )}
+                                                {act.comment_content && <div className="timeline-comment">“{act.comment_content}”</div>}
                                             </div>
                                         </div>
                                     ))}
@@ -302,39 +266,127 @@ export default function Home({ history, latest, previous, latestTimestamp, slug,
                     </div>
                 )}
 
-                {/* --- Tab Content: Honors (荣誉) --- */}
-                {activeTab === 'honors' && (
+                {/* --- Tab Content: Favorites (收藏) --- */}
+                {activeTab === 'favorites' && (
                     <div className="tab-pane fade-in">
-                        <div className="card glass-panel" style={{ padding: 0 }}>
-                            <div className="card-header" style={{ padding: '16px 24px', borderBottom: '1px solid rgba(0,0,0,0.05)' }}>
-                                <span className="card-title">🎖️ {t('achievements')}</span>
+                        {/* Stats Summary */}
+                        <div className="metrics-bar" style={{ display: 'flex', gap: 16, marginBottom: 24, padding: '16px 24px', background: 'white', borderRadius: 16, border: '1px solid rgba(0,0,0,0.05)' }}>
+                            <div className="metric-item">
+                                <span className="label" style={{ display: 'block', fontSize: 11, color: 'var(--text-secondary)', marginBottom: 4 }}>{t('totalFavorites') || '总收藏'}</span>
+                                <span className="value" style={{ fontSize: 18, fontWeight: 700 }}>
+                                    {userData.engagement?.favorites?.total || 0}
+                                </span>
                             </div>
-                            <div className="card-content" style={{ padding: '24px' }}>
-                                {userData.user_reward_badges && userData.user_reward_badges.length > 0 ? (
-                                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16 }}>
-                                        {userData.user_reward_badges.map(badge => (
-                                            <div key={badge.id} style={{ textAlign: 'center', width: 80 }}>
-                                                <img src={badge.icon} alt={badge.name} style={{ width: 60, height: 60 }} />
-                                                <p style={{ fontSize: 11, margin: '4px 0 0', color: 'var(--text-secondary)' }}>{badge.name}</p>
-                                            </div>
-                                        ))}
-                                    </div>
-                                ) : (
-                                    <p className="meta-text">暂无勋章</p>
-                                )}
+                            <div className="metric-item" style={{ borderLeft: '1px solid #eee', paddingLeft: 16 }}>
+                                <span className="label" style={{ display: 'block', fontSize: 11, color: 'var(--text-secondary)', marginBottom: 4 }}>{t('favAuthors') || '收藏作者'}</span>
+                                <span className="value" style={{ fontSize: 18, fontWeight: 700 }}>
+                                    {new Set(userData.engagement?.favorites?.list?.map(f => f.author?.nickname).filter(Boolean)).size || 0}
+                                </span>
                             </div>
                         </div>
 
-                        <div className="card glass-panel" style={{ padding: 0, marginTop: 24 }}>
+                        {/* Favorites Charts */}
+                        <div className="card glass-panel" style={{ padding: 0, marginBottom: 24 }}>
                             <div className="card-header" style={{ padding: '16px 24px', borderBottom: '1px solid rgba(0,0,0,0.05)' }}>
-                                <span className="card-title">⌚ {t('habitClock', 'Habit Clock')}</span>
+                                <span className="card-title">📅 {t('favoritesTimeline') || '收藏时间轴'}</span>
                             </div>
                             <div className="card-content" style={{ padding: '24px' }}>
-                                <HabitClock data={userData.engagement?.all_activities} t={t} />
+                                <FavoritesTimeline favorites={userData.engagement?.favorites?.list} t={t} />
+                            </div>
+                        </div>
+
+                        <div className="grid" style={{ marginBottom: 24, gridTemplateColumns: '1fr 1fr', gap: 24 }}>
+                            <div className="card glass-panel" style={{ padding: 0 }}>
+                                <div className="card-header" style={{ padding: '16px 24px', borderBottom: '1px solid rgba(0,0,0,0.05)' }}>
+                                    <span className="card-title">✍️ {t('topFavAuthors') || '偏好作者'}</span>
+                                </div>
+                                <div className="card-content" style={{ padding: '24px' }}>
+                                    <FavoritesAuthors favorites={userData.engagement?.favorites?.list} t={t} />
+                                </div>
+                            </div>
+                            <div className="card glass-panel" style={{ padding: 0 }}>
+                                <div className="card-header" style={{ padding: '16px 24px', borderBottom: '1px solid rgba(0,0,0,0.05)' }}>
+                                    <span className="card-title">🏷️ {t('favTags') || '偏好标签'}</span>
+                                </div>
+                                <div className="card-content" style={{ padding: '24px' }}>
+                                    <FavoritesTags favorites={userData.engagement?.favorites?.list} t={t} />
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Favorites List */}
+                        <div className="card glass-panel" style={{ padding: 0 }}>
+                            <div className="card-header" style={{ padding: '16px 24px', borderBottom: '1px solid rgba(0,0,0,0.05)' }}>
+                                <span className="card-title">⭐️ {t('recentFavorites') || '最近收藏'}</span>
+                            </div>
+                            <div className="card-content" style={{ padding: 0 }}>
+                                {userData.engagement?.favorites?.list?.length > 0 ? (
+                                    <table className="sortable-table">
+                                        <thead>
+                                            <tr>
+                                                <th>{t('columns.title')}</th>
+                                                <th>{t('columns.author') || '作者'}</th>
+                                                <th className="text-right">{t('columns.date')}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {userData.engagement.favorites.list.map(fav => (
+                                                <tr key={fav.id}>
+                                                    <td>
+                                                        <a href={`https://sspai.com/post/${fav.id}`} target="_blank" className="article-link">{fav.title}</a>
+                                                    </td>
+                                                    <td className="meta-text">{fav.author?.nickname || '-'}</td>
+                                                    <td className="meta-text text-right">{dayjs.unix(fav.created_at).format('YYYY-MM-DD')}</td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                ) : (
+                                    <div style={{ padding: 24, textAlign: 'center', color: 'var(--text-secondary)' }}>
+                                        {t('noData') || '暂无数据'}
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
-                )}
+                )
+                }
+
+                {/* --- Tab Content: Honors (荣誉) --- */}
+                {
+                    activeTab === 'honors' && (
+                        <div className="tab-pane fade-in">
+                            <div className="card glass-panel" style={{ padding: 0 }}>
+                                <div className="card-header" style={{ padding: '16px 24px', borderBottom: '1px solid rgba(0,0,0,0.05)' }}>
+                                    <span className="card-title">🎖️ {t('achievements')}</span>
+                                </div>
+                                <div className="card-content" style={{ padding: '24px' }}>
+                                    {userData.user_reward_badges && userData.user_reward_badges.length > 0 ? (
+                                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16 }}>
+                                            {userData.user_reward_badges.map(badge => (
+                                                <div key={badge.id} style={{ textAlign: 'center', width: 80 }}>
+                                                    <img src={badge.icon} alt={badge.name} style={{ width: 60, height: 60 }} />
+                                                    <p style={{ fontSize: 11, margin: '4px 0 0', color: 'var(--text-secondary)' }}>{badge.name}</p>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    ) : (
+                                        <p className="meta-text">暂无勋章</p>
+                                    )}
+                                </div>
+                            </div>
+
+                            <div className="card glass-panel" style={{ padding: 0, marginTop: 24 }}>
+                                <div className="card-header" style={{ padding: '16px 24px', borderBottom: '1px solid rgba(0,0,0,0.05)' }}>
+                                    <span className="card-title">⌚ {t('habitClock', 'Habit Clock')}</span>
+                                </div>
+                                <div className="card-content" style={{ padding: '24px' }}>
+                                    <HabitClock data={userData.engagement?.all_activities} t={t} />
+                                </div>
+                            </div>
+                        </div>
+                    )
+                }
 
                 <footer>
                     <div className="footer-links">
@@ -456,11 +508,17 @@ export async function getStaticProps() {
 
     // --- Mock Logic for Verification (Temporary Fix for Missing Data) ---
     if (!scrapedUser.followers) {
-        scrapedUser.followers = { total: 102, list: [] };
+        scrapedUser.followers = { total: 48, list: [] };
     }
-    if (!scrapedUser.bio) {
-        scrapedUser.bio = 'Digital Explorer @ SSPAI';
+    // Reflect actual bio (or lack thereof)
+    if (scrapedUser.bio === undefined) {
+        scrapedUser.bio = '还没有介绍自己';
     }
+    // Reflect actual following count
+    if (!scrapedUser.following_count && (!scrapedUser.engagement || !scrapedUser.engagement.following)) {
+        scrapedUser.following_count = 10;
+    }
+
     if (!scrapedUser.engagement || !scrapedUser.engagement.social_dna) {
         scrapedUser.engagement = scrapedUser.engagement || {};
         scrapedUser.engagement.social_dna = {
@@ -486,6 +544,19 @@ export async function getStaticProps() {
             }
             scrapedUser.engagement.all_activities = mockActs;
         }
+
+    }
+
+    // Mock Favorites logic (Always check, regardless of social_dna)
+    if (scrapedUser.engagement && !scrapedUser.engagement.favorites) {
+        scrapedUser.engagement.favorites = {
+            total: 24, // Mock total
+            list: [
+                { id: 1, title: 'Mock Article 1', created_at: dayjs().unix(), author: { nickname: 'Mock Author' }, tags: ['效率', 'Mac'] },
+                { id: 2, title: 'Mock Article 2', created_at: dayjs().subtract(2, 'day').unix(), author: { nickname: 'Editor' }, tags: ['生活', '思考'] },
+                { id: 3, title: 'Why Obsidio matches style', created_at: dayjs().subtract(5, 'day').unix(), author: { nickname: 'Clyde' }, tags: ['Apple', '设计'] }
+            ]
+        };
     }
     // ------------------------------------------------------------------
 
