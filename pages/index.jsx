@@ -21,6 +21,7 @@ export default function Home({ history, latest, previous, latestTimestamp, slug,
     const { t, toggleLang, lang } = useLanguage();
     const totals = latest.totals || latest;
     const prevTotals = previous ? (previous.totals || previous) : null;
+    const cookieStatus = latest.cookie_status || 'valid';
 
     // View States
     const [activeTab, setActiveTab] = useState('insight'); // insight, content, social, honors
@@ -64,6 +65,30 @@ export default function Home({ history, latest, previous, latestTimestamp, slug,
             </Head>
 
             <main className="container">
+                {/* Cookie Expiry Warning Banner */}
+                {cookieStatus === 'expired' && (
+                    <div className="fade-in glass" style={{
+                        marginTop: '20px',
+                        padding: '12px 16px',
+                        background: 'rgba(255, 170, 0, 0.15)',
+                        border: '1px solid rgba(255, 170, 0, 0.3)',
+                        borderRadius: '12px',
+                        color: '#FFBE40',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '10px',
+                        boxShadow: '0 4px 20px rgba(0,0,0,0.1)'
+                    }}>
+                        <span style={{ fontSize: '18px' }}>⚠️</span>
+                        <span style={{ fontSize: '14px', fontWeight: 500 }}>
+                            {lang === 'zh'
+                                ? '检测到 SSPAI Cookie 已失效，浏览量数据已隐藏。请到 GitHub 更新 Secrets。'
+                                : 'SSPAI Cookie expired. View counts are hidden. Please update GitHub Secrets.'}
+                        </span>
+                    </div>
+                )}
+
                 {/* --- Top Bar (Settings + Lang) --- */}
                 <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 12, marginBottom: 16 }}>
                     <p className="subtitle" style={{ fontSize: 11, margin: 0, opacity: 0.6 }}>

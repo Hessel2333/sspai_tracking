@@ -28,6 +28,9 @@ if (!COOKIE) {
     console.log('SSPAI_COOKIE is present (length: ' + COOKIE.length + ')');
 }
 
+// Global flag to track cookie health
+global.COOKIE_STATUS = 'valid';
+
 // Helper to extract JWT from cookie string
 function getJwtFromCookie(cookieStr) {
     if (!cookieStr) return null;
@@ -70,50 +73,83 @@ function fetchUrl(url) {
     });
 }
 
-// Fetch all articles for the user (using Public API for robustness)
+// Fetch all articles for the user
+// Strategy: Try Private API (for View Counts) -> Fallback to Public API (Robustness)
 async function fetchAllArticles() {
     const limit = 20;
-    let offset = 0;
+    const timestamp = Math.floor(Date.now() / 1000);
     let allArticles = [];
-    let hasMore = true;
 
-    console.log(`Fetching articles for slug: ${SLUG} ...`);
+    // 1. Attempt Private Matrix API (to get View Counts)
+    console.log('Attempting to fetch via Private Matrix API (to get View Counts)...');
+    try {
+        let offset = 0;
+        let hasMore = true;
+        let privateArticles = [];
+        let fetchedAny = false;
 
-    while (hasMore) {
-        // Use Public Endpoint: api/v1/article/user/public/page/get
-        const timestamp = Math.floor(Date.now() / 1000);
-        const url = `https://sspai.com/api/v1/article/user/public/page/get?limit=${limit}&offset=${offset}&slug=${SLUG}&created_at=${timestamp}&object_type=0`;
+        while (hasMore) {
+            // type=5 usually means "Published" in Matrix
+            const url = `https://sspai.com/api/v1/matrix/editor/article/self/page/get?limit=${limit}&offset=${offset}&type=5&created_at=${timestamp}`;
+            console.log(`  Private Fetch: ${url}`);
+            const res = await fetchUrl(url);
 
-        try {
-            console.log(`  Fetching: ${url}`);
-            const response = await fetchUrl(url);
-
-            if (response.error !== 0) {
-                console.error('  API Error:', response.msg);
-                break;
-            }
-
-            if (!response.data || response.data.length === 0) {
-                console.log("  No more data.");
-                hasMore = false;
-                break;
-            }
-
-            const articles = response.data;
-            allArticles = allArticles.concat(articles);
-            console.log(`  Got ${articles.length} articles. Total: ${allArticles.length}`);
-
-            if (articles.length < limit) {
-                hasMore = false;
-            } else {
+            if (res.error === 0 && res.data && res.data.length > 0) {
+                privateArticles = privateArticles.concat(res.data);
+                fetchedAny = true;
+                if (res.data.length < limit) hasMore = false;
+                else await new Promise(r => setTimeout(r, 500));
                 offset += limit;
-                await new Promise(resolve => setTimeout(resolve, 500));
+            } else {
+                // If 0 data on FIRST page, assume failure or no published articles visible to private API
+                if (!fetchedAny) {
+                    throw new Error('Private API returned empty list on first page.');
+                }
+                hasMore = false;
             }
-        } catch (error) {
-            console.error('  Fetch failed:', error.message);
-            break;
         }
+
+        console.log(`  ✅ Successfully fetched ${privateArticles.length} articles via Private API. Views data available.`);
+        return privateArticles;
+
+    } catch (e) {
+        console.warn('  ⚠️ Private API failed/empty. Cookie might be invalid or expired.', e.message);
+        console.log('  -> Switching to Public Profile API (Views will be 0, but lists/likes valid).');
+        global.COOKIE_STATUS = 'expired'; // Mark as expired
     }
+
+    // 2. Fallback to Public API
+    try {
+        let offset = 0;
+        let hasMore = true;
+
+        while (hasMore) {
+            const url = `https://sspai.com/api/v1/article/user/public/page/get?limit=${limit}&offset=${offset}&slug=${SLUG}&created_at=${timestamp}&object_type=0`;
+            console.log(`  Public Fetch: ${url}`);
+            const res = await fetchUrl(url);
+
+            if (res.error !== 0) {
+                console.error('  Public API Error:', res.msg);
+                break;
+            }
+
+            if (!res.data || res.data.length === 0) {
+                hasMore = false;
+                break;
+            }
+
+            allArticles = allArticles.concat(res.data);
+            if (res.data.length < limit) hasMore = false;
+            else {
+                offset += limit;
+                await new Promise(r => setTimeout(r, 500));
+            }
+        }
+    } catch (e) {
+        console.error('  Public API failed:', e);
+    }
+
+    console.log(`  Fetched ${allArticles.length} articles via Public API.`);
     return allArticles;
 }
 
@@ -447,6 +483,8 @@ async function fetchUserInfo(slug) {
                     .slice(0, 15)
             };
 
+
+            console.log('  Finished assembling user engagement data.');
             return { ...baseInfo, engagement };
         }
     } catch (e) {
@@ -534,6 +572,7 @@ async function main() {
         const statsEntry = {
             timestamp: now,
             user: userInfo,
+            cookie_status: global.COOKIE_STATUS, // Flag for Frontend
             totals: {
                 article_count: articleCount,
                 views: totalViews,
@@ -554,6 +593,9 @@ async function main() {
         };
 
         console.log('Stats Summary:', statsEntry.totals);
+        if (global.COOKIE_STATUS === 'expired') {
+            console.warn('⚠️  WARNING: Cookie was invalid. Stats are partial (Views=0).');
+        }
 
         // --- Intelligent Frequency Logic ---
         const lastArticle = detailedArticles.length > 0
@@ -588,9 +630,9 @@ async function main() {
             fs.writeFileSync(HISTORY_FILE, JSON.stringify(history, null, 2));
             console.log(`Updated ${HISTORY_FILE}`);
 
-            // 3. Write detailed snapshot
-            fs.writeFileSync(CURRENT_STATS_FILE, JSON.stringify(detailedArticles, null, 2));
-            console.log(`Updated ${CURRENT_STATS_FILE}`);
+            // 3. Write detailed snapshot (FULL DATA now, not just articles)
+            fs.writeFileSync(CURRENT_STATS_FILE, JSON.stringify(statsEntry, null, 2));
+            console.log(`Updated ${CURRENT_STATS_FILE} with full stats entry.`);
         } else {
             console.log('>> NORMAL PERIOD: Skipping persistent save to reduce noise. (Set FORCE_SAVE=true to override)');
         }
