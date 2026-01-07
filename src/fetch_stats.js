@@ -395,7 +395,9 @@ async function fetchUserInfo(slug) {
             // 1. Fetch Article Metadata (for tags and dates)
             let artMetaCount = 0;
             // Count missing metadata to avoid hitting limit immediately if everything is cached
-            const missingIds = [...uniqueArticleIds].filter(id => !articleMetadata[id]);
+            // Count missing metadata to avoid hitting limit immediately if everything is cached
+            // Force re-fetch if created_at is missing (cache migration/repair)
+            const missingIds = [...uniqueArticleIds].filter(id => !articleMetadata[id] || !articleMetadata[id].created_at);
             console.log(`  Need to fetch metadata for ${missingIds.length} new/uncached articles.`);
 
             for (const id of missingIds) {
