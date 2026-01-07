@@ -1,12 +1,12 @@
 {
-  "timestamp": 1767797600,
+  "timestamp": 1767805110,
   "user": {
     "nickname": "Hessel",
     "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
     "slug": "cemq1hts",
     "created_at": 1485946514,
     "liked_count": 316,
-    "article_view_count": 189356,
+    "article_view_count": 189394,
     "article_count": 4,
     "user_reward_badges": [
       {
@@ -1784,7 +1784,7 @@
               "id": 0,
               "slug": "tgwbddu0",
               "avatar": "https://cdnfile.sspai.com/2025/05/04/b18bd1bca31350b2c4558cb84db4b9a0.jpeg",
-              "nickname": "鸿苓",
+              "nickname": "鸿��",
               "user_flags": [
                 {
                   "id": 19,
@@ -3298,7 +3298,7 @@
                   "id": 14,
                   "key": "matrix_plan_member",
                   "name": "Matrix 共创计划成员",
-                  "description": "Matrix 共创计划成员��立即加入>",
+                  "description": "Matrix 共创计划���员，立即加入>",
                   "icon_id": 0,
                   "icon": "https://cdnfile.sspai.com/ui/badge/matrix_gongchuangjihua.png",
                   "url": "",
@@ -17660,16 +17660,16 @@
             "avatar": "2022/09/16/82ea23f065dfd5d313c94fac87dc6a96.png"
           },
           {
-            "name": "鸿苓",
-            "count": 4,
-            "slug": "tgwbddu0",
-            "avatar": "https://cdnfile.sspai.com/2025/05/04/b18bd1bca31350b2c4558cb84db4b9a0.jpeg"
-          },
-          {
             "name": "宛潼",
             "count": 4,
             "slug": "Elliana",
             "avatar": "https://cdnfile.sspai.com/2025/08/06/avatar/fd5f6c7e41b95b7f5dd4f7d76578baa3.png"
+          },
+          {
+            "name": "SHY",
+            "count": 4,
+            "slug": "wangshy",
+            "avatar": "https://cdnfile.sspai.com/2024/04/06/ee913f1e75601839caa963728bceee86.png"
           }
         ]
       }
@@ -17679,7 +17679,7 @@
     {
       "id": 104232,
       "title": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "views": 17216,
+      "views": 17245,
       "likes": 60,
       "comments": 27,
       "created_at": 1764643711,
@@ -17715,7 +17715,7 @@
     {
       "id": 96151,
       "title": "新的一年，不妨试试自己分析支付宝账单",
-      "views": 42933,
+      "views": 42940,
       "likes": 69,
       "comments": 28,
       "created_at": 1738996270,
@@ -17752,7 +17752,7 @@
     {
       "id": 86747,
       "title": "自我记录、量化与回溯的数字之旅",
-      "views": 77081,
+      "views": 77082,
       "likes": 110,
       "comments": 36,
       "created_at": 1709106003,
@@ -17791,7 +17791,7 @@
     {
       "id": 85355,
       "title": "App+1 | Rond 与世界迷雾：现实世界的塞尔达传说地图册",
-      "views": 52126,
+      "views": 52127,
       "likes": 77,
       "comments": 117,
       "created_at": 1703551973,
