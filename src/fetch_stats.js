@@ -13,6 +13,7 @@ const COOKIE = process.env.SSPAI_COOKIE;
 const SLUG = process.env.SSPAI_SLUG;
 const HISTORY_FILE = path.join(__dirname, '../data/history.json');
 const CURRENT_STATS_FILE = path.join(__dirname, '../data/current_stats.json'); // Snapshot for easy checking
+const METADATA_CACHE_FILE = path.join(__dirname, '../data/metadata_cache.json'); // Persistent metadata cache
 // ---
 
 if (!SLUG) {
@@ -311,9 +312,10 @@ async function fetchUserInfo(slug) {
                     title: f.title,
                     slug: f.slug || f.id, // Fallback
                     author: f.author,
-                    created_at: f.created_at,
+                    created_at: f.created_at || f.created_time || 0,
                     banner: f.banner,
-                    summary: f.summary
+                    summary: f.summary,
+                    tags: f.tags || []
                 }))
             };
 
@@ -365,22 +367,41 @@ async function fetchUserInfo(slug) {
                 if (fav.author && fav.author.slug) uniqueAuthorSlugs.add(fav.author.slug);
             });
 
-            // Metadata cache
-            const articleMetadata = {};
-            const authorMetadata = {};
+            // Metadata cache loading
+            let articleMetadata = {};
+            let authorMetadata = {};
 
-            console.log(`  Fetching metadata for ${Math.min(uniqueArticleIds.size, 50)} articles and unique authors...`);
+            // Load cache if exists
+            try {
+                if (fs.existsSync(METADATA_CACHE_FILE)) {
+                    const cacheData = JSON.parse(fs.readFileSync(METADATA_CACHE_FILE, 'utf8'));
+                    articleMetadata = cacheData.articles || {};
+                    authorMetadata = cacheData.authors || {};
+                    console.log(`  Loaded metadata cache: ${Object.keys(articleMetadata).length} articles, ${Object.keys(authorMetadata).length} authors.`);
+                }
+            } catch (e) {
+                console.warn('  Failed to load metadata cache:', e.message);
+            }
 
-            // 1. Fetch Article Metadata (for tags)
+
+            console.log(`  Fetching metadata for ${Math.min(uniqueArticleIds.size, 500)} articles and unique authors...`);
+
+            // 1. Fetch Article Metadata (for tags and dates)
             let artMetaCount = 0;
-            for (const id of uniqueArticleIds) {
-                if (artMetaCount >= 50) break;
+            // Count missing metadata to avoid hitting limit immediately if everything is cached
+            const missingIds = [...uniqueArticleIds].filter(id => !articleMetadata[id]);
+            console.log(`  Need to fetch metadata for ${missingIds.length} new/uncached articles.`);
+
+            for (const id of missingIds) {
+                if (artMetaCount >= 500) break;
                 try {
                     const res = await fetchUrl(`https://sspai.com/api/v1/article/info/get?id=${id}`);
                     if (res.data) {
                         articleMetadata[id] = {
                             tags: res.data.tags || [],
-                            author: res.data.author
+                            author: res.data.author,
+                            author_seconds: res.data.author_seconds || [], // Capture co-authors
+                            created_at: res.data.released_time || res.data.created_time || 0 // Capture released_time (publication) over created_time (draft)
                         };
                         // Prefill author cache if we got it
                         if (res.data.author?.slug) {
@@ -444,6 +465,23 @@ async function fetchUserInfo(slug) {
                 const metaArt = articleMetadata[fav.id];
                 const metaAuth = authorMetadata[fav.author?.slug] || metaArt?.author || null;
 
+                // Backfill date if missing
+                if ((!fav.created_at || fav.created_at === 0) && metaArt?.created_at) {
+                    fav.created_at = metaArt.created_at;
+                }
+
+                // Backfill/Fix author info
+                if ((!fav.author || !fav.author.slug || !fav.author.avatar) && metaArt?.author) {
+                    fav.author = {
+                        nickname: metaArt.author.nickname,
+                        slug: metaArt.author.slug,
+                        avatar: normalizeAvatarUrl(metaArt.author.avatar)
+                    };
+                } else if (fav.author) {
+                    // Normalize existing avatar just in case
+                    fav.author.avatar = normalizeAvatarUrl(fav.author.avatar);
+                }
+
                 const tags = (metaArt?.tags || []);
                 const author = fav.author?.nickname || metaAuth?.nickname || null;
                 const author_slug = fav.author?.slug || metaAuth?.slug || null;
@@ -459,17 +497,33 @@ async function fetchUserInfo(slug) {
                     });
                 }
                 fav.tags = cleanTags; // Attach for frontend analysis
+
                 // Authors (Filter out self)
-                if (author && author !== baseInfo.nickname && author_slug !== slug) {
-                    if (!authorMatrix[author]) {
-                        authorMatrix[author] = {
-                            count: 0,
-                            avatar: author_avatar || 'https://cdn.sspai.com/static/avatar/default.png',
-                            slug: author_slug
-                        };
-                    }
-                    authorMatrix[author].count += 1; // Favorite implies strong endorsement
+                const authorsToCount = [];
+                if (author) authorsToCount.push({ name: author, slug: author_slug, avatar: author_avatar });
+
+                // Add co-authors from metadata
+                if (metaArt?.author_seconds && Array.isArray(metaArt.author_seconds)) {
+                    metaArt.author_seconds.forEach(sec => {
+                        if (sec.nickname && sec.slug) {
+                            const secAvatar = normalizeAvatarUrl(sec.avatar);
+                            authorsToCount.push({ name: sec.nickname, slug: sec.slug, avatar: secAvatar });
+                        }
+                    });
                 }
+
+                authorsToCount.forEach(a => {
+                    if (a.name !== baseInfo.nickname && a.slug !== slug) {
+                        if (!authorMatrix[a.name]) {
+                            authorMatrix[a.name] = {
+                                count: 0,
+                                avatar: a.avatar || 'https://cdn.sspai.com/static/avatar/default.png',
+                                slug: a.slug
+                            };
+                        }
+                        authorMatrix[a.name].count += 1; // Favorite implies strong endorsement
+                    }
+                });
             });
 
             engagement.social_dna = {
@@ -484,8 +538,10 @@ async function fetchUserInfo(slug) {
             };
 
 
-            console.log('  Finished assembling user engagement data.');
-            return { ...baseInfo, engagement };
+            return {
+                user: { ...baseInfo, engagement },
+                metadata: { articles: articleMetadata, authors: authorMetadata }
+            };
         }
     } catch (e) {
         console.error('Error fetching user info:', e);
@@ -561,24 +617,9 @@ async function main() {
             await new Promise(r => setTimeout(r, 500));
         }
 
-        const now = new Date().toISOString();
-
-        // 1. Calculate Aggregates
-        const totalViews = detailedArticles.reduce((sum, art) => sum + (art.view_count || 0), 0);
-        const totalLikes = detailedArticles.reduce((sum, art) => sum + (art.like_count || 0), 0);
-        const totalComments = detailedArticles.reduce((sum, art) => sum + (art.comment_count || 0), 0);
-        const articleCount = detailedArticles.length;
-
         const statsEntry = {
-            timestamp: now,
-            user: userInfo,
-            cookie_status: global.COOKIE_STATUS, // Flag for Frontend
-            totals: {
-                article_count: articleCount,
-                views: totalViews,
-                likes: totalLikes,
-                comments: totalComments
-            },
+            timestamp: Math.floor(Date.now() / 1000),
+            user: userInfo.user, // User info + engagement inside
             articles: detailedArticles.map(art => ({
                 id: art.id,
                 title: art.title,
@@ -632,6 +673,22 @@ async function main() {
 
             // 3. Write detailed snapshot (FULL DATA now, not just articles)
             fs.writeFileSync(CURRENT_STATS_FILE, JSON.stringify(statsEntry, null, 2));
+
+
+            // Save Metadata Cache
+            try {
+                const articleMetadata = userInfo.metadata?.articles || {};
+                const authorMetadata = userInfo.metadata?.authors || {};
+                const cacheData = {
+                    articles: articleMetadata,
+                    authors: authorMetadata,
+                    last_updated: Date.now()
+                };
+                fs.writeFileSync(METADATA_CACHE_FILE, JSON.stringify(cacheData, null, 2));
+                console.log(`  Saved metadata cache to ${METADATA_CACHE_FILE}`);
+            } catch (e) { console.error('Failed to save metadata cache:', e); }
+
+            console.log('Stats updated successfully.');
             console.log(`Updated ${CURRENT_STATS_FILE} with full stats entry.`);
         } else {
             console.log('>> NORMAL PERIOD: Skipping persistent save to reduce noise. (Set FORCE_SAVE=true to override)');
