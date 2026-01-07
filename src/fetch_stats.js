@@ -155,11 +155,17 @@ async function fetchAllArticles() {
 }
 
 // Helper to ensure avatar URL is absolute
+// Helper to ensure avatar URL is absolute
 function normalizeAvatarUrl(url) {
     if (!url) return 'https://cdn.sspai.com/static/avatar/default.png';
-    if (url.startsWith('http')) return url;
-    return `https://cdnfile.sspai.com/${url}`;
+    // Handle specific cdnfile edge cases if any, but generally:
+    if (url.startsWith('http')) return url.replace(/^http:\/\//, 'https://'); // Enforce HTTPS
+    // Check if it's a relative path starting with / or just filename
+    const cleanUrl = url.startsWith('/') ? url.substring(1) : url;
+    return `https://cdnfile.sspai.com/${cleanUrl}`;
 }
+
+const TAG_BLOCKLIST = ['热门文章', 'Matrix首页推荐', '首页推荐', '文章', 'Matrix']; // Filter only generic system tags, keep specific interests like iOS/Efficiency
 
 // Fetch public user info (nickname, avatar)
 async function fetchUserInfo(slug) {
@@ -444,7 +450,10 @@ async function fetchUserInfo(slug) {
                 if (tags && Array.isArray(tags)) {
                     tags.forEach(tag => {
                         const tagName = typeof tag === 'object' ? tag.title : tag;
-                        socialTags[tagName] = (socialTags[tagName] || 0) + 1;
+                        // Filter noisy tags
+                        if (!TAG_BLOCKLIST.includes(tagName)) {
+                            socialTags[tagName] = (socialTags[tagName] || 0) + 1;
+                        }
                     });
                 }
                 // Authors (Filter out self)
@@ -452,11 +461,24 @@ async function fetchUserInfo(slug) {
                     if (!authorMatrix[author]) {
                         authorMatrix[author] = {
                             count: 0,
+                            score: 0,
+                            breakdown: { like: 0, comment: 0, favorite: 0, follow: 0 },
                             avatar: author_avatar || 'https://cdn.sspai.com/static/avatar/default.png',
                             slug: author_slug
                         };
                     }
-                    authorMatrix[author].count += 1; // Interacted heavily
+                    authorMatrix[author].count += 1; // Total interactions
+
+                    // Scored Weighting
+                    let weight = 1;
+                    let type = 'like';
+                    if (act.key.includes('comment')) { weight = 3; type = 'comment'; }
+                    else if (act.key.includes('follow')) { weight = 1; type = 'follow'; }
+
+                    authorMatrix[author].score += weight;
+                    if (authorMatrix[author].breakdown[type] !== undefined) {
+                        authorMatrix[author].breakdown[type] += 1;
+                    }
                 }
             });
 
@@ -492,8 +514,10 @@ async function fetchUserInfo(slug) {
                 if (tags && Array.isArray(tags)) {
                     tags.forEach(tag => {
                         const tagName = typeof tag === 'object' ? tag.title : tag;
-                        socialTags[tagName] = (socialTags[tagName] || 0) + 1; // Favorites count as interest
-                        cleanTags.push(tagName);
+                        if (!TAG_BLOCKLIST.includes(tagName)) {
+                            socialTags[tagName] = (socialTags[tagName] || 0) + 1; // Favorites count as interest
+                            cleanTags.push(tagName);
+                        }
                     });
                 }
                 fav.tags = cleanTags; // Attach for frontend analysis
@@ -517,11 +541,15 @@ async function fetchUserInfo(slug) {
                         if (!authorMatrix[a.name]) {
                             authorMatrix[a.name] = {
                                 count: 0,
+                                score: 0,
+                                breakdown: { like: 0, comment: 0, favorite: 0, follow: 0 },
                                 avatar: a.avatar || 'https://cdn.sspai.com/static/avatar/default.png',
                                 slug: a.slug
                             };
                         }
-                        authorMatrix[a.name].count += 1; // Favorite implies strong endorsement
+                        authorMatrix[a.name].count += 1;
+                        authorMatrix[a.name].score += 2; // Favorites weight = 2 (Passive but strong interest)
+                        authorMatrix[a.name].breakdown.favorite += 1;
                     }
                 });
             });

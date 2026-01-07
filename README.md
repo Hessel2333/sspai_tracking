@@ -47,7 +47,24 @@
     npm run dev
     ```
 
-## ⚙️ 工作原理
+## 🍪 Cookie 管理指南（重要）
+
+少数派的 Cookie **会过期**（通常有效期为 30 天左右）。过期的 Cookie 会导致**阅读量数据为 0**（只能获取公开的点赞/评论数据）。
+
+### 2秒快速获取 Cookie (Bookmarklet)
+
+为了方便更新，我为你写了一个“小书签”。请按照以下步骤操作：
+
+1.  **新建书签**：在浏览器书签栏右键 -> 新建书签。
+2.  **粘贴代码**：将名称设为 `Get SSPAI Cookie`，网址栏粘贴以下代码：
+    ```javascript
+    javascript:(function(){const c=document.cookie;const t=c.match(/sspai_jwt_token=([^;]+)/);if(t){const v=t[0];navigator.clipboard.writeText(v).then(()=>{alert('✅ Cookie 已复制！\n\n请去更新 .env 或 GitHub Secrets')}).catch(()=>{prompt('请手动复制:',v)})}else{alert('❌ 未找到登录信息，请先登录少数派！')}})();
+    ```
+3.  **一键复制**：当你需要更新 Cookie 时，打开 [sspai.com](https://sspai.com)，点击这个书签，Cookie 就会自动复制到你的剪贴板！
+
+### 何时需要更新？
+- 当你发现 Dashboard 顶部的 "Last Updated" 虽在更新，但阅读量（Views）不再增长时。
+- 当你在本地终端运行脚本看到 `⚠️ WARNING: Cookie was invalid` 警告时。
 
 1.  **抓取**：Node.js 脚本调用少数派 API 进行数据镜像。
 2.  **调度**：GitHub Actions 每小时运行一次，保证数据颗粒度。
