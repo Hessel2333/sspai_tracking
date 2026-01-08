@@ -311,6 +311,20 @@ async function fetchUserInfo(slug) {
                 console.error("Favorites fetch error:", e);
             }
 
+            // Metadata cache loading (Moved to top for usage in Favorites/Activity)
+            let articleMetadata = {};
+            let authorMetadata = {};
+            try {
+                if (fs.existsSync(METADATA_CACHE_FILE)) {
+                    const cacheData = JSON.parse(fs.readFileSync(METADATA_CACHE_FILE, 'utf8'));
+                    articleMetadata = cacheData.articles || {};
+                    authorMetadata = cacheData.authors || {};
+                    console.log(`  Loaded metadata cache: ${Object.keys(articleMetadata).length} articles, ${Object.keys(authorMetadata).length} authors.`);
+                }
+            } catch (e) {
+                console.warn('  Failed to load metadata cache:', e.message);
+            }
+
             const favorites = {
                 total: favoriteTotal,
                 list: allFavorites.map(f => ({
@@ -318,7 +332,7 @@ async function fetchUserInfo(slug) {
                     title: f.title,
                     slug: f.slug || f.id, // Fallback
                     author: f.author,
-                    created_at: f.created_at || f.created_time || 0,
+                    created_at: f.created_at || f.created_time || articleMetadata[f.id]?.created_at || 0,
                     banner: f.banner,
                     summary: f.summary,
                     tags: f.tags || []
@@ -373,23 +387,7 @@ async function fetchUserInfo(slug) {
                 if (fav.author && fav.author.slug) uniqueAuthorSlugs.add(fav.author.slug);
             });
 
-            // Metadata cache loading
-            let articleMetadata = {};
-            let authorMetadata = {};
-
-            // Load cache if exists
-            try {
-                if (fs.existsSync(METADATA_CACHE_FILE)) {
-                    const cacheData = JSON.parse(fs.readFileSync(METADATA_CACHE_FILE, 'utf8'));
-                    articleMetadata = cacheData.articles || {};
-                    authorMetadata = cacheData.authors || {};
-                    console.log(`  Loaded metadata cache: ${Object.keys(articleMetadata).length} articles, ${Object.keys(authorMetadata).length} authors.`);
-                }
-            } catch (e) {
-                console.warn('  Failed to load metadata cache:', e.message);
-            }
-
-
+            // Metadata cache loading (Already loaded at top)
             console.log(`  Fetching metadata for ${Math.min(uniqueArticleIds.size, 500)} articles and unique authors...`);
 
             // 1. Fetch Article Metadata (for tags and dates)
