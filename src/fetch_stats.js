@@ -526,7 +526,7 @@ async function fetchUserInfo(slug) {
 
                 // Authors (Filter out self)
                 const authorsToCount = [];
-                if (author) authorsToCount.push({ name: author, slug: author_slug, avatar: author_avatar });
+                if (author) authorsToCount.push({ name: author, slug: author_slug, avatar: normalizeAvatarUrl(author_avatar) });
 
                 // Add co-authors from metadata
                 if (metaArt?.author_seconds && Array.isArray(metaArt.author_seconds)) {
