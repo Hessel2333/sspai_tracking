@@ -2,7 +2,7 @@ name: Scrape SSPAI Stats
 
 on:
   schedule:
-    - cron: '30 * * * *' # Run at minute 30 of every hour
+    - cron: '0 0 * * *' # Run daily at 00:00 UTC (08:00 Beijing Time)
   workflow_dispatch: # Allow manual trigger
 
 permissions:
@@ -27,6 +27,7 @@ jobs:
         env:
           SSPAI_COOKIE: ${{ secrets.SSPAI_COOKIE }}
           SSPAI_SLUG: ${{ secrets.SSPAI_SLUG }}
+          FORCE_SAVE: 'true' # Always save on daily run
         run: node src/fetch_stats.js
 
       - name: Generate Digital Persona (Weekly on Monday)
