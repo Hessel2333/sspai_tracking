@@ -26,7 +26,14 @@ const FavoritesTimeline = ({ favorites, t }) => {
     // Aggregate by Month
     const stats = {};
     favorites.forEach(fav => {
+        // Fallback to current time if created_at is 0 or missing, to avoid "Invalid Date"
+        // But better to just ignore or group into "Unknown"?
+        // Let's fallback to "2023-01" or just skip if 0.
+        // Actually, users prefer to see data. If 0, maybe use today? No, that's misleading.
+        if (!fav.created_at || fav.created_at === 0) return;
+
         const month = dayjs.unix(fav.created_at).format('YYYY-MM');
+        if (month === 'Invalid Date') return; // Double check
         stats[month] = (stats[month] || 0) + 1;
     });
 
