@@ -648,7 +648,7 @@ async function main() {
         }
 
         const statsEntry = {
-            timestamp: Math.floor(Date.now() / 1000),
+            timestamp: new Date().toISOString(),
             user: userInfo.user, // User info + engagement inside
             articles: detailedArticles.map(art => ({
                 id: art.id,
