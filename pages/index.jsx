@@ -456,19 +456,36 @@ function Card({ title, value, prevValue, icon, t }) {
 export async function getStaticProps() {
     const dataDir = path.join(process.cwd(), 'data');
     const historyPath = path.join(dataDir, 'history.json');
+    const currentStatsPath = path.join(dataDir, 'current_stats.json');
 
     let history = [];
     try {
-        const fileContent = fs.readFileSync(historyPath, 'utf8');
-        history = JSON.parse(fileContent);
+        if (fs.existsSync(historyPath)) {
+            const fileContent = fs.readFileSync(historyPath, 'utf8');
+            history = JSON.parse(fileContent);
+        }
     } catch (e) {
         console.error('Error reading history file:', e);
     }
 
-    const latest = history.length > 0 ? history[history.length - 1] : {};
+    // Load explicit current stats (Full Data)
+    let latest = {};
+    try {
+        if (fs.existsSync(currentStatsPath)) {
+            const currentContent = fs.readFileSync(currentStatsPath, 'utf8');
+            latest = JSON.parse(currentContent);
+        } else {
+            // Fallback to history tail if current_stats missing (e.g. fresh clone)
+            latest = history.length > 0 ? history[history.length - 1] : {};
+        }
+    } catch (e) {
+        console.error('Error reading current_stats file:', e);
+        latest = history.length > 0 ? history[history.length - 1] : {};
+    }
+
     const previous = history.length > 1 ? history[history.length - 2] : null;
 
-    // Favor scraped user data from history.json if available
+    // Favor scraped user data from current_stats
     const scrapedUser = latest.user || {};
 
     // --- Aggregation Logic for Creative DNA ---
