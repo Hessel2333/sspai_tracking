@@ -695,7 +695,15 @@ async function main() {
                 }
             }
 
-            history.push(statsEntry);
+            // Create Slim Entry for History (Remove heavy engagement data)
+            const slimEntry = { ...statsEntry };
+            if (slimEntry.user && slimEntry.user.engagement) {
+                // deep copy user to avoid mutating original statsEntry which is used for current_stats
+                slimEntry.user = { ...statsEntry.user };
+                delete slimEntry.user.engagement;
+            }
+
+            history.push(slimEntry);
 
             // Write back history
             fs.writeFileSync(HISTORY_FILE, JSON.stringify(history, null, 2));
