@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-01-09T01:12:18.678Z",
+  "timestamp": "2026-01-10T01:09:36.897Z",
   "user": {
     "nickname": "Hessel",
     "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
     "slug": "cemq1hts",
     "created_at": 1485946514,
-    "liked_count": 317,
-    "article_view_count": 189938,
+    "liked_count": 318,
+    "article_view_count": 190306,
     "article_count": 4,
     "user_reward_badges": [
       {
@@ -17679,9 +17679,9 @@
     {
       "id": 104232,
       "title": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "views": 17593,
-      "likes": 61,
-      "comments": 27,
+      "views": 17826,
+      "likes": 62,
+      "comments": 28,
       "created_at": 1764643711,
       "tags": [
         "应用推荐",
@@ -17705,9 +17705,9 @@
           "likes": 1
         },
         {
-          "nickname": "Pear",
-          "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
-          "content": "能不能提个建议呀，这个卡片加上过滤标签。比如我不想让二级分类‘转账’显示在图示里。",
+          "nickname": "veggie",
+          "avatar": "https://cdnfile.sspai.com/2024/05/08/8cd7007bb6c468d7a9780b1aebf2abb7.png",
+          "content": "无代码经验，通过LLM帮助安装了python，在终端里复制粘贴命令行，跑通了，已star！<p style=\"margin: 0;height: 20px;\"></p >小建议：<p style=\"margin: 0;height: 20px;\"></p >1、支付宝里有很多金额为0的订单（不知道为啥），手动从csv中删除，以免影响消费次数等的统计。<p style=\"margin: 0;height: 20px;\"></p >2、支付宝的已取消的订单，手动从csv中删除，以免影响统计。",
           "likes": 0
         }
       ]
@@ -17715,7 +17715,7 @@
     {
       "id": 96151,
       "title": "新的一年，不妨试试自己分析支付宝账单",
-      "views": 43033,
+      "views": 43097,
       "likes": 69,
       "comments": 28,
       "created_at": 1738996270,
@@ -17752,7 +17752,7 @@
     {
       "id": 86747,
       "title": "自我记录、量化与回溯的数字之旅",
-      "views": 77130,
+      "views": 77166,
       "likes": 110,
       "comments": 36,
       "created_at": 1709106003,
@@ -17791,7 +17791,7 @@
     {
       "id": 85355,
       "title": "App+1 | Rond 与世界迷雾：现实世界的塞尔达传说地图册",
-      "views": 52184,
+      "views": 52217,
       "likes": 77,
       "comments": 117,
       "created_at": 1703551973,
