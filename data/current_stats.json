@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-01-22T01:14:04.636Z",
+  "timestamp": "2026-01-23T01:13:03.552Z",
   "user": {
     "nickname": "Hessel",
     "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
     "slug": "cemq1hts",
     "created_at": 1485946514,
     "liked_count": 320,
-    "article_view_count": 194112,
+    "article_view_count": 194408,
     "article_count": 4,
     "user_reward_badges": [
       {
@@ -9424,7 +9424,7 @@
             },
             "created_at": 1590732960,
             "banner": "article/945f1e32-da2e-8d81-b486-02487dfd5603.jpg",
-            "summary": "无论是在 Windows 和 macOS 上处理文本，还是�� Everything 中搜索文件，亦或是在手机和平板电脑上进行自动化的操作，如果一个工具可以支持正则表达式，如果你能够善用正则表达式，那它一定会给你带来许多新的可能性。",
+            "summary": "无论是在 Windows 和 macOS 上处理文本，���是在 Everything 中搜索文件，亦或是在手机和平板电脑上进行自动化的操作，如果一个工具可以支持正则表达式，如果你能够善用正则表达式，那它一定会给你带来许多新的可能性。",
             "tags": [
               "效率"
             ]
@@ -9837,7 +9837,7 @@
           },
           {
             "id": 58960,
-            "title": "以 Notion 为原点，我��造了一套极简工作流 | 年度征文",
+            "title": "以 Notion 为原点，我打造了一套极简工作流 | 年度征文",
             "slug": 58960,
             "author": {
               "id": 0,
@@ -18075,7 +18075,7 @@
     {
       "id": 104232,
       "title": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "views": 20090,
+      "views": 20262,
       "likes": 64,
       "comments": 28,
       "created_at": 1764643711,
@@ -18111,7 +18111,7 @@
     {
       "id": 96151,
       "title": "新的一年，不妨试试自己分析支付宝账单",
-      "views": 43823,
+      "views": 43887,
       "likes": 69,
       "comments": 28,
       "created_at": 1738996270,
@@ -18148,7 +18148,7 @@
     {
       "id": 86747,
       "title": "自我记录、量化与回溯的数字之旅",
-      "views": 77616,
+      "views": 77649,
       "likes": 110,
       "comments": 36,
       "created_at": 1709106003,
@@ -18187,7 +18187,7 @@
     {
       "id": 85355,
       "title": "App+1 | Rond 与世界迷雾：现实世界的塞尔达传说地图册",
-      "views": 52583,
+      "views": 52610,
       "likes": 77,
       "comments": 117,
       "created_at": 1703551973,
