@@ -22275,6 +22275,135 @@
       },
       "author_seconds": [],
       "created_at": 1766906923
+    },
+    "105481": {
+      "tags": [
+        {
+          "id": 6033,
+          "title": "人工智能",
+          "icon": "",
+          "color": ""
+        }
+      ],
+      "author": {
+        "id": 0,
+        "slug": "a5xddvxl",
+        "avatar": "article/02c1b4c9-ffb3-b89b-9fe1-bdc9abbc5d43.jpeg",
+        "nickname": "玉树芝兰",
+        "followed": false,
+        "bio": "王树义。大学教师，终身学习者。稍微懂一点儿写作、演讲、Python和机器学习。欢迎关注我的公众号“玉树芝兰”(nkwangshuyi)。",
+        "user_flags": [
+          {
+            "id": 19,
+            "key": "writer",
+            "name": "少数派作者",
+            "description": "少数派作者",
+            "icon_id": 0,
+            "icon": "https://cdn-static.sspai.com/ui/badge/zuozhe_180x180.png",
+            "url": "",
+            "status": 1,
+            "weight": 2,
+            "color": "",
+            "type": 2,
+            "sub_type": 1,
+            "object_id": 0,
+            "allow_add_user": false,
+            "allow_delete_user": false,
+            "allow_update_status": false,
+            "icon_app": "",
+            "icon_app_id": 0,
+            "icon_unlighted": "",
+            "icon_unlighted_id": 0,
+            "tag": "",
+            "icon_unlighted_show_on": false,
+            "admin_id": 0,
+            "user_get_on": false,
+            "icon_3d_id": 0,
+            "icon_3d": "",
+            "icon_app_3d_id": 0,
+            "icon_app_3d": "",
+            "created_at": 0,
+            "updated_at": 1768720750,
+            "recommend_to_home_on": false,
+            "remuneration_fee": 0
+          }
+        ],
+        "user_badges": [
+          {
+            "id": 17,
+            "key": "member_2022",
+            "name": "少数派会员",
+            "description": "少数派会员",
+            "icon_id": 0,
+            "icon": "https://cdn-static.sspai.com/ui/badge/prime_S03_512.png",
+            "url": "https://sspai.com/prime",
+            "status": 1,
+            "weight": 97,
+            "color": "#CFC8C8",
+            "type": 1,
+            "sub_type": 1,
+            "object_id": 0,
+            "allow_add_user": false,
+            "allow_delete_user": false,
+            "allow_update_status": false,
+            "icon_app": "",
+            "icon_app_id": 0,
+            "icon_unlighted": "",
+            "icon_unlighted_id": 0,
+            "tag": "",
+            "icon_unlighted_show_on": false,
+            "admin_id": 0,
+            "user_get_on": false,
+            "icon_3d_id": 0,
+            "icon_3d": "",
+            "icon_app_3d_id": 0,
+            "icon_app_3d": "",
+            "created_at": 0,
+            "updated_at": 0,
+            "recommend_to_home_on": false,
+            "remuneration_fee": 0
+          }
+        ],
+        "user_plan_flags": [
+          {
+            "id": 14,
+            "key": "matrix_plan_member",
+            "name": "Matrix 共创计划成员",
+            "description": "Matrix 共创计划成员，立即加入>",
+            "icon_id": 0,
+            "icon": "https://cdnfile.sspai.com/ui/badge/matrix_gongchuangjihua.png",
+            "url": "",
+            "status": 1,
+            "weight": 1,
+            "color": "",
+            "type": 3,
+            "sub_type": 1,
+            "object_id": 0,
+            "allow_add_user": false,
+            "allow_delete_user": false,
+            "allow_update_status": false,
+            "icon_app": "",
+            "icon_app_id": 0,
+            "icon_unlighted": "",
+            "icon_unlighted_id": 0,
+            "tag": "",
+            "icon_unlighted_show_on": false,
+            "admin_id": 0,
+            "user_get_on": false,
+            "icon_3d_id": 0,
+            "icon_3d": "",
+            "icon_app_3d_id": 0,
+            "icon_app_3d": "",
+            "created_at": 0,
+            "updated_at": 0,
+            "recommend_to_home_on": false,
+            "remuneration_fee": 0
+          }
+        ],
+        "user_id_verify_flags": []
+      },
+      "author_seconds": [],
+      "created_at": 1768471029
     }
   },
   "authors": {
@@ -22915,5 +23044,5 @@
       "avatar": "2022/04/08/bd4aa9e39bd5f899a9e4e060958f10b1.jpeg"
     }
   },
-  "last_updated": 1770600527716
+  "last_updated": 1770688301698
 }
