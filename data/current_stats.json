@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-02-10T01:51:41.645Z",
+  "timestamp": "2026-02-11T01:48:57.251Z",
   "user": {
     "nickname": "Hessel",
     "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
     "slug": "cemq1hts",
     "created_at": 1485946514,
     "liked_count": 321,
-    "article_view_count": 199231,
+    "article_view_count": 199508,
     "article_count": 4,
     "user_reward_badges": [
       {
@@ -16725,7 +16725,7 @@
           "key": "community_comment_topic",
           "action": "评论了主题",
           "created_at": 1727070177,
-          "target_title": "也是用上 follow 了",
+          "target_title": "也是用上 follow ���",
           "target_id": null,
           "target_slug": null,
           "comment_content": "<p>蹲个邀请码</p>",
@@ -17984,7 +17984,7 @@
     {
       "id": 104232,
       "title": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "views": 22653,
+      "views": 22778,
       "likes": 65,
       "comments": 28,
       "created_at": 1764643711,
@@ -18020,7 +18020,7 @@
     {
       "id": 96151,
       "title": "新的一年，不妨试试自己分析支付宝账单",
-      "views": 45233,
+      "views": 45314,
       "likes": 69,
       "comments": 28,
       "created_at": 1738996270,
@@ -18057,7 +18057,7 @@
     {
       "id": 86747,
       "title": "自我记录、量化与回溯的数字之旅",
-      "views": 78452,
+      "views": 78516,
       "likes": 110,
       "comments": 36,
       "created_at": 1709106003,
@@ -18088,7 +18088,7 @@
         {
           "nickname": "Sennhei",
           "avatar": "https://cdnfile.sspai.com/2022/04/01/avatar/d78f810ab0ada0c299071a51664cc058.png",
-          "content": "好多软件我也在用，Rond前段时间更新了导出至日历功能我觉得相当好；上面任意一个app我都没信心说到我老的时候还能存活，但是日历app肯定可以，以后不用苹果了日历也能轻松导出，现在所有能在日历显示的类目（睡眠时间，影视记录评分，上下班打卡，每天吃的东西，汽车里程变化等等）我都在日历上记录了，回顾起来更加方便",
+          "content": "好多软件我也在用，Rond前段时间更新了导出至日历功能我觉得相当好；上面任意一个app我都没信心说到我老的时候还能存活，但是日历app肯���可以，以后不用苹果了日历也能轻松导出，现在所有能在日历显示的类目（睡眠时间，影视记录评分，上下班打卡，每天吃的东西，汽车里程变化等等）我都在日历上记录了，回顾起来更加方便",
           "likes": 2
         }
       ]
@@ -18096,7 +18096,7 @@
     {
       "id": 85355,
       "title": "App+1 | Rond 与世界迷雾：现实世界的塞尔达传说地图册",
-      "views": 52893,
+      "views": 52902,
       "likes": 77,
       "comments": 117,
       "created_at": 1703551973,
