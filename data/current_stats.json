@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-02-11T01:48:57.251Z",
+  "timestamp": "2026-02-12T01:29:41.822Z",
   "user": {
     "nickname": "Hessel",
     "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
     "slug": "cemq1hts",
     "created_at": 1485946514,
     "liked_count": 321,
-    "article_view_count": 199508,
+    "article_view_count": 199779,
     "article_count": 4,
     "user_reward_badges": [
       {
@@ -2052,42 +2052,7 @@
                   "remuneration_fee": 0
                 }
               ],
-              "user_badges": [
-                {
-                  "id": 17,
-                  "key": "member_2022",
-                  "name": "少数派会员",
-                  "description": "少数派会员",
-                  "icon_id": 0,
-                  "icon": "https://cdn-static.sspai.com/ui/badge/prime_S03_512.png",
-                  "url": "https://sspai.com/prime",
-                  "status": 1,
-                  "weight": 97,
-                  "color": "#CFC8C8",
-                  "type": 1,
-                  "sub_type": 1,
-                  "object_id": 0,
-                  "allow_add_user": false,
-                  "allow_delete_user": false,
-                  "allow_update_status": false,
-                  "icon_app": "",
-                  "icon_app_id": 0,
-                  "icon_unlighted": "",
-                  "icon_unlighted_id": 0,
-                  "tag": "",
-                  "icon_unlighted_show_on": false,
-                  "admin_id": 0,
-                  "user_get_on": false,
-                  "icon_3d_id": 0,
-                  "icon_3d": "",
-                  "icon_app_3d_id": 0,
-                  "icon_app_3d": "",
-                  "created_at": 0,
-                  "updated_at": 0,
-                  "recommend_to_home_on": false,
-                  "remuneration_fee": 0
-                }
-              ],
+              "user_badges": [],
               "user_plan_flags": [
                 {
                   "id": 14,
@@ -2180,42 +2145,7 @@
                   "remuneration_fee": 0
                 }
               ],
-              "user_badges": [
-                {
-                  "id": 17,
-                  "key": "member_2022",
-                  "name": "少数派会员",
-                  "description": "少数派会员",
-                  "icon_id": 0,
-                  "icon": "https://cdn-static.sspai.com/ui/badge/prime_S03_512.png",
-                  "url": "https://sspai.com/prime",
-                  "status": 1,
-                  "weight": 97,
-                  "color": "#CFC8C8",
-                  "type": 1,
-                  "sub_type": 1,
-                  "object_id": 0,
-                  "allow_add_user": false,
-                  "allow_delete_user": false,
-                  "allow_update_status": false,
-                  "icon_app": "",
-                  "icon_app_id": 0,
-                  "icon_unlighted": "",
-                  "icon_unlighted_id": 0,
-                  "tag": "",
-                  "icon_unlighted_show_on": false,
-                  "admin_id": 0,
-                  "user_get_on": false,
-                  "icon_3d_id": 0,
-                  "icon_3d": "",
-                  "icon_app_3d_id": 0,
-                  "icon_app_3d": "",
-                  "created_at": 0,
-                  "updated_at": 0,
-                  "recommend_to_home_on": false,
-                  "remuneration_fee": 0
-                }
-              ],
+              "user_badges": [],
               "user_plan_flags": [
                 {
                   "id": 14,
@@ -2680,7 +2610,7 @@
             },
             "created_at": 1650146653,
             "banner": "2022/04/01/ec4d18af9f871a0249c8682efcefb988.png",
-            "summary": "这款扩展一直都是我配合 Obsidian 使用的利器，但是自从我将 safari 当做主流浏览器（没错它现在很棒了）后就遇到麻烦了，由于有大量的文章需要摘录，就会不停的在两个浏览器来回切换，为了解决这个问题，我就想有没有可能在 Safari 中实现同样的扩展。于是就开始着手研究如何开发 Safari 浏览器扩展，经过一番折腾，终于顺利上架 Mac App Store，所以今天就在少数派跟大家介绍一下插件的使用。",
+            "summary": "这款扩展一直都是我配合 Obsidian 使用的利器，但是自从我将 safari 当做主流浏览器（没错它现在很棒了）后就遇到麻烦了，由于有大量的文章需要摘录，就会不停的在两个浏览器来回切换，为了解决这个问题，我就想有没有可能在 Safari 中实现同样的扩展。于是就开始着手研究如何开发 Safari 浏览器扩展，经过一番折腾，终于顺利上架 Mac App Store，所以今天就在���数派跟大家介绍一下插件的使用。",
             "tags": [
               "浏览器",
               "笔记"
@@ -5942,42 +5872,7 @@
                   "remuneration_fee": 0
                 }
               ],
-              "user_badges": [
-                {
-                  "id": 17,
-                  "key": "member_2022",
-                  "name": "少数派会员",
-                  "description": "少数派会员",
-                  "icon_id": 0,
-                  "icon": "https://cdn-static.sspai.com/ui/badge/prime_S03_512.png",
-                  "url": "https://sspai.com/prime",
-                  "status": 1,
-                  "weight": 97,
-                  "color": "#CFC8C8",
-                  "type": 1,
-                  "sub_type": 1,
-                  "object_id": 0,
-                  "allow_add_user": false,
-                  "allow_delete_user": false,
-                  "allow_update_status": false,
-                  "icon_app": "",
-                  "icon_app_id": 0,
-                  "icon_unlighted": "",
-                  "icon_unlighted_id": 0,
-                  "tag": "",
-                  "icon_unlighted_show_on": false,
-                  "admin_id": 0,
-                  "user_get_on": false,
-                  "icon_3d_id": 0,
-                  "icon_3d": "",
-                  "icon_app_3d_id": 0,
-                  "icon_app_3d": "",
-                  "created_at": 0,
-                  "updated_at": 0,
-                  "recommend_to_home_on": false,
-                  "remuneration_fee": 0
-                }
-              ],
+              "user_badges": [],
               "user_plan_flags": [
                 {
                   "id": 14,
@@ -10480,7 +10375,42 @@
                   "remuneration_fee": 0
                 }
               ],
-              "user_badges": [],
+              "user_badges": [
+                {
+                  "id": 17,
+                  "key": "member_2022",
+                  "name": "少数派会员",
+                  "description": "少数派会员",
+                  "icon_id": 0,
+                  "icon": "https://cdn-static.sspai.com/ui/badge/prime_S03_512.png",
+                  "url": "https://sspai.com/prime",
+                  "status": 1,
+                  "weight": 97,
+                  "color": "#CFC8C8",
+                  "type": 1,
+                  "sub_type": 1,
+                  "object_id": 0,
+                  "allow_add_user": false,
+                  "allow_delete_user": false,
+                  "allow_update_status": false,
+                  "icon_app": "",
+                  "icon_app_id": 0,
+                  "icon_unlighted": "",
+                  "icon_unlighted_id": 0,
+                  "tag": "",
+                  "icon_unlighted_show_on": false,
+                  "admin_id": 0,
+                  "user_get_on": false,
+                  "icon_3d_id": 0,
+                  "icon_3d": "",
+                  "icon_app_3d_id": 0,
+                  "icon_app_3d": "",
+                  "created_at": 0,
+                  "updated_at": 0,
+                  "recommend_to_home_on": false,
+                  "remuneration_fee": 0
+                }
+              ],
               "user_plan_flags": [
                 {
                   "id": 14,
@@ -10629,7 +10559,42 @@
                   "remuneration_fee": 0
                 }
               ],
-              "user_badges": [],
+              "user_badges": [
+                {
+                  "id": 17,
+                  "key": "member_2022",
+                  "name": "少数派会员",
+                  "description": "少数派会员",
+                  "icon_id": 0,
+                  "icon": "https://cdn-static.sspai.com/ui/badge/prime_S03_512.png",
+                  "url": "https://sspai.com/prime",
+                  "status": 1,
+                  "weight": 97,
+                  "color": "#CFC8C8",
+                  "type": 1,
+                  "sub_type": 1,
+                  "object_id": 0,
+                  "allow_add_user": false,
+                  "allow_delete_user": false,
+                  "allow_update_status": false,
+                  "icon_app": "",
+                  "icon_app_id": 0,
+                  "icon_unlighted": "",
+                  "icon_unlighted_id": 0,
+                  "tag": "",
+                  "icon_unlighted_show_on": false,
+                  "admin_id": 0,
+                  "user_get_on": false,
+                  "icon_3d_id": 0,
+                  "icon_3d": "",
+                  "icon_app_3d_id": 0,
+                  "icon_app_3d": "",
+                  "created_at": 0,
+                  "updated_at": 0,
+                  "recommend_to_home_on": false,
+                  "remuneration_fee": 0
+                }
+              ],
               "user_plan_flags": [
                 {
                   "id": 14,
@@ -11089,7 +11054,42 @@
                   "remuneration_fee": 0
                 }
               ],
-              "user_badges": [],
+              "user_badges": [
+                {
+                  "id": 17,
+                  "key": "member_2022",
+                  "name": "少数派会员",
+                  "description": "少数派会员",
+                  "icon_id": 0,
+                  "icon": "https://cdn-static.sspai.com/ui/badge/prime_S03_512.png",
+                  "url": "https://sspai.com/prime",
+                  "status": 1,
+                  "weight": 97,
+                  "color": "#CFC8C8",
+                  "type": 1,
+                  "sub_type": 1,
+                  "object_id": 0,
+                  "allow_add_user": false,
+                  "allow_delete_user": false,
+                  "allow_update_status": false,
+                  "icon_app": "",
+                  "icon_app_id": 0,
+                  "icon_unlighted": "",
+                  "icon_unlighted_id": 0,
+                  "tag": "",
+                  "icon_unlighted_show_on": false,
+                  "admin_id": 0,
+                  "user_get_on": false,
+                  "icon_3d_id": 0,
+                  "icon_3d": "",
+                  "icon_app_3d_id": 0,
+                  "icon_app_3d": "",
+                  "created_at": 0,
+                  "updated_at": 0,
+                  "recommend_to_home_on": false,
+                  "remuneration_fee": 0
+                }
+              ],
               "user_plan_flags": [
                 {
                   "id": 14,
@@ -11536,7 +11536,7 @@
             },
             "created_at": 1571728925,
             "banner": "article/3b43dcda-7cdf-1b1f-41b0-1cb917a23bb3.jpg",
-            "summary": "本文介绍了我自己平时在工作和生活中的七个小场景，每个场景都是带有这样「重复性」性质的事情，一起看看我是如何用 Python 这门简单易懂的编程语言去解决这些事情吧。",
+            "summary": "本文��绍了我自己平时在工作和生活中的七个小场景，每个场景都是带有这样「重复性」性质的事情，一起看看我是如何用 Python 这门简单易懂的编程语言去解决这些事情吧。",
             "tags": [
               "效率思维",
               "工作"
@@ -12857,7 +12857,42 @@
                   "remuneration_fee": 0
                 }
               ],
-              "user_badges": [],
+              "user_badges": [
+                {
+                  "id": 17,
+                  "key": "member_2022",
+                  "name": "少数派会员",
+                  "description": "少数派会员",
+                  "icon_id": 0,
+                  "icon": "https://cdn-static.sspai.com/ui/badge/prime_S03_512.png",
+                  "url": "https://sspai.com/prime",
+                  "status": 1,
+                  "weight": 97,
+                  "color": "#CFC8C8",
+                  "type": 1,
+                  "sub_type": 1,
+                  "object_id": 0,
+                  "allow_add_user": false,
+                  "allow_delete_user": false,
+                  "allow_update_status": false,
+                  "icon_app": "",
+                  "icon_app_id": 0,
+                  "icon_unlighted": "",
+                  "icon_unlighted_id": 0,
+                  "tag": "",
+                  "icon_unlighted_show_on": false,
+                  "admin_id": 0,
+                  "user_get_on": false,
+                  "icon_3d_id": 0,
+                  "icon_3d": "",
+                  "icon_app_3d_id": 0,
+                  "icon_app_3d": "",
+                  "created_at": 0,
+                  "updated_at": 0,
+                  "recommend_to_home_on": false,
+                  "remuneration_fee": 0
+                }
+              ],
               "user_plan_flags": [
                 {
                   "id": 14,
@@ -14684,7 +14719,42 @@
                   "remuneration_fee": 0
                 }
               ],
-              "user_badges": [],
+              "user_badges": [
+                {
+                  "id": 17,
+                  "key": "member_2022",
+                  "name": "少数派会员",
+                  "description": "少数派会员",
+                  "icon_id": 0,
+                  "icon": "https://cdn-static.sspai.com/ui/badge/prime_S03_512.png",
+                  "url": "https://sspai.com/prime",
+                  "status": 1,
+                  "weight": 97,
+                  "color": "#CFC8C8",
+                  "type": 1,
+                  "sub_type": 1,
+                  "object_id": 0,
+                  "allow_add_user": false,
+                  "allow_delete_user": false,
+                  "allow_update_status": false,
+                  "icon_app": "",
+                  "icon_app_id": 0,
+                  "icon_unlighted": "",
+                  "icon_unlighted_id": 0,
+                  "tag": "",
+                  "icon_unlighted_show_on": false,
+                  "admin_id": 0,
+                  "user_get_on": false,
+                  "icon_3d_id": 0,
+                  "icon_3d": "",
+                  "icon_app_3d_id": 0,
+                  "icon_app_3d": "",
+                  "created_at": 0,
+                  "updated_at": 0,
+                  "recommend_to_home_on": false,
+                  "remuneration_fee": 0
+                }
+              ],
               "user_plan_flags": [
                 {
                   "id": 14,
@@ -14778,7 +14848,42 @@
                   "remuneration_fee": 0
                 }
               ],
-              "user_badges": [],
+              "user_badges": [
+                {
+                  "id": 17,
+                  "key": "member_2022",
+                  "name": "少数派会员",
+                  "description": "少数派会员",
+                  "icon_id": 0,
+                  "icon": "https://cdn-static.sspai.com/ui/badge/prime_S03_512.png",
+                  "url": "https://sspai.com/prime",
+                  "status": 1,
+                  "weight": 97,
+                  "color": "#CFC8C8",
+                  "type": 1,
+                  "sub_type": 1,
+                  "object_id": 0,
+                  "allow_add_user": false,
+                  "allow_delete_user": false,
+                  "allow_update_status": false,
+                  "icon_app": "",
+                  "icon_app_id": 0,
+                  "icon_unlighted": "",
+                  "icon_unlighted_id": 0,
+                  "tag": "",
+                  "icon_unlighted_show_on": false,
+                  "admin_id": 0,
+                  "user_get_on": false,
+                  "icon_3d_id": 0,
+                  "icon_3d": "",
+                  "icon_app_3d_id": 0,
+                  "icon_app_3d": "",
+                  "created_at": 0,
+                  "updated_at": 0,
+                  "recommend_to_home_on": false,
+                  "remuneration_fee": 0
+                }
+              ],
               "user_plan_flags": [
                 {
                   "id": 14,
@@ -17984,7 +18089,7 @@
     {
       "id": 104232,
       "title": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "views": 22778,
+      "views": 22896,
       "likes": 65,
       "comments": 28,
       "created_at": 1764643711,
@@ -18020,7 +18125,7 @@
     {
       "id": 96151,
       "title": "新的一年，不妨试试自己分析支付宝账单",
-      "views": 45314,
+      "views": 45392,
       "likes": 69,
       "comments": 28,
       "created_at": 1738996270,
@@ -18057,7 +18162,7 @@
     {
       "id": 86747,
       "title": "自我记录、量化与回溯的数字之旅",
-      "views": 78516,
+      "views": 78576,
       "likes": 110,
       "comments": 36,
       "created_at": 1709106003,
@@ -18096,7 +18201,7 @@
     {
       "id": 85355,
       "title": "App+1 | Rond 与世界迷雾：现实世界的塞尔达传说地图册",
-      "views": 52902,
+      "views": 52917,
       "likes": 77,
       "comments": 117,
       "created_at": 1703551973,
