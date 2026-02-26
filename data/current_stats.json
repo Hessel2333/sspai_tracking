@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-02-25T01:28:42.399Z",
+  "timestamp": "2026-02-26T01:25:42.896Z",
   "user": {
     "nickname": "Hessel",
     "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
     "slug": "cemq1hts",
     "created_at": 1485946514,
     "liked_count": 321,
-    "article_view_count": 203037,
+    "article_view_count": 203301,
     "article_count": 4,
     "user_reward_badges": [
       {
@@ -16655,9 +16655,23 @@
           }
         ]
       },
-      "likes_given_total": 26,
+      "likes_given_total": 27,
       "comments_made_total": 49,
       "all_activities": [
+        {
+          "key": "like_article",
+          "action": "喜欢了文章",
+          "created_at": 1772004719,
+          "target_title": "在 AI 的帮助下，给自己建了个数字人生档案馆",
+          "target_id": 106401,
+          "target_slug": null,
+          "comment_content": null,
+          "type": "article",
+          "author": "吃瓜",
+          "author_slug": "t48ezwvo",
+          "author_avatar": "https://cdnfile.sspai.com/2025/07/15/avatar/3f3aa86b2df89d7d5db1487a95a651e4.png",
+          "tags": []
+        },
         {
           "key": "like_article",
           "action": "喜欢了文章",
@@ -16830,7 +16844,7 @@
           "key": "community_comment_topic",
           "action": "评论了主题",
           "created_at": 1727070177,
-          "target_title": "也是用上 follow ���",
+          "target_title": "也是用上 follow 了",
           "target_id": null,
           "target_slug": null,
           "comment_content": "<p>蹲个邀请码</p>",
@@ -16968,7 +16982,7 @@
         },
         {
           "key": "comment_article",
-          "action": "评论了文���",
+          "action": "评论了文章",
           "created_at": 1697693247,
           "target_title": "[送码] 记账太难了？每月记录资产轻松又有效",
           "target_id": 370082,
@@ -17071,7 +17085,7 @@
           "target_title": "獭可派 | 可背可提还「上镜」：为什么你该试试 Bellroy",
           "target_id": 334960,
           "target_slug": null,
-          "comment_content": "说到bellroy，想起几年前的惨痛经历，那时15，16年暑假左右，想换个钱包，挑了好久买了bellroy的note sleeve (应该是这名字)，卖点就是设计，以及非常小巧，京东自营要500左右。到手非常喜欢，当场就把身份证，钱，银行卡装进去了，然后在第二天骑小电驴去舅舅公司第一次实习的时候，在半路丢失了。。。。事后复盘了一下，除开自己的裤子开口略低之外，这个钱包的表面也很光滑，没什么摩擦力。然后之后就取消实习，去老家重新办身份证，再补办银行卡，再之后买了个便宜的小米90分钱包，一直用到了现在，体积稍大点，但摩擦力非常好。这牌子，好看是好看，耐不住可能存在的设计缺陷（仅适用于我用过的那个钱包），真是让人印象深刻啊（笑）。",
+          "comment_content": "说到bellroy，想起几年前的惨痛经历，那时15，16年暑假左右，想换个钱包，挑了好久买了bellroy的note sleeve (应该是这名字)，卖点就是设计，以及非常小巧，京东自营要500左右。到手非常喜欢，当场就把身份证，钱，银行卡装进去了，然后在第二天骑小电驴去舅舅公司第一次实习的时候，在��路丢失了。。。。事后复盘了一下，除开自己的裤子开口略低之外，这个钱包的表面也很光滑，没什么摩擦力。然后之后就取消实习，去老家重新办身份证，再补办银行卡，再之后买了个便宜的小米90分钱包，一直用到了现在，体积稍大点，但摩擦力非常好。这牌子，好看是好看，耐不住可能存在的设计缺陷（仅适用于我用过的那个钱包），真是让人印象深刻啊（笑）。",
           "type": "article",
           "author": "獭可派",
           "author_slug": "bhhb42hl",
@@ -18089,7 +18103,7 @@
     {
       "id": 104232,
       "title": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "views": 24323,
+      "views": 24438,
       "likes": 65,
       "comments": 28,
       "created_at": 1764643711,
@@ -18125,7 +18139,7 @@
     {
       "id": 96151,
       "title": "新的一年，不妨试试自己分析支付宝账单",
-      "views": 46400,
+      "views": 46475,
       "likes": 69,
       "comments": 28,
       "created_at": 1738996270,
@@ -18162,7 +18176,7 @@
     {
       "id": 86747,
       "title": "自我记录、量化与回溯的数字之旅",
-      "views": 79229,
+      "views": 79285,
       "likes": 110,
       "comments": 36,
       "created_at": 1709106003,
@@ -18201,7 +18215,7 @@
     {
       "id": 85355,
       "title": "App+1 | Rond 与世界迷雾：现实世界的塞尔达传说地图册",
-      "views": 53085,
+      "views": 53103,
       "likes": 77,
       "comments": 117,
       "created_at": 1703551973,
