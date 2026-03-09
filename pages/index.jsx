@@ -1,6 +1,4 @@
 import { useState } from 'react';
-import fs from 'fs';
-import path from 'path';
 import Head from 'next/head';
 import Link from 'next/link';
 import ProfileHeader from '../components/ProfileHeader';
@@ -16,16 +14,46 @@ import FavoritesAuthors from '../components/FavoritesAuthors';
 import FavoritesTags from '../components/FavoritesTags';
 import dayjs from 'dayjs';
 import { useLanguage } from '../contexts/LanguageContext';
+import { loadDashboardData } from '../utils/dataLoader';
 
-export default function Home({ history, latest, previous, latestTimestamp, slug, nickname, avatarUrl, topTags, topEditors, userData, personaData }) {
+const LONG_COMMENT_CHAR_THRESHOLD = 280;
+const LONG_COMMENT_BLOCK_THRESHOLD = 4;
+
+function stripHtml(html = '') {
+    return html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
+function isLongComment(html = '') {
+    const plainTextLength = stripHtml(html).length;
+    const blockCount = (html.match(/<(p|div|br|li)\b/gi) || []).length;
+    return plainTextLength > LONG_COMMENT_CHAR_THRESHOLD || blockCount > LONG_COMMENT_BLOCK_THRESHOLD;
+}
+
+function getActivityId(act) {
+    return [
+        act.key || '',
+        act.created_at || '',
+        act.target_id || '',
+        act.target_slug || '',
+        (act.target_title || '').slice(0, 40),
+        (act.comment_content || '').slice(0, 80)
+    ].join('|');
+}
+
+export default function Home({ history, latest, previous, latestTimestamp, slug, nickname, topTags, userData, personaData }) {
     const { t, toggleLang, lang } = useLanguage();
     const totals = latest.totals || latest;
     const prevTotals = previous ? (previous.totals || previous) : null;
     const cookieStatus = latest.cookie_status || 'valid';
+    const safeUserData = userData || {};
+    const hasUserData = Boolean(userData && Object.keys(userData).length > 0);
+    const hasDashboardData = Boolean(latestTimestamp) || (latest.articles || []).length > 0;
+    const updatedLabel = latestTimestamp ? dayjs(latestTimestamp).format('MM-DD HH:mm') : '--';
 
     // View States
     const [activeTab, setActiveTab] = useState('insight'); // insight, content, social, honors
     const [sortConfig, setSortConfig] = useState({ key: 'views', direction: 'desc' });
+    const [expandedComments, setExpandedComments] = useState({});
 
     // Sorting Logic
     const sortedArticles = [...(latest.articles || [])].sort((a, b) => {
@@ -50,6 +78,13 @@ export default function Home({ history, latest, previous, latestTimestamp, slug,
             direction = 'asc';
         }
         setSortConfig({ key, direction });
+    };
+
+    const toggleCommentExpanded = (activityId) => {
+        setExpandedComments((prev) => ({
+            ...prev,
+            [activityId]: !prev[activityId]
+        }));
     };
 
     const SortIcon = ({ column }) => {
@@ -88,11 +123,26 @@ export default function Home({ history, latest, previous, latestTimestamp, slug,
                         </span>
                     </div>
                 )}
+                {!hasDashboardData && (
+                    <div className="fade-in glass" style={{
+                        marginTop: '20px',
+                        padding: '12px 16px',
+                        background: 'rgba(0, 122, 255, 0.08)',
+                        border: '1px solid rgba(0, 122, 255, 0.2)',
+                        borderRadius: '12px',
+                        color: 'var(--text-primary)',
+                        textAlign: 'center'
+                    }}>
+                        {lang === 'zh'
+                            ? '暂无可展示的数据，请先运行抓取任务（npm run scrape）并检查 data/current_stats.json。'
+                            : 'No dashboard data yet. Run `npm run scrape` and check data/current_stats.json.'}
+                    </div>
+                )}
 
                 {/* --- Top Bar (Settings + Lang) --- */}
                 <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 12, marginBottom: 16 }}>
                     <p className="subtitle" style={{ fontSize: 11, margin: 0, opacity: 0.6 }}>
-                        {dayjs(latestTimestamp).format('MM-DD HH:mm')} 更新
+                        {updatedLabel} 更新
                     </p>
                     <button onClick={toggleLang} className="btn-secondary" style={{ padding: '4px 8px', fontSize: 11 }}>
                         {lang === 'zh' ? 'EN' : '中'}
@@ -100,7 +150,7 @@ export default function Home({ history, latest, previous, latestTimestamp, slug,
                 </div>
 
                 {/* --- Profile Header (Restored) --- */}
-                <ProfileHeader userData={userData} totals={totals} t={t} lang={lang} />
+                <ProfileHeader userData={hasUserData ? safeUserData : null} totals={totals} t={t} lang={lang} />
 
                 {/* --- Tab Navigation --- */}
                 <nav className="tab-nav" style={{
@@ -137,7 +187,7 @@ export default function Home({ history, latest, previous, latestTimestamp, slug,
                                 <span className="card-title">🔥 {t('activityHeatmap', 'Activity Heatmap')}</span>
                             </div>
                             <div className="card-content" style={{ padding: '24px' }}>
-                                <ActivityHeatmap activities={userData.engagement?.all_activities} t={t} />
+                                <ActivityHeatmap activities={safeUserData.engagement?.all_activities} t={t} />
                             </div>
                         </div>
 
@@ -149,10 +199,10 @@ export default function Home({ history, latest, previous, latestTimestamp, slug,
 
                         <div className="card glass-panel" style={{ padding: 0, marginTop: 24 }}>
                             <div className="card-header" style={{ padding: '16px 24px', borderBottom: '1px solid rgba(0,0,0,0.05)' }}>
-                                <span className="card-title">📈 {t('engagement')}</span>
+                                <span className="card-title">📈 {t('viewsTrend')}</span>
                             </div>
                             <div className="card-content" style={{ padding: '24px' }}>
-                                <StatsChart history={history} totals={totals} />
+                                <StatsChart history={history} title={t('totalViews')} dataKey="totals.views" color="rgb(217, 48, 37)" />
                             </div>
                         </div>
                     </div>
@@ -237,14 +287,14 @@ export default function Home({ history, latest, previous, latestTimestamp, slug,
                 {/* --- Tab Content: Social (社交) --- */}
                 {activeTab === 'social' && (
                     <div className="tab-pane fade-in">
-                        {userData.engagement?.social_dna && (
+                        {safeUserData.engagement?.social_dna && (
                             <div className="dna-grid">
                                 <div className="card glass-panel" style={{ padding: 0 }}>
                                     <div className="card-header" style={{ padding: '16px 24px', borderBottom: '1px solid rgba(0,0,0,0.05)' }}>
                                         <span className="card-title">🕸️ {t('socialTags')}</span>
                                     </div>
                                     <div className="card-content" style={{ padding: '24px' }}>
-                                        <SocialRadar data={userData.engagement.social_dna.top_tags.map(t => t.count)} labels={userData.engagement.social_dna.top_tags.map(t => `#${t.name}`)} title={t('interacts')} />
+                                        <SocialRadar data={(safeUserData.engagement.social_dna.top_tags || []).map(t => t.count)} labels={(safeUserData.engagement.social_dna.top_tags || []).map(t => `#${t.name}`)} title={t('interacts')} />
                                     </div>
                                 </div>
                                 <div className="card glass-panel" style={{ padding: 0 }}>
@@ -252,7 +302,7 @@ export default function Home({ history, latest, previous, latestTimestamp, slug,
                                         <span className="card-title">👥 {t('socialAuthors')}</span>
                                     </div>
                                     <div className="card-content" style={{ padding: '24px' }}>
-                                        <SocialAvatarGrid authors={userData.engagement.social_dna.author_matrix} />
+                                        <SocialAvatarGrid authors={safeUserData.engagement.social_dna.author_matrix || []} />
                                     </div>
                                 </div>
                             </div>
@@ -267,24 +317,78 @@ export default function Home({ history, latest, previous, latestTimestamp, slug,
                             </div>
                             <div className="card-content" style={{ padding: 0 }}>
                                 <div className="activity-timeline">
-                                    {userData.engagement?.all_activities?.slice(0, 10).map((act, i) => (
-                                        <div key={i} className="timeline-item" style={{ padding: '12px 24px', borderBottom: '1px solid #eee' }}>
-                                            <div className="timeline-time">{dayjs.unix(act.created_at).format('MM-DD HH:mm')}</div>
-                                            <div className="timeline-content">
-                                                <span className="timeline-action">{act.action}</span>
-                                                {act.target_title && (
-                                                    <span className="timeline-target">
-                                                        {act.target_id ? (
-                                                            <a href={`https://sspai.com/post/${act.target_id}`} target="_blank" className="timeline-link">「{act.target_title}」</a>
-                                                        ) : (
-                                                            <span className="timeline-link">「{act.target_title}」</span>
-                                                        )}
-                                                    </span>
-                                                )}
-                                                {act.comment_content && <div className="timeline-comment">“{act.comment_content}”</div>}
+                                    {safeUserData.engagement?.all_activities?.slice(0, 10).map((act) => {
+                                        const activityId = getActivityId(act);
+                                        const shouldCollapse = Boolean(act.comment_content) && isLongComment(act.comment_content);
+                                        const isExpanded = Boolean(expandedComments[activityId]);
+
+                                        return (
+                                            <div key={activityId} className="timeline-item" style={{ padding: '12px 24px', borderBottom: '1px solid #eee' }}>
+                                                <div className="timeline-time">{dayjs.unix(act.created_at).format('MM-DD HH:mm')}</div>
+                                                <div className="timeline-content">
+                                                    <span className="timeline-action">{act.action}</span>
+                                                    {act.target_title && (
+                                                        <span className="timeline-target">
+                                                            {act.target_id ? (
+                                                                <a
+                                                                    href={act.type === 'topic' ? `https://sspai.com/community/topic/${act.target_id}` : `https://sspai.com/post/${act.target_id}`}
+                                                                    target="_blank"
+                                                                    className="timeline-link"
+                                                                >
+                                                                    「{act.target_title}」
+                                                                </a>
+                                                            ) : act.key === 'follow_user' && act.target_slug ? (
+                                                                <a
+                                                                    href={`https://sspai.com/u/${act.target_slug}/posts`}
+                                                                    target="_blank"
+                                                                    className="timeline-link"
+                                                                >
+                                                                    「{act.target_title}」
+                                                                </a>
+                                                            ) : act.key === 'follow_special_column' && act.target_slug ? (
+                                                                <a
+                                                                    href={`https://sspai.com/column/${act.target_slug}`}
+                                                                    target="_blank"
+                                                                    className="timeline-link"
+                                                                >
+                                                                    「{act.target_title}」
+                                                                </a>
+                                                            ) : (
+                                                                <span className="timeline-link">「{act.target_title}」</span>
+                                                            )}
+                                                        </span>
+                                                    )}
+                                                    {act.comment_content && (
+                                                        <>
+                                                            <div
+                                                                className={`timeline-comment-preview${shouldCollapse && !isExpanded ? ' is-collapsed' : ''}`}
+                                                                style={{
+                                                                    fontSize: 13,
+                                                                    color: 'var(--text-secondary)',
+                                                                    marginTop: 8,
+                                                                    padding: '12px 16px',
+                                                                    background: 'rgba(0,0,0,0.03)',
+                                                                    borderRadius: '8px',
+                                                                    borderLeft: '4px solid var(--accent-color)',
+                                                                    lineHeight: '1.6'
+                                                                }}
+                                                                dangerouslySetInnerHTML={{ __html: act.comment_content }}
+                                                            />
+                                                            {shouldCollapse && (
+                                                                <button
+                                                                    type="button"
+                                                                    onClick={() => toggleCommentExpanded(activityId)}
+                                                                    className="timeline-comment-toggle"
+                                                                >
+                                                                    {isExpanded ? t('collapseComment') : t('expandComment')}
+                                                                </button>
+                                                            )}
+                                                        </>
+                                                    )}
+                                                </div>
                                             </div>
-                                        </div>
-                                    ))}
+                                        );
+                                    })}
                                 </div>
                             </div>
                         </div>
@@ -299,13 +403,13 @@ export default function Home({ history, latest, previous, latestTimestamp, slug,
                             <div className="metric-item">
                                 <span className="label" style={{ display: 'block', fontSize: 11, color: 'var(--text-secondary)', marginBottom: 4 }}>{t('totalFavorites') || '总收藏'}</span>
                                 <span className="value" style={{ fontSize: 18, fontWeight: 700 }}>
-                                    {userData.engagement?.favorites?.total || 0}
+                                    {safeUserData.engagement?.favorites?.total || 0}
                                 </span>
                             </div>
                             <div className="metric-item" style={{ borderLeft: '1px solid #eee', paddingLeft: 16 }}>
                                 <span className="label" style={{ display: 'block', fontSize: 11, color: 'var(--text-secondary)', marginBottom: 4 }}>{t('favAuthors') || '收藏作者'}</span>
                                 <span className="value" style={{ fontSize: 18, fontWeight: 700 }}>
-                                    {new Set(userData.engagement?.favorites?.list?.map(f => f.author?.nickname).filter(Boolean)).size || 0}
+                                    {new Set(safeUserData.engagement?.favorites?.list?.map(f => f.author?.nickname).filter(Boolean)).size || 0}
                                 </span>
                             </div>
                         </div>
@@ -316,7 +420,7 @@ export default function Home({ history, latest, previous, latestTimestamp, slug,
                                 <span className="card-title">📅 {t('favoritesTimeline') || '收藏时间轴'}</span>
                             </div>
                             <div className="card-content" style={{ padding: '24px' }}>
-                                <FavoritesTimeline favorites={userData.engagement?.favorites?.list} t={t} />
+                                <FavoritesTimeline favorites={safeUserData.engagement?.favorites?.list} t={t} />
                             </div>
                         </div>
 
@@ -326,7 +430,7 @@ export default function Home({ history, latest, previous, latestTimestamp, slug,
                                     <span className="card-title">✍️ {t('topFavAuthors') || '偏好作者'}</span>
                                 </div>
                                 <div className="card-content" style={{ padding: '24px' }}>
-                                    <FavoritesAuthors favorites={userData.engagement?.favorites?.list} t={t} />
+                                    <FavoritesAuthors favorites={safeUserData.engagement?.favorites?.list} t={t} />
                                 </div>
                             </div>
                             <div className="card glass-panel" style={{ padding: 0 }}>
@@ -334,7 +438,7 @@ export default function Home({ history, latest, previous, latestTimestamp, slug,
                                     <span className="card-title">🏷️ {t('favTags') || '偏好标签'}</span>
                                 </div>
                                 <div className="card-content" style={{ padding: '24px' }}>
-                                    <FavoritesTags favorites={userData.engagement?.favorites?.list} t={t} />
+                                    <FavoritesTags favorites={safeUserData.engagement?.favorites?.list} t={t} />
                                 </div>
                             </div>
                         </div>
@@ -345,7 +449,7 @@ export default function Home({ history, latest, previous, latestTimestamp, slug,
                                 <span className="card-title">⭐️ {t('recentFavorites') || '最近收藏'}</span>
                             </div>
                             <div className="card-content" style={{ padding: 0 }}>
-                                {userData.engagement?.favorites?.list?.length > 0 ? (
+                                {safeUserData.engagement?.favorites?.list?.length > 0 ? (
                                     <table className="sortable-table">
                                         <thead>
                                             <tr>
@@ -355,7 +459,7 @@ export default function Home({ history, latest, previous, latestTimestamp, slug,
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {userData.engagement.favorites.list.map(fav => (
+                                            {safeUserData.engagement.favorites.list.map(fav => (
                                                 <tr key={fav.id}>
                                                     <td>
                                                         <a href={`https://sspai.com/post/${fav.id}`} target="_blank" className="article-link">{fav.title}</a>
@@ -386,9 +490,9 @@ export default function Home({ history, latest, previous, latestTimestamp, slug,
                                     <span className="card-title">🎖️ {t('achievements')}</span>
                                 </div>
                                 <div className="card-content" style={{ padding: '24px' }}>
-                                    {userData.user_reward_badges && userData.user_reward_badges.length > 0 ? (
+                                    {safeUserData.user_reward_badges && safeUserData.user_reward_badges.length > 0 ? (
                                         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16 }}>
-                                            {userData.user_reward_badges.map(badge => (
+                                            {safeUserData.user_reward_badges.map(badge => (
                                                 <div key={badge.id} style={{ textAlign: 'center', width: 80 }}>
                                                     <img src={badge.icon} alt={badge.name} style={{ width: 60, height: 60 }} />
                                                     <p style={{ fontSize: 11, margin: '4px 0 0', color: 'var(--text-secondary)' }}>{badge.name}</p>
@@ -406,7 +510,7 @@ export default function Home({ history, latest, previous, latestTimestamp, slug,
                                     <span className="card-title">⌚ {t('habitClock', 'Habit Clock')}</span>
                                 </div>
                                 <div className="card-content" style={{ padding: '24px' }}>
-                                    <HabitClock data={userData.engagement?.all_activities} t={t} />
+                                    <HabitClock data={safeUserData.engagement?.all_activities} t={t} />
                                 </div>
                             </div>
                         </div>
@@ -454,166 +558,21 @@ function Card({ title, value, prevValue, icon, t }) {
 }
 
 export async function getStaticProps() {
-    const dataDir = path.join(process.cwd(), 'data');
-    const historyPath = path.join(dataDir, 'history.json');
-    const currentStatsPath = path.join(dataDir, 'current_stats.json');
-
-    let history = [];
-    try {
-        if (fs.existsSync(historyPath)) {
-            const fileContent = fs.readFileSync(historyPath, 'utf8');
-            history = JSON.parse(fileContent);
-        }
-    } catch (e) {
-        console.error('Error reading history file:', e);
-    }
-
-    // Load explicit current stats (Full Data)
-    let latest = {};
-    try {
-        if (fs.existsSync(currentStatsPath)) {
-            const currentContent = fs.readFileSync(currentStatsPath, 'utf8');
-            latest = JSON.parse(currentContent);
-        } else {
-            // Fallback to history tail if current_stats missing (e.g. fresh clone)
-            latest = history.length > 0 ? history[history.length - 1] : {};
-        }
-    } catch (e) {
-        console.error('Error reading current_stats file:', e);
-        latest = history.length > 0 ? history[history.length - 1] : {};
-    }
-
-    const previous = history.length > 1 ? history[history.length - 2] : null;
-
-    // Favor scraped user data from current_stats
-    const scrapedUser = latest.user || {};
-
-    // --- Aggregation Logic for Creative DNA ---
-    const tagCounts = {};
-    const editorCounts = {};
-
-    if (latest.articles) {
-        latest.articles.forEach(art => {
-            // Count Tags
-            if (art.tags && Array.isArray(art.tags)) {
-                art.tags.forEach(tag => {
-                    tagCounts[tag] = (tagCounts[tag] || 0) + 1;
-                });
-            }
-            // Count Editors
-            if (art.editor) {
-                // Handle both legacy string and new object format
-                const name = typeof art.editor === 'object' ? art.editor.nickname : art.editor;
-                const slug = typeof art.editor === 'object' ? art.editor.slug : null;
-
-                if (!editorCounts[name]) {
-                    editorCounts[name] = { count: 0, slug: slug };
-                }
-                editorCounts[name].count += 1;
-                // Update slug if it was missing (e.g. mixed data types)
-                if (slug && !editorCounts[name].slug) {
-                    editorCounts[name].slug = slug;
-                }
-            }
-        });
-    }
-
-    const sortAndSlice = (counts) => {
-        // Tag counts are simple numbers
-        return Object.entries(counts)
-            .map(([name, val]) => ({ name, count: val }))
-            .sort((a, b) => b.count - a.count)
-            .slice(0, 5);
-    };
-
-    const sortAndSliceEditors = (counts) => {
-        // Editor counts are objects {count, slug}
-        return Object.entries(counts)
-            .map(([name, data]) => ({ name, count: data.count, slug: data.slug }))
-            .sort((a, b) => b.count - a.count)
-            .slice(0, 5);
-    };
-
-    const topTags = sortAndSlice(tagCounts);
-    const topEditors = sortAndSliceEditors(editorCounts);
-
-    // Load Digital Persona Data
-    let personaData = null;
-    try {
-        const personaPath = path.join(process.cwd(), 'data/persona.json');
-        if (fs.existsSync(personaPath)) {
-            personaData = JSON.parse(fs.readFileSync(personaPath, 'utf8'));
-        }
-    } catch (e) {
-        console.error('Failed to load persona data:', e);
-    }
-
-    // --- Mock Logic for Verification (Temporary Fix for Missing Data) ---
-    if (!scrapedUser.followers) {
-        scrapedUser.followers = { total: 48, list: [] };
-    }
-    // Reflect actual bio (or lack thereof)
-    if (scrapedUser.bio === undefined) {
-        scrapedUser.bio = '还没有介绍自己';
-    }
-    // Reflect actual following count
-    if (!scrapedUser.following_count && (!scrapedUser.engagement || !scrapedUser.engagement.following)) {
-        scrapedUser.following_count = 10;
-    }
-
-    if (!scrapedUser.engagement || !scrapedUser.engagement.social_dna) {
-        scrapedUser.engagement = scrapedUser.engagement || {};
-        scrapedUser.engagement.social_dna = {
-            top_tags: [
-                { name: '效率', count: 18 },
-                { name: '生活', count: 12 },
-                { name: 'Apple', count: 9 },
-                { name: 'Notion', count: 7 },
-                { name: '设计', count: 5 }
-            ],
-            author_matrix: [
-                { name: 'Clyde', count: 12, avatar: 'https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png' },
-                { name: 'Microhoo', count: 9, avatar: 'https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png' },
-                { name: 'Lotta', count: 6, avatar: 'https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png' }
-            ]
-        };
-        // Mock activities if missing, for Heatmap
-        if (!scrapedUser.engagement.all_activities) {
-            const mockActs = [];
-            const now = dayjs().unix();
-            for (let i = 0; i < 200; i++) {
-                mockActs.push({ created_at: now - Math.floor(Math.random() * 31536000), action: 'mock' });
-            }
-            scrapedUser.engagement.all_activities = mockActs;
-        }
-
-    }
-
-    // Mock Favorites logic (Always check, regardless of social_dna)
-    if (scrapedUser.engagement && !scrapedUser.engagement.favorites) {
-        scrapedUser.engagement.favorites = {
-            total: 24, // Mock total
-            list: [
-                { id: 1, title: 'Mock Article 1', created_at: dayjs().unix(), author: { nickname: 'Mock Author' }, tags: ['效率', 'Mac'] },
-                { id: 2, title: 'Mock Article 2', created_at: dayjs().subtract(2, 'day').unix(), author: { nickname: 'Editor' }, tags: ['生活', '思考'] },
-                { id: 3, title: 'Why Obsidio matches style', created_at: dayjs().subtract(5, 'day').unix(), author: { nickname: 'Clyde' }, tags: ['Apple', '设计'] }
-            ]
-        };
-    }
-    // ------------------------------------------------------------------
+    const { history, latest, previous, latestTimestamp, topTags, userData, personaData } = loadDashboardData();
+    const cleanUserData = userData || {};
+    const slug = process.env.SSPAI_SLUG || cleanUserData.slug || 'Hessel';
+    const nickname = process.env.SSPAI_NICKNAME || cleanUserData.nickname || slug;
 
     return {
         props: {
             history,
             latest,
             previous,
-            latestTimestamp: latest.timestamp || null,
-            slug: process.env.SSPAI_SLUG || 'Hessel',
-            nickname: process.env.SSPAI_NICKNAME || scrapedUser.nickname || process.env.SSPAI_SLUG || 'Hessel',
-            avatarUrl: process.env.SSPAI_AVATAR || scrapedUser.avatar || 'https://cdn.sspai.com/static/avatar/default.png',
+            latestTimestamp,
+            slug,
+            nickname,
             topTags,
-            topEditors,
-            userData: scrapedUser, // Pass complete user data for achievements
+            userData: cleanUserData,
             personaData
         },
     };

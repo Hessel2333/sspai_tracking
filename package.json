@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "scrape": "node src/fetch_stats.js",
+    "validate:stats": "node src/validate_stats.js",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -17,14 +18,13 @@
   "license": "ISC",
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
-    "chart.js": "^4.5.1",
-    "chartjs-adapter-dayjs-4": "^1.0.4",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.19",
     "dotenv": "^17.2.3",
+    "echarts": "^6.0.0",
+    "echarts-for-react": "^3.0.6",
     "next": "^16.1.1",
     "react": "^19.2.3",
-    "react-chartjs-2": "^5.3.1",
     "react-dom": "^19.2.3"
   },
   "devDependencies": {

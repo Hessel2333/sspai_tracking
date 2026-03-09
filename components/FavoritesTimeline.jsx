@@ -1,95 +1,99 @@
-import React from 'react';
-import { Bar } from 'react-chartjs-2';
-import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend
-} from 'chart.js';
+import { useMemo } from 'react';
+import dynamic from 'next/dynamic';
 import dayjs from 'dayjs';
 
-ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    Title,
-    Tooltip,
-    Legend
-);
+const ReactECharts = dynamic(() => import('echarts-for-react'), { ssr: false });
 
 const FavoritesTimeline = ({ favorites, t }) => {
-    if (!favorites || favorites.length === 0) return null;
+    const { months, values } = useMemo(() => {
+        if (!favorites || favorites.length === 0) {
+            return { months: [], values: [] };
+        }
 
-    // Aggregate by Month
-    const stats = {};
-    favorites.forEach(fav => {
-        // Fallback to current time if created_at is 0 or missing, to avoid "Invalid Date"
-        // But better to just ignore or group into "Unknown"?
-        // Let's fallback to "2023-01" or just skip if 0.
-        // Actually, users prefer to see data. If 0, maybe use today? No, that's misleading.
-        if (!fav.created_at || fav.created_at === 0) return;
+        const stats = {};
+        favorites.forEach((fav) => {
+            if (!fav.created_at || fav.created_at === 0) return;
+            const month = dayjs.unix(fav.created_at).format('YYYY-MM');
+            if (month === 'Invalid Date') return;
+            stats[month] = (stats[month] || 0) + 1;
+        });
 
-        const month = dayjs.unix(fav.created_at).format('YYYY-MM');
-        if (month === 'Invalid Date') return; // Double check
-        stats[month] = (stats[month] || 0) + 1;
-    });
+        const sortedMonths = Object.keys(stats).sort();
+        const displayMonths = sortedMonths.length > 18 ? sortedMonths.slice(sortedMonths.length - 18) : sortedMonths;
+        return {
+            months: displayMonths,
+            values: displayMonths.map((month) => stats[month])
+        };
+    }, [favorites]);
 
-    // Sort months (oldest to newest)
-    const sortedMonths = Object.keys(stats).sort();
-    // Fill gaps? Maybe simplistic for now.
+    if (months.length === 0) return null;
 
-    // Last 12 months only for clarity? Or all? Let's do all for now but maybe limit if too many.
-    const displayMonths = sortedMonths.length > 12 ? sortedMonths.slice(sortedMonths.length - 12) : sortedMonths;
-
-    const data = {
-        labels: displayMonths,
-        datasets: [
+    const option = {
+        animationDuration: 400,
+        grid: {
+            left: 34,
+            right: 18,
+            top: 22,
+            bottom: 22
+        },
+        tooltip: {
+            trigger: 'axis',
+            backgroundColor: 'rgba(0,0,0,0.84)',
+            borderWidth: 0,
+            textStyle: { color: '#fff' },
+            axisPointer: { type: 'shadow' },
+            formatter: (params) => {
+                const item = params?.[0];
+                if (!item) return '';
+                const title = dayjs(`${item.axisValue}-01`).format('YYYY年M月');
+                return `${title}<br/>${t('favoritesCount', '收藏数量')}: ${Number(item.data || 0).toLocaleString()}`;
+            }
+        },
+        xAxis: {
+            type: 'category',
+            data: months,
+            axisLabel: {
+                color: '#86868B',
+                fontSize: 10
+            },
+            axisLine: { lineStyle: { color: 'rgba(0,0,0,0.12)' } },
+            axisTick: { show: false }
+        },
+        yAxis: {
+            type: 'value',
+            minInterval: 1,
+            axisLabel: {
+                color: '#86868B',
+                formatter: (value) => Number(value).toLocaleString()
+            },
+            splitLine: { lineStyle: { color: 'rgba(0,0,0,0.05)', type: 'dashed' } }
+        },
+        series: [
             {
-                label: t('favoritesCount') || '收藏数量',
-                data: displayMonths.map(m => stats[m]),
-                backgroundColor: 'rgba(215, 30, 40, 0.6)',
-                borderColor: 'rgba(215, 30, 40, 0.8)',
-                borderWidth: 1,
-                borderRadius: 4,
-                hoverBackgroundColor: 'rgba(215, 30, 40, 0.8)',
-            },
-        ],
-    };
-
-    const options = {
-        responsive: true,
-        plugins: {
-            legend: {
-                display: false,
-            },
-            tooltip: {
-                callbacks: {
-                    title: (items) => {
-                        return dayjs(items[0].label).format('YYYY年M月'); // Localize format if needed
+                type: 'bar',
+                data: values,
+                barMaxWidth: 24,
+                itemStyle: {
+                    color: 'rgba(217, 48, 37, 0.72)',
+                    borderRadius: [5, 5, 0, 0]
+                },
+                emphasis: {
+                    itemStyle: {
+                        color: 'rgba(217, 48, 37, 0.95)'
                     }
                 }
             }
-        },
-        scales: {
-            x: {
-                grid: { display: false },
-                ticks: { fontSize: 10 }
-            },
-            y: {
-                beginAtZero: true,
-                ticks: { stepSize: 1 },
-                grid: { borderDash: [2, 4], color: 'rgba(0,0,0,0.05)' }
-            }
-        },
-        maintainAspectRatio: false
+        ]
     };
 
     return (
         <div style={{ height: 250, width: '100%' }}>
-            <Bar data={data} options={options} />
+            <ReactECharts
+                option={option}
+                notMerge
+                lazyUpdate
+                style={{ height: '100%', width: '100%' }}
+            />
         </div>
     );
 };

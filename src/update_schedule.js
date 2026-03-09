@@ -1,20 +1,13 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import dayjs from 'dayjs';
+import { CRON_DENSE, CRON_SPARSE, evaluateSamplingPolicy } from './samplingPolicy.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const DATA_PATH = path.join(__dirname, '../data/current_stats.json');
 const WORKFLOW_PATH = path.join(__dirname, '../.github/workflows/scrape.yml');
-
-// Configuration
-// If latest article is within 96 hours (4 days), run hourly.
-// Otherwise, run every 6 hours (to keep some freshness without spam).
-const HIGH_FREQ_THRESHOLD_HOURS = 96;
-const CRON_HIGH_FREQ = '30 * * * *'; // Every hour at :30
-const CRON_LOW_FREQ = '30 */6 * * *'; // Every 6 hours
 
 try {
     if (!fs.existsSync(DATA_PATH)) {
@@ -30,23 +23,6 @@ try {
         process.exit(0);
     }
 
-    // Find latest article time
-    // Data is usually sorted, but let's be safe
-    const latestTime = articles.reduce((max, art) => Math.max(max, art.created_at), 0);
-    const lastPostDate = dayjs.unix(latestTime);
-    const hoursSinceLastPost = dayjs().diff(lastPostDate, 'hour');
-
-    console.log(`Latest article: ${lastPostDate.format('YYYY-MM-DD HH:mm:ss')} `);
-    console.log(`Time since last post: ${hoursSinceLastPost} hours`);
-
-    let targetCron = CRON_LOW_FREQ;
-    if (hoursSinceLastPost < HIGH_FREQ_THRESHOLD_HOURS) {
-        targetCron = CRON_HIGH_FREQ;
-        console.log('Status: ACTIVE PERIOD (High Frequency)');
-    } else {
-        console.log('Status: DORMANT PERIOD (Lower Frequency)');
-    }
-
     // Update Workflow File
     let workflowContent = fs.readFileSync(WORKFLOW_PATH, 'utf8');
 
@@ -57,6 +33,26 @@ try {
 
     if (match) {
         const currentCron = match[3];
+        const policy = evaluateSamplingPolicy({
+            currentSnapshot: data,
+            history: fs.existsSync(path.join(__dirname, '../data/history.json'))
+                ? JSON.parse(fs.readFileSync(path.join(__dirname, '../data/history.json'), 'utf8'))
+                : [],
+            currentCron
+        });
+        const targetCron = policy.cron;
+
+        console.log(`Sampling mode: ${policy.mode}`);
+        console.log(`Reasons: ${policy.reasons.join(', ')}`);
+        if (policy.latestArticle) {
+            console.log(`Latest article: ${policy.latestArticle.title} (${policy.latestArticle.ageHours}h ago)`);
+        }
+        if (policy.recentGrowth) {
+            console.log(
+                `Recent growth: ${policy.recentGrowth.articleTitle} +${policy.recentGrowth.deltaViews} views ` +
+                `in ${policy.recentGrowth.hours}h (${policy.recentGrowth.ratePer24h}/24h)`
+            );
+        }
         console.log(`Current Cron: ${currentCron} `);
         console.log(`Target Cron:  ${targetCron} `);
 

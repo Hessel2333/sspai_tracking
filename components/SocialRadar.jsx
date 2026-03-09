@@ -1,77 +1,85 @@
-import { Radar } from 'react-chartjs-2';
-import {
-    Chart as ChartJS,
-    RadialLinearScale,
-    PointElement,
-    LineElement,
-    Filler,
-    Tooltip,
-    Legend
-} from 'chart.js';
+import { useMemo } from 'react';
+import dynamic from 'next/dynamic';
 
-ChartJS.register(
-    RadialLinearScale,
-    PointElement,
-    LineElement,
-    Filler,
-    Tooltip,
-    Legend
-);
+const ReactECharts = dynamic(() => import('echarts-for-react'), { ssr: false });
 
-export default function SocialRadar({ data, labels, title = 'DNA' }) {
-    const chartData = {
-        labels: labels,
-        datasets: [
-            {
-                label: title,
-                data: data,
-                backgroundColor: 'rgba(240, 147, 251, 0.2)',
-                borderColor: 'rgba(245, 87, 108, 0.8)',
-                borderWidth: 2,
-                pointBackgroundColor: 'rgba(245, 87, 108, 1)',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgba(245, 87, 108, 1)',
+export default function SocialRadar({ data = [], labels = [], title = 'DNA' }) {
+    const option = useMemo(() => {
+        const safeLabels = Array.isArray(labels) ? labels : [];
+        const safeData = Array.isArray(data) ? data : [];
+        const radarValues = safeLabels.map((_, index) => {
+            const value = Number(safeData[index] || 0);
+            return Number.isFinite(value) ? value : 0;
+        });
+        const maxValue = Math.max(0, ...radarValues);
+        const axisMax = maxValue > 0 ? Math.ceil(maxValue * 1.2) : 1;
+        const indicator = safeLabels.map((name) => ({ name, max: axisMax }));
+
+        return {
+            animationDuration: 400,
+            tooltip: {
+                trigger: 'item',
+                backgroundColor: 'rgba(0,0,0,0.84)',
+                borderWidth: 0,
+                textStyle: { color: '#fff' },
+                formatter: () => safeLabels
+                    .map((name, idx) => `${name}: ${radarValues[idx].toLocaleString()}`)
+                    .join('<br/>')
             },
-        ],
-    };
-
-    const options = {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-            r: {
-                angleLines: {
-                    display: true,
-                    color: 'rgba(0,0,0,0.05)'
+            radar: {
+                center: ['50%', '52%'],
+                radius: '66%',
+                splitNumber: 5,
+                indicator,
+                axisName: {
+                    color: '#86868B',
+                    fontSize: 11
                 },
-                grid: {
-                    color: 'rgba(0,0,0,0.05)'
+                axisLine: {
+                    lineStyle: {
+                        color: 'rgba(0,0,0,0.08)'
+                    }
                 },
-                suggestedMin: 0,
-                ticks: {
-                    display: false,
-                    stepSize: 1
+                splitLine: {
+                    lineStyle: {
+                        color: 'rgba(0,0,0,0.06)'
+                    }
                 },
-                pointLabels: {
-                    font: {
-                        size: 11,
-                        family: "'SF Pro Text', 'Myriad Set Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif"
-                    },
-                    color: '#86868B'
+                splitArea: {
+                    areaStyle: {
+                        color: ['rgba(0,0,0,0.008)', 'rgba(0,0,0,0.014)']
+                    }
                 }
-            }
-        },
-        plugins: {
-            legend: {
-                display: false
-            }
-        }
-    };
+            },
+            series: [
+                {
+                    type: 'radar',
+                    symbol: 'circle',
+                    symbolSize: 6,
+                    data: [
+                        {
+                            value: radarValues,
+                            name: title,
+                            areaStyle: {
+                                color: 'rgba(245, 87, 108, 0.18)'
+                            },
+                            lineStyle: {
+                                color: 'rgba(245, 87, 108, 0.9)',
+                                width: 2
+                            },
+                            itemStyle: {
+                                color: 'rgba(245, 87, 108, 1)'
+                            }
+                        }
+                    ]
+                }
+            ]
+        };
+    }, [data, labels, title]);
 
     return (
         <div style={{ height: '300px', width: '100%' }}>
-            <Radar data={chartData} options={options} />
+            <ReactECharts option={option} notMerge lazyUpdate style={{ height: '100%', width: '100%' }} />
         </div>
     );
 }

@@ -1,10 +1,9 @@
-import fs from 'fs';
-import path from 'path';
 import Head from 'next/head';
 import Link from 'next/link';
 import StatsChart from '../../components/StatsChart';
 import dayjs from 'dayjs';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { loadArticleData, loadArticlePaths } from '../../utils/dataLoader';
 
 export default function ArticleDetail({ article, history, latestTimestamp }) {
     const { t } = useLanguage();
@@ -136,52 +135,18 @@ function Card({ title, value, icon }) {
 }
 
 export async function getStaticPaths() {
-    const dataDir = path.join(process.cwd(), 'data');
-    const historyPath = path.join(dataDir, 'history.json');
-    let history = [];
-    try {
-        history = JSON.parse(fs.readFileSync(historyPath, 'utf8'));
-    } catch (e) { }
-
-    const latest = history.length > 0 ? history[history.length - 1] : { articles: [] };
-    const paths = (latest.articles || []).map(article => ({
-        params: { id: article.id.toString() }
-    }));
-
-    return { paths, fallback: 'blocking' };
+    return { paths: loadArticlePaths(), fallback: 'blocking' };
 }
 
 export async function getStaticProps({ params }) {
-    const dataDir = path.join(process.cwd(), 'data');
-    const historyPath = path.join(dataDir, 'history.json');
-    let history = [];
-    try {
-        history = JSON.parse(fs.readFileSync(historyPath, 'utf8'));
-    } catch (e) { }
-
-    const articleId = parseInt(params.id);
-
-    const latestSnapshot = history.length > 0 ? history[history.length - 1] : {};
-    const article = (latestSnapshot.articles || []).find(a => a.id === articleId) || null;
-
-    const articleHistory = history.map(snapshot => {
-        const art = (snapshot.articles || []).find(a => a.id === articleId);
-        if (art) {
-            return {
-                timestamp: snapshot.timestamp,
-                views: art.views,
-                likes: art.likes,
-                comments: art.comments
-            };
-        }
-        return null;
-    }).filter(item => item !== null);
+    const articleId = Number(params.id);
+    const { article, history, latestTimestamp } = loadArticleData(articleId);
 
     return {
         props: {
             article,
-            history: articleHistory,
-            latestTimestamp: latestSnapshot.timestamp || null
+            history,
+            latestTimestamp
         }
     };
 }

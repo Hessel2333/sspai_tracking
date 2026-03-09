@@ -56,6 +56,8 @@ export const translations = {
         tabSocial: '社交流通',
         tabFavorites: '收藏与偏好', // Add this
         searchPlaceholder: '检索互动记录...',
+        expandComment: '展开全文',
+        collapseComment: '收起',
         sortNewest: '最近优先',
         sortOldest: '最早优先',
         tabInsight: '洞察',
@@ -164,6 +166,8 @@ export const translations = {
         tabSocial: 'Social',
         tabFavorites: 'Favorites', // Add this
         searchPlaceholder: 'Search archive...',
+        expandComment: 'Read more',
+        collapseComment: 'Collapse',
         sortNewest: 'Newest',
         sortOldest: 'Oldest',
         tabInsight: 'Insight',

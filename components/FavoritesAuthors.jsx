@@ -1,71 +1,74 @@
-import React from 'react';
-import { Doughnut } from 'react-chartjs-2';
-import {
-    Chart as ChartJS,
-    ArcElement,
-    Tooltip,
-    Legend
-} from 'chart.js';
+import { useMemo } from 'react';
+import dynamic from 'next/dynamic';
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+const ReactECharts = dynamic(() => import('echarts-for-react'), { ssr: false });
+
+const COLORS = ['#D93025', '#F57C00', '#43A047', '#1E88E5', '#6D4C41', '#5E35B1', '#00897B', '#EC407A'];
 
 const FavoritesAuthors = ({ favorites, t }) => {
-    if (!favorites || favorites.length === 0) return null;
+    const data = useMemo(() => {
+        if (!favorites || favorites.length === 0) {
+            return [];
+        }
 
-    // Aggregate Authors
-    const authorStats = {};
-    favorites.forEach(fav => {
-        const name = fav.author?.nickname || 'Unknown';
-        authorStats[name] = (authorStats[name] || 0) + 1;
-    });
+        const authorStats = {};
+        favorites.forEach((fav) => {
+            const name = fav.author?.nickname || 'Unknown';
+            authorStats[name] = (authorStats[name] || 0) + 1;
+        });
 
-    // Sort and Top 5
-    const sortedAuthors = Object.entries(authorStats)
-        .sort((a, b) => b[1] - a[1])
-        .slice(0, 5); // Top 5
+        return Object.entries(authorStats)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 8)
+            .map(([name, value]) => ({ name, value }));
+    }, [favorites]);
 
-    const data = {
-        labels: sortedAuthors.map(([name]) => name),
-        datasets: [
-            {
-                data: sortedAuthors.map(([, count]) => count),
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.7)',
-                    'rgba(54, 162, 235, 0.7)',
-                    'rgba(255, 206, 86, 0.7)',
-                    'rgba(75, 192, 192, 0.7)',
-                    'rgba(153, 102, 255, 0.7)',
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                ],
-                borderWidth: 1,
-            },
-        ],
-    };
+    if (data.length === 0) return null;
 
-    const options = {
-        responsive: true,
-        plugins: {
-            legend: {
-                position: 'right',
-                labels: {
-                    usePointStyle: true,
-                    boxWidth: 8,
-                    font: { size: 12 }
-                }
-            }
+    const option = {
+        animationDuration: 400,
+        color: COLORS,
+        tooltip: {
+            trigger: 'item',
+            backgroundColor: 'rgba(0,0,0,0.84)',
+            borderWidth: 0,
+            textStyle: { color: '#fff' },
+            formatter: (params) => `${params.name}<br/>${t('favoritesCount', '收藏数量')}: ${Number(params.value || 0).toLocaleString()}`
         },
-        maintainAspectRatio: false
+        legend: {
+            orient: 'vertical',
+            right: 0,
+            top: 'center',
+            textStyle: {
+                color: '#86868B',
+                fontSize: 12
+            },
+            icon: 'circle'
+        },
+        series: [
+            {
+                type: 'pie',
+                radius: ['44%', '68%'],
+                center: ['34%', '50%'],
+                avoidLabelOverlap: true,
+                label: { show: false },
+                labelLine: { show: false },
+                itemStyle: {
+                    borderColor: '#fff',
+                    borderWidth: 2
+                },
+                emphasis: {
+                    scale: true,
+                    scaleSize: 6
+                },
+                data
+            }
+        ]
     };
 
     return (
         <div style={{ height: 250, width: '100%', position: 'relative' }}>
-            <Doughnut data={data} options={options} />
+            <ReactECharts option={option} notMerge lazyUpdate style={{ height: '100%', width: '100%' }} />
         </div>
     );
 };

@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import 'dotenv/config';
+import { evaluateSamplingPolicy, shouldPersistHistory } from './samplingPolicy.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -29,9 +30,6 @@ if (!COOKIE) {
     console.log('SSPAI_COOKIE is present (length: ' + COOKIE.length + ')');
 }
 
-// Global flag to track cookie health
-global.COOKIE_STATUS = 'valid';
-
 // Helper to extract JWT from cookie string
 function getJwtFromCookie(cookieStr) {
     if (!cookieStr) return null;
@@ -43,6 +41,21 @@ const JWT = getJwtFromCookie(COOKIE);
 
 if (!JWT) {
     console.warn('Warning: Could not extract sspai_jwt_token from cookie. Auth header will be missing.');
+}
+
+const SCRAPE_HEALTH = {
+    cookie_status: COOKIE && JWT ? 'valid' : 'missing',
+    api_fallback: false,
+    errors: []
+};
+
+function addHealthError(scope, error) {
+    const message = error instanceof Error ? error.message : String(error);
+    SCRAPE_HEALTH.errors.push(`${scope}: ${message}`);
+    // Prevent unbounded growth in case many single-item failures happen in one run.
+    if (SCRAPE_HEALTH.errors.length > 50) {
+        SCRAPE_HEALTH.errors = SCRAPE_HEALTH.errors.slice(-50);
+    }
 }
 
 // Helper to make HTTPS requests
@@ -116,7 +129,9 @@ async function fetchAllArticles() {
     } catch (e) {
         console.warn('  ⚠️ Private API failed/empty. Cookie might be invalid or expired.', e.message);
         console.log('  -> Switching to Public Profile API (Views will be 0, but lists/likes valid).');
-        global.COOKIE_STATUS = 'expired'; // Mark as expired
+        SCRAPE_HEALTH.cookie_status = 'expired';
+        SCRAPE_HEALTH.api_fallback = true;
+        addHealthError('private-api', e);
     }
 
     // 2. Fallback to Public API
@@ -131,6 +146,7 @@ async function fetchAllArticles() {
 
             if (res.error !== 0) {
                 console.error('  Public API Error:', res.msg);
+                addHealthError('public-api', res.msg || 'unknown error');
                 break;
             }
 
@@ -148,6 +164,7 @@ async function fetchAllArticles() {
         }
     } catch (e) {
         console.error('  Public API failed:', e);
+        addHealthError('public-api', e);
     }
 
     console.log(`  Fetched ${allArticles.length} articles via Public API.`);
@@ -319,6 +336,26 @@ async function fetchUserInfo(slug) {
                     const cacheData = JSON.parse(fs.readFileSync(METADATA_CACHE_FILE, 'utf8'));
                     articleMetadata = cacheData.articles || {};
                     authorMetadata = cacheData.authors || {};
+
+                    // Normalize legacy relative avatar URLs from cache.
+                    Object.keys(authorMetadata).forEach((authorSlug) => {
+                        if (!authorMetadata[authorSlug]) return;
+                        authorMetadata[authorSlug].avatar = normalizeAvatarUrl(authorMetadata[authorSlug].avatar);
+                    });
+                    Object.keys(articleMetadata).forEach((articleId) => {
+                        const meta = articleMetadata[articleId];
+                        if (!meta) return;
+                        if (meta.author) {
+                            meta.author.avatar = normalizeAvatarUrl(meta.author.avatar);
+                        }
+                        if (Array.isArray(meta.author_seconds)) {
+                            meta.author_seconds = meta.author_seconds.map((sec) => ({
+                                ...sec,
+                                avatar: normalizeAvatarUrl(sec.avatar)
+                            }));
+                        }
+                    });
+
                     console.log(`  Loaded metadata cache: ${Object.keys(articleMetadata).length} articles, ${Object.keys(authorMetadata).length} authors.`);
                 }
             } catch (e) {
@@ -364,7 +401,7 @@ async function fetchUserInfo(slug) {
                         type: a.key.includes('topic') ? 'topic' : 'article',
                         author: rawData?.author?.nickname || rawData?.article_author_nickname || rawData?.nickname || rawData?.user?.nickname || null,
                         author_slug: rawData?.author?.slug || rawData?.article_author_slug || rawData?.slug || rawData?.user?.slug || null,
-                        author_avatar: rawData?.author?.avatar || rawData?.article_author_avatar || rawData?.avatar || rawData?.user?.avatar || null,
+                        author_avatar: normalizeAvatarUrl(rawData?.author?.avatar || rawData?.article_author_avatar || rawData?.avatar || rawData?.user?.avatar || null),
                         tags: rawData?.tags || []
                     };
                 })
@@ -413,7 +450,7 @@ async function fetchUserInfo(slug) {
                         if (res.data.author?.slug) {
                             authorMetadata[res.data.author.slug] = {
                                 nickname: res.data.author.nickname,
-                                avatar: res.data.author.avatar
+                                avatar: normalizeAvatarUrl(res.data.author.avatar)
                             };
                         }
                     }
@@ -430,7 +467,7 @@ async function fetchUserInfo(slug) {
                     if (res.data) {
                         authorMetadata[aSlug] = {
                             nickname: res.data.nickname,
-                            avatar: res.data.avatar
+                            avatar: normalizeAvatarUrl(res.data.avatar)
                         };
                     }
                     await new Promise(r => setTimeout(r, 50));
@@ -444,7 +481,7 @@ async function fetchUserInfo(slug) {
                 const tags = (act.tags && act.tags.length > 0) ? act.tags : (metaArt?.tags || []);
                 const author = act.author || metaAuth?.nickname || null;
                 const author_slug = act.author_slug || metaAuth?.slug || null;
-                const author_avatar = (act.author_avatar || metaAuth?.avatar || null);
+                const author_avatar = normalizeAvatarUrl(act.author_avatar || metaAuth?.avatar || null);
 
                 // Tags
                 if (tags && Array.isArray(tags)) {
@@ -507,7 +544,7 @@ async function fetchUserInfo(slug) {
                 const tags = (metaArt?.tags || []);
                 const author = fav.author?.nickname || metaAuth?.nickname || null;
                 const author_slug = fav.author?.slug || metaAuth?.slug || null;
-                const author_avatar = fav.author?.avatar || metaAuth?.avatar || null;
+                const author_avatar = normalizeAvatarUrl(fav.author?.avatar || metaAuth?.avatar || null);
 
                 // Tags
                 const cleanTags = [];
@@ -524,7 +561,7 @@ async function fetchUserInfo(slug) {
 
                 // Authors (Filter out self)
                 const authorsToCount = [];
-                if (author) authorsToCount.push({ name: author, slug: author_slug, avatar: normalizeAvatarUrl(author_avatar) });
+                if (author) authorsToCount.push({ name: author, slug: author_slug, avatar: author_avatar });
 
                 // Add co-authors from metadata
                 if (metaArt?.author_seconds && Array.isArray(metaArt.author_seconds)) {
@@ -573,8 +610,17 @@ async function fetchUserInfo(slug) {
         }
     } catch (e) {
         console.error('Error fetching user info:', e);
+        addHealthError('user-info', e);
     }
-    return { nickname: slug, avatar: '', engagement: {} };
+    return {
+        user: {
+            nickname: slug,
+            avatar: 'https://cdn.sspai.com/static/avatar/default.png',
+            slug,
+            engagement: {}
+        },
+        metadata: { articles: {}, authors: {} }
+    };
 }
 
 async function main() {
@@ -631,6 +677,7 @@ async function main() {
                 }
             } catch (e) {
                 console.warn(`    Failed to fetch deep stats for ${art.id}: ${e.message}`);
+                addHealthError(`article-${art.id}`, e);
             }
 
             detailedArticles.push({
@@ -645,90 +692,102 @@ async function main() {
             await new Promise(r => setTimeout(r, 500));
         }
 
+        const normalizedArticles = detailedArticles.map((art) => ({
+            id: art.id,
+            title: art.title,
+            views: Number(art.view_count || 0),
+            likes: Number(art.like_count || 0),
+            comments: Number(art.comment_count || 0),
+            created_at: art.created_time,
+            tags: art.tags,
+            editor: art.editor,
+            top_comments: art.top_comments
+        }));
+
+        const totals = normalizedArticles.reduce((acc, article) => {
+            acc.views += article.views;
+            acc.likes += article.likes;
+            acc.comments += article.comments;
+            return acc;
+        }, { views: 0, likes: 0, comments: 0, article_count: normalizedArticles.length });
+
         const statsEntry = {
             timestamp: new Date().toISOString(),
             user: userInfo.user, // User info + engagement inside
-            articles: detailedArticles.map(art => ({
-                id: art.id,
-                title: art.title,
-                views: art.view_count,
-                likes: art.like_count,
-                comments: art.comment_count,
-                created_at: art.created_time,
-                tags: art.tags,
-                editor: art.editor,
-                top_comments: art.top_comments
-            }))
+            articles: normalizedArticles,
+            totals,
+            health: { ...SCRAPE_HEALTH },
+            // Keep backward-compatibility with existing frontend checks.
+            cookie_status: SCRAPE_HEALTH.cookie_status
         };
 
         console.log('Stats Summary:', statsEntry.totals);
-        if (global.COOKIE_STATUS === 'expired') {
+        if (SCRAPE_HEALTH.cookie_status === 'expired') {
             console.warn('⚠️  WARNING: Cookie was invalid. Stats are partial (Views=0).');
         }
 
-        // --- Intelligent Frequency Logic ---
-        const lastArticle = detailedArticles.length > 0
-            ? Math.max(...detailedArticles.map(a => a.created_time)) * 1000 // SSPAI uses seconds
-            : 0;
-
-        const hoursSinceLastPost = (new Date() - new Date(lastArticle)) / (1000 * 60 * 60);
-        const isRushHour = hoursSinceLastPost < 48; // Within 48 hours of a new post
-        // Relaxed schedule: Sync every 2 hours even if not rush hour
-        const isDailySync = new Date().getUTCHours() % 2 === 0;
-        const isForceSave = process.env.FORCE_SAVE === 'true';
-
-        console.log(`Last post: ${new Date(lastArticle).toLocaleString()}`);
-        console.log(`Hours since last post: ${hoursSinceLastPost.toFixed(1)}h`);
-
-        if (isRushHour || isDailySync || isForceSave) {
-            console.log(isRushHour ? '>> RUSH HOUR DETECTED: Intensive tracking active.' : '>> Daily maintenance sync.');
-
-            // 2. Update History File
-            let history = [];
-            if (fs.existsSync(HISTORY_FILE)) {
-                try {
-                    history = JSON.parse(fs.readFileSync(HISTORY_FILE, 'utf8'));
-                } catch (e) {
-                    console.warn('Could not parse existing history, starting fresh.');
-                }
+        let history = [];
+        if (fs.existsSync(HISTORY_FILE)) {
+            try {
+                history = JSON.parse(fs.readFileSync(HISTORY_FILE, 'utf8'));
+            } catch (e) {
+                console.warn('Could not parse existing history, starting fresh.');
             }
+        }
 
-            // Create Slim Entry for History (Remove heavy engagement data)
+        const isForceSave = process.env.FORCE_SAVE === 'true';
+        const policy = evaluateSamplingPolicy({ currentSnapshot: statsEntry, history });
+        const persistDecision = shouldPersistHistory({
+            policy,
+            lastSavedTimestamp: history[history.length - 1]?.timestamp,
+            now: statsEntry.timestamp,
+            forceSave: isForceSave
+        });
+
+        statsEntry.sampling = policy;
+
+        console.log(`Sampling mode: ${policy.mode}`);
+        console.log(`Sampling reasons: ${policy.reasons.join(', ')}`);
+        if (policy.latestArticle) {
+            console.log(`Latest article age: ${policy.latestArticle.ageHours}h`);
+        }
+        if (policy.recentGrowth) {
+            console.log(
+                `Recent view surge: ${policy.recentGrowth.articleTitle} +${policy.recentGrowth.deltaViews} views ` +
+                `in ${policy.recentGrowth.hours}h (${policy.recentGrowth.ratePer24h}/24h)`
+            );
+        }
+
+        fs.writeFileSync(CURRENT_STATS_FILE, JSON.stringify(statsEntry, null, 2));
+        console.log(`Updated ${CURRENT_STATS_FILE} with full stats entry.`);
+
+        if (persistDecision.shouldPersist) {
             const slimEntry = { ...statsEntry };
             if (slimEntry.user && slimEntry.user.engagement) {
-                // deep copy user to avoid mutating original statsEntry which is used for current_stats
                 slimEntry.user = { ...statsEntry.user };
                 delete slimEntry.user.engagement;
             }
 
             history.push(slimEntry);
-
-            // Write back history
             fs.writeFileSync(HISTORY_FILE, JSON.stringify(history, null, 2));
-            console.log(`Updated ${HISTORY_FILE}`);
-
-            // 3. Write detailed snapshot (FULL DATA now, not just articles)
-            fs.writeFileSync(CURRENT_STATS_FILE, JSON.stringify(statsEntry, null, 2));
-
-
-            // Save Metadata Cache
-            try {
-                const articleMetadata = userInfo.metadata?.articles || {};
-                const authorMetadata = userInfo.metadata?.authors || {};
-                const cacheData = {
-                    articles: articleMetadata,
-                    authors: authorMetadata,
-                    last_updated: Date.now()
-                };
-                fs.writeFileSync(METADATA_CACHE_FILE, JSON.stringify(cacheData, null, 2));
-                console.log(`  Saved metadata cache to ${METADATA_CACHE_FILE}`);
-            } catch (e) { console.error('Failed to save metadata cache:', e); }
-
-            console.log('Stats updated successfully.');
-            console.log(`Updated ${CURRENT_STATS_FILE} with full stats entry.`);
+            console.log(`Updated ${HISTORY_FILE} (${persistDecision.reason})`);
         } else {
-            console.log('>> NORMAL PERIOD: Skipping persistent save to reduce noise. (Set FORCE_SAVE=true to override)');
+            console.log(`Skipped history append (${persistDecision.reason})`);
         }
+
+        try {
+            const articleMetadata = userInfo.metadata?.articles || {};
+            const authorMetadata = userInfo.metadata?.authors || {};
+            const cacheData = {
+                articles: articleMetadata,
+                authors: authorMetadata,
+                last_updated: Date.now()
+            };
+            fs.writeFileSync(METADATA_CACHE_FILE, JSON.stringify(cacheData, null, 2));
+            console.log(`  Saved metadata cache to ${METADATA_CACHE_FILE}`);
+        } catch (e) { console.error('Failed to save metadata cache:', e); }
+
+        console.log('Stats updated successfully.');
 
     } catch (err) {
         console.error('Main execution failed:', err);

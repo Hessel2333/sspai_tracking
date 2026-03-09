@@ -1,5 +1,15 @@
 import { useLanguage } from '../contexts/LanguageContext';
 
+const DEFAULT_AVATAR_URL = 'https://cdn.sspai.com/static/avatar/default.png';
+
+function normalizeAvatarUrl(url) {
+    if (!url) return DEFAULT_AVATAR_URL;
+    if (url.startsWith('http://')) return url.replace(/^http:\/\//, 'https://');
+    if (url.startsWith('https://')) return url;
+    const clean = url.startsWith('/') ? url.slice(1) : url;
+    return `https://cdnfile.sspai.com/${clean}`;
+}
+
 export default function SocialAvatarGrid({ authors }) {
     const { t } = useLanguage();
 
@@ -25,10 +35,11 @@ export default function SocialAvatarGrid({ authors }) {
                         <a
                             href={author.slug ? `https://sspai.com/u/${author.slug}` : '#'}
                             target="_blank"
+                            rel="noreferrer"
                             className="avatar-link"
                         >
                             <img
-                                src={author.avatar || '/avatar_placeholder.png'}
+                                src={normalizeAvatarUrl(author.avatar)}
                                 alt={author.name}
                                 style={{
                                     width: '100%',
@@ -39,6 +50,11 @@ export default function SocialAvatarGrid({ authors }) {
                                     transition: 'transform 0.2s cubic-bezier(0.12, 0, 0.39, 0)',
                                 }}
                                 className="bubble-img"
+                                onError={(event) => {
+                                    if (event.currentTarget.dataset.fallbackApplied === '1') return;
+                                    event.currentTarget.dataset.fallbackApplied = '1';
+                                    event.currentTarget.src = DEFAULT_AVATAR_URL;
+                                }}
                             />
                             <div className="bubble-tooltip">
                                 <span className="tooltip-name">{author.name}</span>

@@ -417,6 +417,38 @@ a.article-link:hover {
     color: var(--text-primary);
 }
 
+.timeline-comment-preview.is-collapsed {
+    max-height: 240px;
+    overflow: hidden;
+    position: relative;
+}
+
+.timeline-comment-preview.is-collapsed::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 56px;
+    background: linear-gradient(to bottom, rgba(245, 245, 247, 0), rgba(245, 245, 247, 1));
+    pointer-events: none;
+}
+
+.timeline-comment-toggle {
+    margin-top: 8px;
+    border: none;
+    background: transparent;
+    color: var(--accent-color);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+}
+
+.timeline-comment-toggle:hover {
+    text-decoration: underline;
+}
+
 
 /* Tags */
 .tags-container {

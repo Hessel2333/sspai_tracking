@@ -1,16 +1,40 @@
 import { useState, useMemo } from 'react';
-import fs from 'fs';
-import path from 'path';
 import Head from 'next/head';
 import Link from 'next/link';
 import dayjs from 'dayjs';
 import { useLanguage } from '../contexts/LanguageContext';
+import { loadActivitiesData } from '../utils/dataLoader';
+
+const LONG_COMMENT_CHAR_THRESHOLD = 280;
+const LONG_COMMENT_BLOCK_THRESHOLD = 4;
+
+function stripHtml(html = '') {
+    return html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
+function isLongComment(html = '') {
+    const plainTextLength = stripHtml(html).length;
+    const blockCount = (html.match(/<(p|div|br|li)\b/gi) || []).length;
+    return plainTextLength > LONG_COMMENT_CHAR_THRESHOLD || blockCount > LONG_COMMENT_BLOCK_THRESHOLD;
+}
+
+function getActivityId(act) {
+    return [
+        act.key || '',
+        act.created_at || '',
+        act.target_id || '',
+        act.target_slug || '',
+        (act.target_title || '').slice(0, 40),
+        (act.comment_content || '').slice(0, 80)
+    ].join('|');
+}
 
 export default function ActivityPage({ userData, latestTimestamp }) {
     const { t } = useLanguage();
     const [activeTab, setActiveTab] = useState('all');
     const [searchQuery, setSearchQuery] = useState('');
     const [sortOrder, setSortOrder] = useState('newest');
+    const [expandedComments, setExpandedComments] = useState({});
 
     if (!userData || !userData.engagement?.all_activities) {
         return <div className="container" style={{ padding: 40 }}>No activity data found.</div>;
@@ -56,6 +80,13 @@ export default function ActivityPage({ userData, latestTimestamp }) {
         { id: 'topics', label: t('tabTopics') },
         { id: 'social', label: t('tabSocial') }
     ];
+
+    const toggleCommentExpanded = (activityId) => {
+        setExpandedComments((prev) => ({
+            ...prev,
+            [activityId]: !prev[activityId]
+        }));
+    };
 
     return (
         <div className="min-h-screen">
@@ -185,8 +216,13 @@ export default function ActivityPage({ userData, latestTimestamp }) {
                 <div className="section">
                     <div className="activity-timeline" style={{ padding: '32px 24px' }}>
                         {filteredActivities.length > 0 ? (
-                            filteredActivities.map((act, i) => (
-                                <div key={i} className="timeline-item" style={{ marginBottom: 24 }}>
+                            filteredActivities.map((act) => {
+                                const activityId = getActivityId(act);
+                                const shouldCollapse = Boolean(act.comment_content) && isLongComment(act.comment_content);
+                                const isExpanded = Boolean(expandedComments[activityId]);
+
+                                return (
+                                    <div key={activityId} className="timeline-item" style={{ marginBottom: 24 }}>
                                     <div className="timeline-time" style={{ width: 100, fontSize: 12 }}>
                                         {dayjs.unix(act.created_at).format('YYYY-MM-DD')}<br />
                                         <span style={{ fontSize: 10, opacity: 0.7 }}>{dayjs.unix(act.created_at).format('HH:mm')}</span>
@@ -230,24 +266,36 @@ export default function ActivityPage({ userData, latestTimestamp }) {
                                             </span>
                                         )}
                                         {act.comment_content && (
-                                            <div
-                                                className="timeline-comment-preview"
-                                                style={{
-                                                    fontSize: 13,
-                                                    color: 'var(--text-secondary)',
-                                                    marginTop: 8,
-                                                    padding: '12px 16px',
-                                                    background: 'rgba(0,0,0,0.03)',
-                                                    borderRadius: '8px',
-                                                    borderLeft: '4px solid var(--accent-color)',
-                                                    lineHeight: '1.6'
-                                                }}
-                                                dangerouslySetInnerHTML={{ __html: act.comment_content }}
-                                            />
+                                            <>
+                                                <div
+                                                    className={`timeline-comment-preview${shouldCollapse && !isExpanded ? ' is-collapsed' : ''}`}
+                                                    style={{
+                                                        fontSize: 13,
+                                                        color: 'var(--text-secondary)',
+                                                        marginTop: 8,
+                                                        padding: '12px 16px',
+                                                        background: 'rgba(0,0,0,0.03)',
+                                                        borderRadius: '8px',
+                                                        borderLeft: '4px solid var(--accent-color)',
+                                                        lineHeight: '1.6'
+                                                    }}
+                                                    dangerouslySetInnerHTML={{ __html: act.comment_content }}
+                                                />
+                                                {shouldCollapse && (
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => toggleCommentExpanded(activityId)}
+                                                        className="timeline-comment-toggle"
+                                                    >
+                                                        {isExpanded ? t('collapseComment') : t('expandComment')}
+                                                    </button>
+                                                )}
+                                            </>
                                         )}
                                     </div>
                                 </div>
-                            ))
+                                );
+                            })
                         ) : (
                             <div style={{ textAlign: 'center', padding: '60px 0', opacity: 0.5 }}>
                                 <div style={{ fontSize: 32, marginBottom: 12 }}>🔍</div>
@@ -262,19 +310,12 @@ export default function ActivityPage({ userData, latestTimestamp }) {
 }
 
 export async function getStaticProps() {
-    const dataDir = path.join(process.cwd(), 'data');
-    const historyPath = path.join(dataDir, 'history.json');
-    let history = [];
-    try {
-        history = JSON.parse(fs.readFileSync(historyPath, 'utf8'));
-    } catch (e) { }
-
-    const latest = history.length > 0 ? history[history.length - 1] : null;
+    const { userData, latestTimestamp } = loadActivitiesData();
 
     return {
         props: {
-            userData: latest ? latest.user : null,
-            latestTimestamp: latest ? latest.timestamp : null
+            userData,
+            latestTimestamp
         },
         revalidate: 60
     };
