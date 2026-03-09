@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-03-09T10:15:15.866Z",
+  "timestamp": "2026-03-09T11:58:47.356Z",
   "user": {
     "nickname": "Hessel",
     "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
     "slug": "cemq1hts",
     "created_at": 1485946514,
     "liked_count": 326,
-    "article_view_count": 206965,
+    "article_view_count": 207043,
     "article_count": 5,
     "user_reward_badges": [
       {
@@ -18187,7 +18187,7 @@
     {
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
-      "views": 523,
+      "views": 587,
       "likes": 3,
       "comments": 0,
       "created_at": 1772782373,
@@ -18200,7 +18200,7 @@
     {
       "id": 104232,
       "title": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "views": 25766,
+      "views": 25773,
       "likes": 67,
       "comments": 28,
       "created_at": 1764643711,
@@ -18236,7 +18236,7 @@
     {
       "id": 96151,
       "title": "新的一年，不妨试试自己分析支付宝账单",
-      "views": 47473,
+      "views": 47477,
       "likes": 69,
       "comments": 28,
       "created_at": 1738996270,
@@ -18273,7 +18273,7 @@
     {
       "id": 86747,
       "title": "自我记录、量化与回溯的数字之旅",
-      "views": 79875,
+      "views": 79878,
       "likes": 110,
       "comments": 36,
       "created_at": 1709106003,
@@ -18304,7 +18304,7 @@
         {
           "nickname": "Sennhei",
           "avatar": "https://cdnfile.sspai.com/2022/04/01/avatar/d78f810ab0ada0c299071a51664cc058.png",
-          "content": "好多软件我也在用，Rond前段时间更新了导出至日历功能我觉得相当好；上面任意一个app我都没信心说到我老的时候还能存活，但是日历app肯定可以，以后不用苹果了日历也能轻松导出，现在所有能在日历显示的类目（睡眠时间，影视记录评分，上下班打卡，每天吃的东西，汽车里程变化等等）我都在日历上记录了，回顾起来更加方便",
+          "content": "好多软件我也在用，Rond前段时间更新了导出至日历功能我觉得相当好；上面任意一个app我都没信心说到我老的时候还能存活，但是日历app肯���可以，以后不用苹果了日历也能轻松导出，现在所有能在日历显示的类目（睡眠时间，影视记录评分，上下班打卡，每天吃的东西，汽车里程变化等等）我都在日历上记录了，回顾起来更加方便",
           "likes": 2
         }
       ]
@@ -18349,7 +18349,7 @@
     }
   ],
   "totals": {
-    "views": 206966,
+    "views": 207044,
     "likes": 326,
     "comments": 209,
     "article_count": 5
@@ -18371,16 +18371,16 @@
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
       "created_at": 1772782373,
-      "ageHours": 74.7
+      "ageHours": 76.4
     },
     "recentGrowth": {
-      "hours": 0.12,
-      "from": "2026-03-09T08:06:33.849Z",
-      "to": "2026-03-09T08:13:28.366Z",
+      "hours": 1.07,
+      "from": "2026-03-09T09:10:56.434Z",
+      "to": "2026-03-09T10:15:15.866Z",
       "articleId": 106898,
       "articleTitle": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
-      "deltaViews": 7,
-      "ratePer24h": 1459
+      "deltaViews": 64,
+      "ratePer24h": 1432.7
     }
   }
 }
