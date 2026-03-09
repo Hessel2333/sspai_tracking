@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-03-09T22:57:32.080Z",
+  "timestamp": "2026-03-09T23:53:41.215Z",
   "user": {
     "nickname": "Hessel",
     "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
     "slug": "cemq1hts",
     "created_at": 1485946514,
     "liked_count": 326,
-    "article_view_count": 207619,
+    "article_view_count": 207665,
     "article_count": 5,
     "user_reward_badges": [
       {
@@ -9284,7 +9284,7 @@
             },
             "created_at": 1590732960,
             "banner": "article/945f1e32-da2e-8d81-b486-02487dfd5603.jpg",
-            "summary": "无论是在 Windows 和 macOS 上处理文本，还是在 Everything 中搜索文件，亦或是在手机���平板电脑上进行自动化的操作，如果一个工具可以支持正则表达式，如果你能够善用正则表达式，那它一定会给你带来许多新的可能性。",
+            "summary": "无论是在 Windows 和 macOS 上处理文��，还是在 Everything 中搜索文件，亦或是在手机和平板电脑上进行自动化的操作，如果一个工具可以支持正则表达式，如果你能够善用正则表达式，那它一定会给你带来许多新的可能性。",
             "tags": [
               "效率"
             ]
@@ -9697,7 +9697,7 @@
           },
           {
             "id": 58960,
-            "title": "以 Notion 为原���，我打造了一套极简工作流 | 年度征文",
+            "title": "以 Notion 为原点，我打造了一套极简工作流 | 年度征文",
             "slug": 58960,
             "author": {
               "id": 0,
@@ -18187,7 +18187,7 @@
     {
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
-      "views": 1040,
+      "views": 1076,
       "likes": 3,
       "comments": 0,
       "created_at": 1772782373,
@@ -18200,7 +18200,7 @@
     {
       "id": 104232,
       "title": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "views": 25828,
+      "views": 25832,
       "likes": 67,
       "comments": 28,
       "created_at": 1764643711,
@@ -18236,7 +18236,7 @@
     {
       "id": 96151,
       "title": "新的一年，不妨试试自己分析支付宝账单",
-      "views": 47504,
+      "views": 47506,
       "likes": 69,
       "comments": 28,
       "created_at": 1738996270,
@@ -18273,7 +18273,7 @@
     {
       "id": 86747,
       "title": "自我记录、量化与回溯的数字之旅",
-      "views": 79912,
+      "views": 79913,
       "likes": 110,
       "comments": 36,
       "created_at": 1709106003,
@@ -18349,7 +18349,7 @@
     }
   ],
   "totals": {
-    "views": 207622,
+    "views": 207665,
     "likes": 326,
     "comments": 209,
     "article_count": 5
@@ -18371,16 +18371,16 @@
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
       "created_at": 1772782373,
-      "ageHours": 87.4
+      "ageHours": 88.3
     },
     "recentGrowth": {
-      "hours": 1.02,
-      "from": "2026-03-09T20:00:11.779Z",
-      "to": "2026-03-09T21:01:26.001Z",
+      "hours": 0.94,
+      "from": "2026-03-09T22:57:32.080Z",
+      "to": "2026-03-09T23:53:41.215Z",
       "articleId": 106898,
       "articleTitle": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
-      "deltaViews": 40,
-      "ratePer24h": 940.6
+      "deltaViews": 36,
+      "ratePer24h": 923.2
     }
   }
 }
