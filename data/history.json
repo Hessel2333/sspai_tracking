@@ -40392,5 +40392,121 @@
         "ratePer24h": 708
       }
     }
+  },
+  {
+    "timestamp": "2026-03-10T17:44:20.793Z",
+    "user": {
+      "nickname": "Hessel",
+      "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
+      "slug": "cemq1hts",
+      "created_at": 1485946514,
+      "liked_count": 326,
+      "article_view_count": 208419,
+      "article_count": 5,
+      "user_reward_badges": [
+        {
+          "id": 15,
+          "key": "anniversary_8",
+          "name": "少数派八周年纪念徽章",
+          "description": "少数派八周年纪念徽章",
+          "icon_id": 1209521,
+          "icon": "https://cdnfile.sspai.com/2023/12/12/article/80109326-f107-b3e2-d9f4-933eac2e10b3.png",
+          "url": "",
+          "status": 1,
+          "weight": 1,
+          "color": "",
+          "type": 1,
+          "sub_type": 2,
+          "object_id": 0,
+          "allow_add_user": false,
+          "allow_delete_user": false,
+          "allow_update_status": false,
+          "icon_app": "2023/12/12/article/a86cf7b7-5aeb-70e4-3cc8-ef421bd922f5.png",
+          "icon_app_id": 0,
+          "icon_unlighted": "2023/12/12/article/4dd5f9f6-5bbd-a8e5-7bd4-7325252c2dd8.png",
+          "icon_unlighted_id": 1209524,
+          "tag": "",
+          "icon_unlighted_show_on": false,
+          "admin_id": 0,
+          "user_get_on": false,
+          "icon_3d_id": 1209522,
+          "icon_3d": "2023/12/12/bdage/52bda0ea-008f-f709-3e40-b227fc26ddaf.glb",
+          "icon_app_3d_id": 1209523,
+          "icon_app_3d": "2023/12/12/bdage/67a7692b-33db-acc7-4e8a-83e69e7cb20f.usdz",
+          "created_at": 0,
+          "updated_at": 1702353118,
+          "recommend_to_home_on": false,
+          "remuneration_fee": 0
+        },
+        {
+          "id": 41,
+          "key": "d031es4vf1492s941a70",
+          "name": "2024 年度征文获奖作者",
+          "description": "2024 年度征文获奖作者",
+          "icon_id": 0,
+          "icon": "https://cdn-static.sspai.com/ui/badge/2024_nianduzhengwen/2024_nianduzhengwen.png",
+          "url": "",
+          "status": 1,
+          "weight": 0,
+          "color": "",
+          "type": 1,
+          "sub_type": 2,
+          "object_id": 0,
+          "allow_add_user": true,
+          "allow_delete_user": true,
+          "allow_update_status": true,
+          "icon_app": "https://cdn-static.sspai.com/ui/badge/2024_nianduzhengwen/2024_nianduzhengwen.png",
+          "icon_app_id": 0,
+          "icon_unlighted": "https://cdn-static.sspai.com/ui/badge/2024_nianduzhengwen/2024_nianduzhengwen_grey.png",
+          "icon_unlighted_id": 0,
+          "tag": "",
+          "icon_unlighted_show_on": false,
+          "admin_id": 9,
+          "user_get_on": false,
+          "icon_3d_id": 0,
+          "icon_3d": "https://cdn-static.sspai.com/ui/badge/2024_nianduzhengwen/2024_nianduzhengwen.glb",
+          "icon_app_3d_id": 0,
+          "icon_app_3d": "https://cdn-static.sspai.com/ui/badge/2024_nianduzhengwen/2024_nianduzhengwen.usdz",
+          "created_at": 1745229680,
+          "updated_at": 1745229681,
+          "recommend_to_home_on": false,
+          "remuneration_fee": 0
+        }
+      ],
+      "bio": "还没有介绍自己"
+    },
+    "articles": [],
+    "totals": {
+      "views": 0,
+      "likes": 0,
+      "comments": 0,
+      "article_count": 0
+    },
+    "health": {
+      "cookie_status": "expired",
+      "api_fallback": true,
+      "errors": [
+        "private-api: connect ETIMEDOUT 119.23.141.248:443",
+        "public-api: connect ETIMEDOUT 119.23.141.248:443"
+      ]
+    },
+    "cookie_status": "expired",
+    "sampling": {
+      "mode": "dense",
+      "cron": "30 * * * *",
+      "reasons": [
+        "view-surge:106898"
+      ],
+      "latestArticle": null,
+      "recentGrowth": {
+        "hours": 1.8,
+        "from": "2026-03-10T11:57:30.146Z",
+        "to": "2026-03-10T13:45:18.379Z",
+        "articleId": 106898,
+        "articleTitle": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
+        "deltaViews": 53,
+        "ratePer24h": 708
+      }
+    }
   }
 ]
