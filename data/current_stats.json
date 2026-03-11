@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-03-11T21:00:19.724Z",
+  "timestamp": "2026-03-11T21:57:45.283Z",
   "user": {
     "nickname": "Hessel",
     "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
     "slug": "cemq1hts",
     "created_at": 1485946514,
     "liked_count": 326,
-    "article_view_count": 208995,
+    "article_view_count": 209004,
     "article_count": 5,
     "user_reward_badges": [
       {
@@ -2610,7 +2610,7 @@
             },
             "created_at": 1650146653,
             "banner": "2022/04/01/ec4d18af9f871a0249c8682efcefb988.png",
-            "summary": "这款扩展一直都是我配合 Obsidian 使用的利器，但是自从我将 safari 当做主流浏览器（没错它现在很棒了）后就遇到麻烦了，由于有大量的文章需要摘录，就会不停的在两个浏览器来回切换，为了解决这个问题，我就想有没有可能在 Safari 中实现同样的扩展。于是就开始着手研究如何开发 Safari 浏览器扩展，经过一番折腾，终于顺利上架 Mac App Store，所以今天就在少数派跟大家介绍一下插件的使用。",
+            "summary": "这款扩展一直都是我配合 Obsidian 使用的利器，但是自从我将 safari 当做主流浏览器（没错它现在很棒了）后就遇到麻烦了，由于有大量的文章需要摘录，就会不停的在两个浏览器来回切换，为了解决这个问题，我就想有没有可能在 Safari 中实现同样的扩展。于是就开始着手研究如何开发 Safari 浏览器扩展，经过一番折腾，终于顺利上架 Mac App Store，所以今天就在���数派跟大家介绍一下插件的使用。",
             "tags": [
               "浏览器",
               "笔记"
@@ -18187,7 +18187,7 @@
     {
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
-      "views": 1941,
+      "views": 1943,
       "likes": 3,
       "comments": 0,
       "created_at": 1772782373,
@@ -18200,7 +18200,7 @@
     {
       "id": 104232,
       "title": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "views": 26034,
+      "views": 26037,
       "likes": 67,
       "comments": 28,
       "created_at": 1764643711,
@@ -18236,7 +18236,7 @@
     {
       "id": 96151,
       "title": "新的一年，不妨试试自己分析支付宝账单",
-      "views": 47649,
+      "views": 47651,
       "likes": 69,
       "comments": 28,
       "created_at": 1738996270,
@@ -18273,7 +18273,7 @@
     {
       "id": 86747,
       "title": "自我记录、量化与回溯的数字之旅",
-      "views": 80010,
+      "views": 80012,
       "likes": 110,
       "comments": 36,
       "created_at": 1709106003,
@@ -18349,7 +18349,7 @@
     }
   ],
   "totals": {
-    "views": 208995,
+    "views": 209004,
     "likes": 326,
     "comments": 209,
     "article_count": 5
@@ -18364,23 +18364,22 @@
     "mode": "dense",
     "cron": "30 * * * *",
     "reasons": [
-      "new-post-week:106898",
-      "view-surge:104232"
+      "new-post-week:106898"
     ],
     "latestArticle": {
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
       "created_at": 1772782373,
-      "ageHours": 133.5
+      "ageHours": 134.4
     },
     "recentGrowth": {
-      "hours": 1.23,
-      "from": "2026-03-11T18:13:36.803Z",
-      "to": "2026-03-11T19:27:41.166Z",
-      "articleId": 104232,
-      "articleTitle": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "deltaViews": 11,
-      "ratePer24h": 213.8
+      "hours": 0.56,
+      "from": "2026-03-11T19:27:41.166Z",
+      "to": "2026-03-11T20:01:01.920Z",
+      "articleId": 96151,
+      "articleTitle": "新的一年，不妨试试自己分析支付宝账单",
+      "deltaViews": 4,
+      "ratePer24h": 172.7
     }
   }
 }
