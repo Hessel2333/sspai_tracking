@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-03-11T03:13:04.245Z",
+  "timestamp": "2026-03-11T04:59:11.957Z",
   "user": {
     "nickname": "Hessel",
     "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
     "slug": "cemq1hts",
     "created_at": 1485946514,
     "liked_count": 326,
-    "article_view_count": 208773,
+    "article_view_count": 208798,
     "article_count": 5,
     "user_reward_badges": [
       {
@@ -5145,7 +5145,7 @@
                   "id": 9,
                   "key": "id_auth_personal",
                   "name": "思维重置 MindReset 主理人",
-                  "description": "思���重置 MindReset 主理人",
+                  "description": "思维重置 MindReset 主理人",
                   "icon_id": 0,
                   "icon": "https://cdn-static.sspai.com/ui/badge/renzhengyonghu180x180.png",
                   "url": "",
@@ -14481,7 +14481,7 @@
             },
             "created_at": 1542790787,
             "banner": "2018/02/05/2e70119826aac7f57e31bdc5ad40d337.png",
-            "summary": "对于喜欢美化系统的用户来说，任务栏透明化是其中必不可少的环节。TranslucentTB 就是一款纯粹的绿色任务栏透明化软件工具。",
+            "summary": "对于喜欢美化系统的用户来说，任务栏透明化是其中必不可少的环节。TranslucentTB 就是一款纯粹的绿色任务栏透明化软���工具。",
             "tags": [
               "应用推荐",
               "工具",
@@ -17880,7 +17880,7 @@
           "key": "like_article",
           "action": "喜欢了文章",
           "created_at": 1502600919,
-          "target_title": "原价 ￥163，现在 ￥6 就能系统学习人体精妙构造：人体解剖���图谱",
+          "target_title": "原价 ￥163，现在 ￥6 就能系统学习人体精妙构造：人体解剖学图谱",
           "target_id": 40386,
           "target_slug": null,
           "comment_content": null,
@@ -18187,7 +18187,7 @@
     {
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
-      "views": 1883,
+      "views": 1892,
       "likes": 3,
       "comments": 0,
       "created_at": 1772782373,
@@ -18200,7 +18200,7 @@
     {
       "id": 104232,
       "title": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "views": 25965,
+      "views": 25971,
       "likes": 67,
       "comments": 28,
       "created_at": 1764643711,
@@ -18236,7 +18236,7 @@
     {
       "id": 96151,
       "title": "新的一年，不妨试试自己分析支付宝账单",
-      "views": 47593,
+      "views": 47600,
       "likes": 69,
       "comments": 28,
       "created_at": 1738996270,
@@ -18273,7 +18273,7 @@
     {
       "id": 86747,
       "title": "自我记录、量化与回溯的数字之旅",
-      "views": 79977,
+      "views": 79981,
       "likes": 110,
       "comments": 36,
       "created_at": 1709106003,
@@ -18349,7 +18349,7 @@
     }
   ],
   "totals": {
-    "views": 208773,
+    "views": 208799,
     "likes": 326,
     "comments": 209,
     "article_count": 5
@@ -18371,16 +18371,16 @@
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
       "created_at": 1772782373,
-      "ageHours": 115.7
+      "ageHours": 117.4
     },
     "recentGrowth": {
-      "hours": 1.04,
-      "from": "2026-03-10T21:54:09.559Z",
-      "to": "2026-03-10T22:56:23.770Z",
+      "hours": 3.31,
+      "from": "2026-03-10T23:54:23.467Z",
+      "to": "2026-03-11T03:13:04.245Z",
       "articleId": 106898,
       "articleTitle": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
-      "deltaViews": 28,
-      "ratePer24h": 647.8
+      "deltaViews": 79,
+      "ratePer24h": 572.6
     }
   }
 }
