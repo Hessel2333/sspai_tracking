@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-03-11T18:13:36.803Z",
+  "timestamp": "2026-03-11T19:27:41.166Z",
   "user": {
     "nickname": "Hessel",
     "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
     "slug": "cemq1hts",
     "created_at": 1485946514,
     "liked_count": 326,
-    "article_view_count": 208959,
+    "article_view_count": 208975,
     "article_count": 5,
     "user_reward_badges": [
       {
@@ -18187,7 +18187,7 @@
     {
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
-      "views": 1939,
+      "views": 1940,
       "likes": 3,
       "comments": 0,
       "created_at": 1772782373,
@@ -18200,7 +18200,7 @@
     {
       "id": 104232,
       "title": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "views": 26018,
+      "views": 26029,
       "likes": 67,
       "comments": 28,
       "created_at": 1764643711,
@@ -18236,7 +18236,7 @@
     {
       "id": 96151,
       "title": "新的一年，不妨试试自己分析支付宝账单",
-      "views": 47638,
+      "views": 47639,
       "likes": 69,
       "comments": 28,
       "created_at": 1738996270,
@@ -18273,7 +18273,7 @@
     {
       "id": 86747,
       "title": "自我记录、量化与回溯的数字之旅",
-      "views": 80004,
+      "views": 80007,
       "likes": 110,
       "comments": 36,
       "created_at": 1709106003,
@@ -18349,7 +18349,7 @@
     }
   ],
   "totals": {
-    "views": 208959,
+    "views": 208975,
     "likes": 326,
     "comments": 209,
     "article_count": 5
@@ -18364,22 +18364,23 @@
     "mode": "dense",
     "cron": "30 * * * *",
     "reasons": [
-      "new-post-week:106898"
+      "new-post-week:106898",
+      "view-surge:104232"
     ],
     "latestArticle": {
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
       "created_at": 1772782373,
-      "ageHours": 130.7
+      "ageHours": 131.9
     },
     "recentGrowth": {
-      "hours": 0.99,
-      "from": "2026-03-11T15:14:57.144Z",
-      "to": "2026-03-11T16:14:35.079Z",
-      "articleId": 96151,
-      "articleTitle": "新的一年，不妨试试自己分析支付宝账单",
-      "deltaViews": 3,
-      "ratePer24h": 72.4
+      "hours": 1.23,
+      "from": "2026-03-11T18:13:36.803Z",
+      "to": "2026-03-11T19:27:41.166Z",
+      "articleId": 104232,
+      "articleTitle": "借 AntiGravity，给个人消费一次「年度盘点」",
+      "deltaViews": 11,
+      "ratePer24h": 213.8
     }
   }
 }
