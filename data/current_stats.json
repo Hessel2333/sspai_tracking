@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-03-12T03:19:21.999Z",
+  "timestamp": "2026-03-12T05:06:00.875Z",
   "user": {
     "nickname": "Hessel",
     "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
     "slug": "cemq1hts",
     "created_at": 1485946514,
     "liked_count": 326,
-    "article_view_count": 209070,
+    "article_view_count": 209085,
     "article_count": 5,
     "user_reward_badges": [
       {
@@ -18200,7 +18200,7 @@
     {
       "id": 104232,
       "title": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "views": 26052,
+      "views": 26057,
       "likes": 67,
       "comments": 28,
       "created_at": 1764643711,
@@ -18236,7 +18236,7 @@
     {
       "id": 96151,
       "title": "新的一年，不妨试试自己分析支付宝账单",
-      "views": 47677,
+      "views": 47682,
       "likes": 69,
       "comments": 28,
       "created_at": 1738996270,
@@ -18273,7 +18273,7 @@
     {
       "id": 86747,
       "title": "自我记录、量化与回溯的数字之旅",
-      "views": 80020,
+      "views": 80025,
       "likes": 110,
       "comments": 36,
       "created_at": 1709106003,
@@ -18349,7 +18349,7 @@
     }
   ],
   "totals": {
-    "views": 209070,
+    "views": 209085,
     "likes": 326,
     "comments": 209,
     "article_count": 5
@@ -18370,7 +18370,7 @@
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
       "created_at": 1772782373,
-      "ageHours": 139.8
+      "ageHours": 141.6
     },
     "recentGrowth": {
       "hours": 3.41,
