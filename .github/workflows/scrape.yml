@@ -2,7 +2,7 @@ name: Scrape SSPAI Stats
 
 on:
   schedule:
-    - cron: '30 * * * * ' # Default sparse cadence: every 6 hours at :30 UTC
+    - cron: '0 0 * * * ' # Default sparse cadence: every 6 hours at :30 UTC
   workflow_dispatch: # Allow manual trigger
 
 permissions:
