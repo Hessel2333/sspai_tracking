@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-03-13T06:14:13.549Z",
+  "timestamp": "2026-03-13T07:30:06.235Z",
   "user": {
     "nickname": "Hessel",
     "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
     "slug": "cemq1hts",
     "created_at": 1485946514,
     "liked_count": 326,
-    "article_view_count": 209395,
+    "article_view_count": 209410,
     "article_count": 5,
     "user_reward_badges": [
       {
@@ -18187,7 +18187,7 @@
     {
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
-      "views": 2002,
+      "views": 2007,
       "likes": 3,
       "comments": 0,
       "created_at": 1772782373,
@@ -18200,7 +18200,7 @@
     {
       "id": 104232,
       "title": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "views": 26175,
+      "views": 26179,
       "likes": 67,
       "comments": 28,
       "created_at": 1764643711,
@@ -18236,7 +18236,7 @@
     {
       "id": 96151,
       "title": "新的一年，不妨试试自己分析支付宝账单",
-      "views": 47766,
+      "views": 47770,
       "likes": 69,
       "comments": 28,
       "created_at": 1738996270,
@@ -18273,7 +18273,7 @@
     {
       "id": 86747,
       "title": "自我记录、量化与回溯的数字之旅",
-      "views": 80073,
+      "views": 80075,
       "likes": 110,
       "comments": 36,
       "created_at": 1709106003,
@@ -18349,7 +18349,7 @@
     }
   ],
   "totals": {
-    "views": 209395,
+    "views": 209410,
     "likes": 326,
     "comments": 209,
     "article_count": 5
@@ -18370,16 +18370,16 @@
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
       "created_at": 1772782373,
-      "ageHours": 166.7
+      "ageHours": 168
     },
     "recentGrowth": {
-      "hours": 3.38,
-      "from": "2026-03-12T23:53:25.924Z",
-      "to": "2026-03-13T03:16:12.879Z",
+      "hours": 1.84,
+      "from": "2026-03-13T03:16:12.879Z",
+      "to": "2026-03-13T05:06:45.015Z",
       "articleId": 104232,
       "articleTitle": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "deltaViews": 20,
-      "ratePer24h": 142
+      "deltaViews": 8,
+      "ratePer24h": 104.2
     }
   }
 }
