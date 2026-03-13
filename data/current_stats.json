@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-03-12T23:53:25.924Z",
+  "timestamp": "2026-03-13T03:16:12.879Z",
   "user": {
     "nickname": "Hessel",
     "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
     "slug": "cemq1hts",
     "created_at": 1485946514,
     "liked_count": 326,
-    "article_view_count": 209321,
+    "article_view_count": 209367,
     "article_count": 5,
     "user_reward_badges": [
       {
@@ -16688,7 +16688,7 @@
         },
         {
           "key": "like_article",
-          "action": "喜欢了文章",
+          "action": "喜欢了文���",
           "created_at": 1772692343,
           "target_title": "刷过机的人，在AI时代不需要适应期",
           "target_id": 106522,
@@ -18187,7 +18187,7 @@
     {
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
-      "views": 1988,
+      "views": 1999,
       "likes": 3,
       "comments": 0,
       "created_at": 1772782373,
@@ -18200,7 +18200,7 @@
     {
       "id": 104232,
       "title": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "views": 26144,
+      "views": 26164,
       "likes": 67,
       "comments": 28,
       "created_at": 1764643711,
@@ -18236,7 +18236,7 @@
     {
       "id": 96151,
       "title": "新的一年，不妨试试自己分析支付宝账单",
-      "views": 47753,
+      "views": 47760,
       "likes": 69,
       "comments": 28,
       "created_at": 1738996270,
@@ -18273,7 +18273,7 @@
     {
       "id": 86747,
       "title": "自我记录、量化与回溯的数字之旅",
-      "views": 80061,
+      "views": 80068,
       "likes": 110,
       "comments": 36,
       "created_at": 1709106003,
@@ -18312,7 +18312,7 @@
     {
       "id": 85355,
       "title": "App+1 | Rond 与世界迷雾：现实世界的塞尔达传说地图册",
-      "views": 53375,
+      "views": 53377,
       "likes": 77,
       "comments": 117,
       "created_at": 1703551973,
@@ -18349,7 +18349,7 @@
     }
   ],
   "totals": {
-    "views": 209321,
+    "views": 209368,
     "likes": 326,
     "comments": 209,
     "article_count": 5
@@ -18370,16 +18370,16 @@
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
       "created_at": 1772782373,
-      "ageHours": 160.3
+      "ageHours": 163.7
     },
     "recentGrowth": {
-      "hours": 0.93,
-      "from": "2026-03-12T22:57:36.571Z",
-      "to": "2026-03-12T23:53:25.924Z",
+      "hours": 3.38,
+      "from": "2026-03-12T23:53:25.924Z",
+      "to": "2026-03-13T03:16:12.879Z",
       "articleId": 104232,
       "articleTitle": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "deltaViews": 5,
-      "ratePer24h": 129
+      "deltaViews": 20,
+      "ratePer24h": 142
     }
   }
 }
