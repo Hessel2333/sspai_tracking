@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-03-22T02:05:18.548Z",
+  "timestamp": "2026-03-23T02:04:02.871Z",
   "user": {
     "nickname": "Hessel",
     "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
     "slug": "cemq1hts",
     "created_at": 1485946514,
     "liked_count": 327,
-    "article_view_count": 212030,
+    "article_view_count": 212310,
     "article_count": 5,
     "user_reward_badges": [
       {
@@ -5145,7 +5145,7 @@
                   "id": 9,
                   "key": "id_auth_personal",
                   "name": "思维重置 MindReset 主理人",
-                  "description": "思���重置 MindReset 主理人",
+                  "description": "思维重置 MindReset 主理人",
                   "icon_id": 0,
                   "icon": "https://cdn-static.sspai.com/ui/badge/renzhengyonghu180x180.png",
                   "url": "",
@@ -15730,7 +15730,7 @@
             },
             "created_at": 1532421499,
             "banner": "2018/07/17/192c0eddccdaa4fd80664bf4b9249319.png",
-            "summary": "不论你是科班出身，还是业余爱好者，选对学习资源都可以让你的 iOS 独立开发之路更加充实而有趣。",
+            "summary": "不论你是科班出身，还是业余爱好者，选对学习资源都可以让你的 iOS 独���开发之路更加充实而有趣。",
             "tags": [
               "iOS",
               "开发者",
@@ -18187,7 +18187,7 @@
     {
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
-      "views": 2342,
+      "views": 2374,
       "likes": 3,
       "comments": 0,
       "created_at": 1772782373,
@@ -18200,7 +18200,7 @@
     {
       "id": 104232,
       "title": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "views": 27167,
+      "views": 27277,
       "likes": 68,
       "comments": 28,
       "created_at": 1764643711,
@@ -18236,7 +18236,7 @@
     {
       "id": 96151,
       "title": "新的一年，不妨试试自己分析支付宝账单",
-      "views": 48478,
+      "views": 48560,
       "likes": 69,
       "comments": 28,
       "created_at": 1738996270,
@@ -18273,7 +18273,7 @@
     {
       "id": 86747,
       "title": "自我记录、量化与回溯的数字之旅",
-      "views": 80491,
+      "views": 80533,
       "likes": 110,
       "comments": 36,
       "created_at": 1709106003,
@@ -18312,7 +18312,7 @@
     {
       "id": 85355,
       "title": "App+1 | Rond 与世界迷雾：现实世界的塞尔达传说地图册",
-      "views": 53552,
+      "views": 53567,
       "likes": 77,
       "comments": 117,
       "created_at": 1703551973,
@@ -18349,7 +18349,7 @@
     }
   ],
   "totals": {
-    "views": 212030,
+    "views": 212311,
     "likes": 327,
     "comments": 209,
     "article_count": 5
@@ -18370,16 +18370,16 @@
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
       "created_at": 1772782373,
-      "ageHours": 378.5
+      "ageHours": 402.5
     },
     "recentGrowth": {
-      "hours": 24.25,
-      "from": "2026-03-21T01:50:13.270Z",
-      "to": "2026-03-22T02:05:18.548Z",
+      "hours": 23.98,
+      "from": "2026-03-22T02:05:18.548Z",
+      "to": "2026-03-23T02:04:02.871Z",
       "articleId": 104232,
       "articleTitle": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "deltaViews": 111,
-      "ratePer24h": 109.8
+      "deltaViews": 110,
+      "ratePer24h": 110.1
     }
   }
 }
