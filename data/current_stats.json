@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-04-25T02:09:34.822Z",
+  "timestamp": "2026-04-26T02:32:22.676Z",
   "user": {
     "nickname": "Hessel",
     "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
     "slug": "cemq1hts",
     "created_at": 1485946514,
     "liked_count": 329,
-    "article_view_count": 218603,
+    "article_view_count": 218767,
     "article_count": 5,
     "user_reward_badges": [
       {
@@ -2610,7 +2610,7 @@
             },
             "created_at": 1650146653,
             "banner": "2022/04/01/ec4d18af9f871a0249c8682efcefb988.png",
-            "summary": "这款扩展一直都是我配合 Obsidian 使用的利器，但是自从我将 safari 当做主流浏览器（没错它现在很棒了）后就遇到麻烦了，由于有大量的文章需要摘录，就会不停的在两个浏览器来回切换，为了解决这个问题，我就想有没有可能在 Safari 中实现同样的扩展。于是就开始着手研究如何开发 Safari 浏览器扩展，经过一番折腾，终于顺利上架 Mac App Store，所以今天就在���数派跟大家介绍一下插件的使用。",
+            "summary": "这款扩展一直都是我配合 Obsidian 使用的利器，但是自从我将 safari 当做主流浏览器（没错它现在很棒了）后就遇到麻烦了，由于有大量的文章需要摘录，就会不停的在两个浏览器来回切换，为了解决这个问题，我就想有没有可能在 Safari 中实现同样的扩展。于是就开始着手研究如何开发 Safari 浏览器扩展，经过一番折腾，终于顺利上架 Mac App Store，所以今天就在少数派跟大家介绍一下插件的使用。",
             "tags": [
               "浏览器",
               "笔记"
@@ -3501,7 +3501,7 @@
             },
             "created_at": 1644418091,
             "banner": "2022/02/04/9c3e2cebee09fd8a13537da86f6146b1.png",
-            "summary": "TL;DR太长不看Vim是强大高效灵活优雅的文本编辑器；使用Vim是复利投资，也是有趣的探索；所有常见操作系统都有Vim，你的电脑里可能已经预装了它；Vim有无数强大插件可以提升你的编辑效率；要开始使 ...",
+            "summary": "TL;DR太长不看Vim是强大高效灵活优雅的文本编辑器；使用Vim是复利投资，也是有趣的探索；所有常见操作系统都有Vim，��的电脑里可能已经预装了它；Vim有无数强大插件可以提升你的编辑效率；要开始使 ...",
             "tags": []
           },
           {
@@ -9249,7 +9249,7 @@
             },
             "created_at": 1590732960,
             "banner": "article/945f1e32-da2e-8d81-b486-02487dfd5603.jpg",
-            "summary": "无论是在 Windows 和 macOS 上处理文本，还是在 Everything 中搜索文件，亦或是在手机���平板电脑上进行自动化的操作，如果一个工具可以支持正则表达式，如果你能够善用正则表达式，那它一定会给你带来许多新的可能性。",
+            "summary": "无论是在 Windows 和 macOS 上处理文��，还是在 Everything 中搜索文件，亦或是在手机和平板电脑上进行自动化的操作，如果一个工具可以支持正则表达式，如果你能够善用正则表达式，那它一定会给你带来许多新的可能性。",
             "tags": [
               "效率"
             ]
@@ -9662,7 +9662,7 @@
           },
           {
             "id": 58960,
-            "title": "以 Notion 为原���，我打造了一套极简工作流 | 年度征文",
+            "title": "以 Notion 为原点，我打造了一套极简工作流 | 年度征文",
             "slug": 58960,
             "author": {
               "id": 0,
@@ -18152,7 +18152,7 @@
     {
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
-      "views": 3168,
+      "views": 3187,
       "likes": 4,
       "comments": 0,
       "created_at": 1772782373,
@@ -18165,7 +18165,7 @@
     {
       "id": 104232,
       "title": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "views": 29975,
+      "views": 30054,
       "likes": 69,
       "comments": 28,
       "created_at": 1764643711,
@@ -18201,7 +18201,7 @@
     {
       "id": 96151,
       "title": "新的一年，不妨试试自己分析支付宝账单",
-      "views": 50235,
+      "views": 50267,
       "likes": 69,
       "comments": 28,
       "created_at": 1738996270,
@@ -18238,7 +18238,7 @@
     {
       "id": 86747,
       "title": "自我记录、量化与回溯的数字之旅",
-      "views": 81183,
+      "views": 81205,
       "likes": 110,
       "comments": 36,
       "created_at": 1709106003,
@@ -18277,7 +18277,7 @@
     {
       "id": 85355,
       "title": "App+1 | Rond 与世界迷雾：现实世界的塞尔达传说地图册",
-      "views": 54042,
+      "views": 54054,
       "likes": 77,
       "comments": 117,
       "created_at": 1703551973,
@@ -18314,7 +18314,7 @@
     }
   ],
   "totals": {
-    "views": 218603,
+    "views": 218767,
     "likes": 329,
     "comments": 209,
     "article_count": 5
@@ -18335,16 +18335,16 @@
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
       "created_at": 1772782373,
-      "ageHours": 1194.6
+      "ageHours": 1219
     },
     "recentGrowth": {
-      "hours": 24.06,
-      "from": "2026-04-22T02:23:37.697Z",
-      "to": "2026-04-23T02:27:01.178Z",
+      "hours": 23.7,
+      "from": "2026-04-24T02:27:51.256Z",
+      "to": "2026-04-25T02:09:34.822Z",
       "articleId": 104232,
       "articleTitle": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "deltaViews": 83,
-      "ratePer24h": 82.8
+      "deltaViews": 78,
+      "ratePer24h": 79
     }
   }
 }
