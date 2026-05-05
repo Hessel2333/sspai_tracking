@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-05-04T02:38:39.381Z",
+  "timestamp": "2026-05-05T02:32:54.664Z",
   "user": {
     "nickname": "Hessel",
     "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
     "slug": "cemq1hts",
     "created_at": 1485946514,
-    "liked_count": 329,
-    "article_view_count": 220818,
+    "liked_count": 330,
+    "article_view_count": 220976,
     "article_count": 5,
     "user_reward_badges": [
       {
@@ -17880,7 +17880,7 @@
           "key": "like_article",
           "action": "喜欢了文章",
           "created_at": 1502600919,
-          "target_title": "原价 ￥163，现在 ￥6 就能系统学习人体精妙构造：人体解剖���图谱",
+          "target_title": "原价 ￥163，现在 ￥6 就能系统学习人体精妙构造：人体解剖学图谱",
           "target_id": 40386,
           "target_slug": null,
           "comment_content": null,
@@ -18187,7 +18187,7 @@
     {
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
-      "views": 3324,
+      "views": 3339,
       "likes": 4,
       "comments": 0,
       "created_at": 1772782373,
@@ -18200,7 +18200,7 @@
     {
       "id": 104232,
       "title": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "views": 31292,
+      "views": 31360,
       "likes": 69,
       "comments": 28,
       "created_at": 1764643711,
@@ -18236,8 +18236,8 @@
     {
       "id": 96151,
       "title": "新的一年，不妨试试自己分析支付宝账单",
-      "views": 50680,
-      "likes": 69,
+      "views": 50724,
+      "likes": 70,
       "comments": 28,
       "created_at": 1738996270,
       "tags": [
@@ -18273,7 +18273,7 @@
     {
       "id": 86747,
       "title": "自我记录、量化与回溯的数字之旅",
-      "views": 81325,
+      "views": 81344,
       "likes": 110,
       "comments": 36,
       "created_at": 1709106003,
@@ -18312,7 +18312,7 @@
     {
       "id": 85355,
       "title": "App+1 | Rond 与世界迷雾：现实世界的塞尔达传说地图册",
-      "views": 54197,
+      "views": 54209,
       "likes": 77,
       "comments": 117,
       "created_at": 1703551973,
@@ -18349,8 +18349,8 @@
     }
   ],
   "totals": {
-    "views": 220818,
-    "likes": 329,
+    "views": 220976,
+    "likes": 330,
     "comments": 209,
     "article_count": 5
   },
@@ -18361,25 +18361,25 @@
   },
   "cookie_status": "valid",
   "sampling": {
-    "mode": "dense",
-    "cron": "30 * * * *",
+    "mode": "sparse",
+    "cron": "30 */6 * * *",
     "reasons": [
-      "view-surge:104232"
+      "baseline-sparse"
     ],
     "latestArticle": {
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
       "created_at": 1772782373,
-      "ageHours": 1411.1
+      "ageHours": 1435
     },
     "recentGrowth": {
-      "hours": 23.7,
-      "from": "2026-05-01T02:49:05.971Z",
-      "to": "2026-05-02T02:31:09.051Z",
+      "hours": 23.9,
+      "from": "2026-05-04T02:38:39.381Z",
+      "to": "2026-05-05T02:32:54.664Z",
       "articleId": 104232,
       "articleTitle": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "deltaViews": 625,
-      "ratePer24h": 632.9
+      "deltaViews": 68,
+      "ratePer24h": 68.3
     }
   }
 }
