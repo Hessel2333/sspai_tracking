@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-05-11T02:53:18.904Z",
+  "timestamp": "2026-05-12T02:45:24.622Z",
   "user": {
     "nickname": "Hessel",
     "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
     "slug": "cemq1hts",
     "created_at": 1485946514,
     "liked_count": 330,
-    "article_view_count": 221938,
+    "article_view_count": 222183,
     "article_count": 5,
     "user_reward_badges": [
       {
@@ -2610,7 +2610,7 @@
             },
             "created_at": 1650146653,
             "banner": "2022/04/01/ec4d18af9f871a0249c8682efcefb988.png",
-            "summary": "这款扩展一直都是我配合 Obsidian 使用的利器，但是自从我将 safari 当做主流浏览器（没错它现在很棒了）后就遇到麻烦了，由于有大量的文章需要摘录，就会不停的在两个浏览器来回切换，为了解决这个问题，我就想有没有可能在 Safari 中实现同样的扩展。于是就开始着手研究如何开发 Safari 浏览器扩展，经过一番折腾，终于顺利上架 Mac App Store，所以今天就在���数派跟大家介绍一下插件的使用。",
+            "summary": "这款扩展一直都是我配合 Obsidian 使用的利器，但是自从我将 safari 当做主流浏览器（没错它现在很棒了）后就遇到麻烦了，由于有大量的文章需要摘录，就会不停的在两个浏览器来回切换，为了解决这个问题，我就想有没有可能在 Safari 中实现同样的扩展。于是就开始着手研究如何开发 Safari 浏览器扩展，经过一番折腾，终于顺利上架 Mac App Store，所以今天就在少数派跟大家介绍一下插件的使用。",
             "tags": [
               "浏览器",
               "笔记"
@@ -14516,7 +14516,7 @@
             },
             "created_at": 1542790787,
             "banner": "2018/02/05/2e70119826aac7f57e31bdc5ad40d337.png",
-            "summary": "对于喜欢美化系统的用户来说，任务栏透明化是其中必不可少的环节。TranslucentTB 就是一款纯粹的绿色任务栏透明化软���工具。",
+            "summary": "对于喜欢美化系统的用户来说，任务栏透明化是其中必不可少的环节。TranslucentTB 就是一款纯粹的绿色任务栏透明化软件工具。",
             "tags": [
               "应用推荐",
               "工具",
@@ -18222,7 +18222,7 @@
     {
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
-      "views": 3412,
+      "views": 3426,
       "likes": 4,
       "comments": 0,
       "created_at": 1772782373,
@@ -18235,7 +18235,7 @@
     {
       "id": 104232,
       "title": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "views": 31756,
+      "views": 31818,
       "likes": 69,
       "comments": 28,
       "created_at": 1764643711,
@@ -18271,7 +18271,7 @@
     {
       "id": 96151,
       "title": "新的一年，不妨试试自己分析支付宝账单",
-      "views": 50982,
+      "views": 51044,
       "likes": 70,
       "comments": 28,
       "created_at": 1738996270,
@@ -18308,7 +18308,7 @@
     {
       "id": 86747,
       "title": "自我记录、量化与回溯的数字之旅",
-      "views": 81445,
+      "views": 81480,
       "likes": 110,
       "comments": 36,
       "created_at": 1709106003,
@@ -18347,7 +18347,7 @@
     {
       "id": 85355,
       "title": "App+1 | Rond 与世界迷雾：现实世界的塞尔达传说地图册",
-      "views": 54343,
+      "views": 54415,
       "likes": 77,
       "comments": 117,
       "created_at": 1703551973,
@@ -18384,7 +18384,7 @@
     }
   ],
   "totals": {
-    "views": 221938,
+    "views": 222183,
     "likes": 330,
     "comments": 209,
     "article_count": 5
@@ -18405,16 +18405,16 @@
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
       "created_at": 1772782373,
-      "ageHours": 1579.3
+      "ageHours": 1603.2
     },
     "recentGrowth": {
-      "hours": 24.16,
-      "from": "2026-05-10T02:43:32.622Z",
-      "to": "2026-05-11T02:53:18.904Z",
-      "articleId": 104232,
-      "articleTitle": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "deltaViews": 64,
-      "ratePer24h": 63.6
+      "hours": 23.87,
+      "from": "2026-05-11T02:53:18.904Z",
+      "to": "2026-05-12T02:45:24.622Z",
+      "articleId": 85355,
+      "articleTitle": "App+1 | Rond 与世界迷雾：现实世界的塞尔达传说地图册",
+      "deltaViews": 72,
+      "ratePer24h": 72.4
     }
   }
 }
