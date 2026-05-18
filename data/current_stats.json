@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-05-17T02:50:24.511Z",
+  "timestamp": "2026-05-18T03:27:58.937Z",
   "user": {
     "nickname": "Hessel",
     "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
     "slug": "cemq1hts",
     "created_at": 1485946514,
     "liked_count": 331,
-    "article_view_count": 223145,
+    "article_view_count": 223336,
     "article_count": 5,
     "user_reward_badges": [
       {
@@ -18012,7 +18012,7 @@
     {
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
-      "views": 3520,
+      "views": 3534,
       "likes": 4,
       "comments": 0,
       "created_at": 1772782373,
@@ -18025,7 +18025,7 @@
     {
       "id": 104232,
       "title": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "views": 32256,
+      "views": 32354,
       "likes": 69,
       "comments": 28,
       "created_at": 1764643711,
@@ -18061,7 +18061,7 @@
     {
       "id": 96151,
       "title": "新的一年，不妨试试自己分析支付宝账单",
-      "views": 51269,
+      "views": 51310,
       "likes": 70,
       "comments": 28,
       "created_at": 1738996270,
@@ -18098,7 +18098,7 @@
     {
       "id": 86747,
       "title": "自我记录、量化与回溯的数字之旅",
-      "views": 81591,
+      "views": 81610,
       "likes": 111,
       "comments": 36,
       "created_at": 1709106003,
@@ -18137,7 +18137,7 @@
     {
       "id": 85355,
       "title": "App+1 | Rond 与世界迷雾：现实世界的塞尔达传说地图册",
-      "views": 54509,
+      "views": 54528,
       "likes": 77,
       "comments": 117,
       "created_at": 1703551973,
@@ -18174,7 +18174,7 @@
     }
   ],
   "totals": {
-    "views": 223145,
+    "views": 223336,
     "likes": 331,
     "comments": 209,
     "article_count": 5
@@ -18195,16 +18195,16 @@
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
       "created_at": 1772782373,
-      "ageHours": 1723.3
+      "ageHours": 1747.9
     },
     "recentGrowth": {
-      "hours": 23.76,
-      "from": "2026-05-15T02:56:13.149Z",
-      "to": "2026-05-16T02:41:34.610Z",
+      "hours": 24.15,
+      "from": "2026-05-16T02:41:34.610Z",
+      "to": "2026-05-17T02:50:24.511Z",
       "articleId": 104232,
       "articleTitle": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "deltaViews": 130,
-      "ratePer24h": 131.3
+      "deltaViews": 110,
+      "ratePer24h": 109.3
     }
   }
 }
