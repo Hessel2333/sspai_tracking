@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-06-27T02:51:27.541Z",
+  "timestamp": "2026-06-28T03:33:18.232Z",
   "user": {
     "nickname": "Hessel",
     "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
     "slug": "cemq1hts",
     "created_at": 1485946514,
     "liked_count": 331,
-    "article_view_count": 229601,
+    "article_view_count": 229696,
     "article_count": 5,
     "user_reward_badges": [
       {
@@ -8722,7 +8722,7 @@
           },
           {
             "id": 61838,
-            "title": "看懂高通的一图流：QC5 将这样改变你���快充体验",
+            "title": "看懂高通的一图流：QC5 将这样改变你的快充体验",
             "slug": 61838,
             "author": {
               "id": 0,
@@ -10508,7 +10508,7 @@
             },
             "created_at": 1577241969,
             "banner": "2018/08/08/4c9b7cf1d09f4736c664fa882bf8b607.jpg",
-            "summary": "GitHub 上有成千上万的实用工具和有趣项目，如何在其中找到自己需要的资源？按照热度、开发者和项目来搜索，是 3 个最简单有效���思路。",
+            "summary": "GitHub 上有成千上万的实用工具和有趣项目，如何在其中找到自己需要的资源？按照热度、开发者和项目来搜索，是 3 个最简单有效的思路。",
             "tags": [
               "应用",
               "一日一技"
@@ -16641,7 +16641,7 @@
           "key": "like_article",
           "action": "喜欢了文章",
           "created_at": 1747707656,
-          "target_title": "从AIGC到MCP：普通人需要了解的AI新进展及其技术本质",
+          "target_title": "从AIGC到MCP：普通人需要了解的AI新进��及其技术本质",
           "target_id": 99102,
           "target_slug": null,
           "comment_content": null,
@@ -18012,7 +18012,7 @@
     {
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
-      "views": 4043,
+      "views": 4056,
       "likes": 4,
       "comments": 0,
       "created_at": 1772782373,
@@ -18025,7 +18025,7 @@
     {
       "id": 104232,
       "title": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "views": 35121,
+      "views": 35140,
       "likes": 69,
       "comments": 28,
       "created_at": 1764643711,
@@ -18061,7 +18061,7 @@
     {
       "id": 96151,
       "title": "新的一年，不妨试试自己分析支付宝账单",
-      "views": 53214,
+      "views": 53251,
       "likes": 70,
       "comments": 28,
       "created_at": 1738996270,
@@ -18098,7 +18098,7 @@
     {
       "id": 86747,
       "title": "自我记录、量化与回溯的数字之旅",
-      "views": 82217,
+      "views": 82232,
       "likes": 111,
       "comments": 36,
       "created_at": 1709106003,
@@ -18137,7 +18137,7 @@
     {
       "id": 85355,
       "title": "App+1 | Rond 与世界迷雾：现实世界的塞尔达传说地图册",
-      "views": 55007,
+      "views": 55018,
       "likes": 77,
       "comments": 117,
       "created_at": 1703551973,
@@ -18174,7 +18174,7 @@
     }
   ],
   "totals": {
-    "views": 229602,
+    "views": 229697,
     "likes": 331,
     "comments": 209,
     "article_count": 5
@@ -18195,16 +18195,16 @@
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
       "created_at": 1772782373,
-      "ageHours": 2707.3
+      "ageHours": 2732
     },
     "recentGrowth": {
-      "hours": 24.5,
-      "from": "2026-06-25T02:56:20.900Z",
-      "to": "2026-06-26T03:26:33.124Z",
+      "hours": 23.42,
+      "from": "2026-06-26T03:26:33.124Z",
+      "to": "2026-06-27T02:51:27.541Z",
       "articleId": 96151,
       "articleTitle": "新的一年，不妨试试自己分析支付宝账单",
-      "deltaViews": 72,
-      "ratePer24h": 70.5
+      "deltaViews": 50,
+      "ratePer24h": 51.2
     }
   }
 }
