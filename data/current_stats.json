@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-07-08T02:27:12.822Z",
+  "timestamp": "2026-07-09T02:41:48.054Z",
   "user": {
     "nickname": "Hessel",
     "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
     "slug": "cemq1hts",
     "created_at": 1485946514,
     "liked_count": 331,
-    "article_view_count": 230766,
+    "article_view_count": 230865,
     "article_count": 5,
     "user_reward_badges": [
       {
@@ -4943,7 +4943,7 @@
             },
             "created_at": 1636762319,
             "banner": "article/486782bb-f415-3a8f-a266-1b5b4cb60df0.jpg",
-            "summary": "「数字遗产」对现代人越来越重要，尤其是具有隐私属性的数据，有可能会导致用户逝世后叠加「社会性死亡」的风险，更别提敏感隐私数据暴露后，对逝者家属的进一步打击。",
+            "summary": "「数字遗产」对现代人越来越���要，尤其是具有隐私属性的数据，有可能会导致用户逝世后叠加「社会性死亡」的风险，更别提敏感隐私数据暴露后，对逝者家属的进一步打击。",
             "tags": [
               "信息安全"
             ]
@@ -18012,7 +18012,7 @@
     {
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
-      "views": 4192,
+      "views": 4202,
       "likes": 4,
       "comments": 0,
       "created_at": 1772782373,
@@ -18025,7 +18025,7 @@
     {
       "id": 104232,
       "title": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "views": 35295,
+      "views": 35310,
       "likes": 69,
       "comments": 28,
       "created_at": 1764643711,
@@ -18061,7 +18061,7 @@
     {
       "id": 96151,
       "title": "新的一年，不妨试试自己分析支付宝账单",
-      "views": 53709,
+      "views": 53751,
       "likes": 70,
       "comments": 28,
       "created_at": 1738996270,
@@ -18098,7 +18098,7 @@
     {
       "id": 86747,
       "title": "自我记录、量化与回溯的数字之旅",
-      "views": 82394,
+      "views": 82407,
       "likes": 111,
       "comments": 36,
       "created_at": 1709106003,
@@ -18137,7 +18137,7 @@
     {
       "id": 85355,
       "title": "App+1 | Rond 与世界迷雾：现实世界的塞尔达传说地图册",
-      "views": 55176,
+      "views": 55195,
       "likes": 77,
       "comments": 117,
       "created_at": 1703551973,
@@ -18174,7 +18174,7 @@
     }
   ],
   "totals": {
-    "views": 230766,
+    "views": 230865,
     "likes": 331,
     "comments": 209,
     "article_count": 5
@@ -18195,7 +18195,7 @@
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
       "created_at": 1772782373,
-      "ageHours": 2970.9
+      "ageHours": 2995.1
     },
     "recentGrowth": {
       "hours": 23.91,
