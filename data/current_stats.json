@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-07-12T02:29:49.717Z",
+  "timestamp": "2026-07-14T02:12:26.610Z",
   "user": {
     "nickname": "Hessel",
     "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
     "slug": "cemq1hts",
     "created_at": 1485946514,
     "liked_count": 331,
-    "article_view_count": 231201,
+    "article_view_count": 231435,
     "article_count": 5,
     "user_reward_badges": [
       {
@@ -16676,7 +16676,7 @@
           "key": "like_article",
           "action": "喜欢了文章",
           "created_at": 1747707656,
-          "target_title": "从AIGC到MCP：普通人需要了解的AI新进��及其技术本质",
+          "target_title": "从AIGC到MCP：普通人需要了解的AI新进展及其技术本质",
           "target_id": 99102,
           "target_slug": null,
           "comment_content": null,
@@ -18047,7 +18047,7 @@
     {
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
-      "views": 4238,
+      "views": 4256,
       "likes": 4,
       "comments": 0,
       "created_at": 1772782373,
@@ -18060,7 +18060,7 @@
     {
       "id": 104232,
       "title": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "views": 35367,
+      "views": 35398,
       "likes": 69,
       "comments": 28,
       "created_at": 1764643711,
@@ -18096,7 +18096,7 @@
     {
       "id": 96151,
       "title": "新的一年，不妨试试自己分析支付宝账单",
-      "views": 53883,
+      "views": 54011,
       "likes": 70,
       "comments": 28,
       "created_at": 1738996270,
@@ -18133,7 +18133,7 @@
     {
       "id": 86747,
       "title": "自我记录、量化与回溯的数字之旅",
-      "views": 82461,
+      "views": 82483,
       "likes": 111,
       "comments": 36,
       "created_at": 1709106003,
@@ -18172,7 +18172,7 @@
     {
       "id": 85355,
       "title": "App+1 | Rond 与世界迷雾：现实世界的塞尔达传说地图册",
-      "views": 55252,
+      "views": 55287,
       "likes": 77,
       "comments": 117,
       "created_at": 1703551973,
@@ -18209,7 +18209,7 @@
     }
   ],
   "totals": {
-    "views": 231201,
+    "views": 231435,
     "likes": 331,
     "comments": 209,
     "article_count": 5
@@ -18230,16 +18230,16 @@
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
       "created_at": 1772782373,
-      "ageHours": 3066.9
+      "ageHours": 3114.7
     },
     "recentGrowth": {
-      "hours": 24.04,
-      "from": "2026-07-09T02:41:48.054Z",
-      "to": "2026-07-10T02:44:26.822Z",
+      "hours": 47.71,
+      "from": "2026-07-12T02:29:49.717Z",
+      "to": "2026-07-14T02:12:26.610Z",
       "articleId": 96151,
       "articleTitle": "新的一年，不妨试试自己分析支付宝账单",
-      "deltaViews": 56,
-      "ratePer24h": 55.9
+      "deltaViews": 128,
+      "ratePer24h": 64.4
     }
   }
 }
