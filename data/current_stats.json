@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-07-17T02:25:19.799Z",
+  "timestamp": "2026-07-18T02:09:46.168Z",
   "user": {
     "nickname": "Hessel",
     "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
     "slug": "cemq1hts",
     "created_at": 1485946514,
     "liked_count": 331,
-    "article_view_count": 231689,
+    "article_view_count": 231756,
     "article_count": 5,
     "user_reward_badges": [
       {
@@ -8757,7 +8757,7 @@
           },
           {
             "id": 61838,
-            "title": "看懂高通的一图流：QC5 将这样改变你���快充体验",
+            "title": "看懂高通的一图流：QC5 将这样改变你的快充体验",
             "slug": 61838,
             "author": {
               "id": 0,
@@ -18047,7 +18047,7 @@
     {
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
-      "views": 4283,
+      "views": 4293,
       "likes": 4,
       "comments": 0,
       "created_at": 1772782373,
@@ -18060,7 +18060,7 @@
     {
       "id": 104232,
       "title": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "views": 35440,
+      "views": 35451,
       "likes": 69,
       "comments": 29,
       "created_at": 1764643711,
@@ -18096,7 +18096,7 @@
     {
       "id": 96151,
       "title": "新的一年，不妨试试自己分析支付宝账单",
-      "views": 54114,
+      "views": 54141,
       "likes": 70,
       "comments": 28,
       "created_at": 1738996270,
@@ -18133,7 +18133,7 @@
     {
       "id": 86747,
       "title": "自我记录、量化与回溯的数字之旅",
-      "views": 82524,
+      "views": 82530,
       "likes": 111,
       "comments": 36,
       "created_at": 1709106003,
@@ -18172,7 +18172,7 @@
     {
       "id": 85355,
       "title": "App+1 | Rond 与世界迷雾：现实世界的塞尔达传说地图册",
-      "views": 55328,
+      "views": 55341,
       "likes": 77,
       "comments": 117,
       "created_at": 1703551973,
@@ -18209,7 +18209,7 @@
     }
   ],
   "totals": {
-    "views": 231689,
+    "views": 231756,
     "likes": 331,
     "comments": 210,
     "article_count": 5
@@ -18230,16 +18230,16 @@
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
       "created_at": 1772782373,
-      "ageHours": 3186.9
+      "ageHours": 3210.6
     },
     "recentGrowth": {
-      "hours": 24.23,
-      "from": "2026-07-15T02:08:42.091Z",
-      "to": "2026-07-16T02:22:23.761Z",
+      "hours": 23.74,
+      "from": "2026-07-17T02:25:19.799Z",
+      "to": "2026-07-18T02:09:46.168Z",
       "articleId": 96151,
       "articleTitle": "新的一年，不妨试试自己分析支付宝账单",
-      "deltaViews": 44,
-      "ratePer24h": 43.6
+      "deltaViews": 27,
+      "ratePer24h": 27.3
     }
   }
 }
