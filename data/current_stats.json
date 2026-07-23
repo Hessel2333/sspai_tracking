@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-07-22T02:24:13.868Z",
+  "timestamp": "2026-07-23T02:28:53.421Z",
   "user": {
     "nickname": "Hessel",
     "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
     "slug": "cemq1hts",
     "created_at": 1485946514,
     "liked_count": 331,
-    "article_view_count": 232093,
+    "article_view_count": 232187,
     "article_count": 5,
     "user_reward_badges": [
       {
@@ -18047,7 +18047,7 @@
     {
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
-      "views": 4347,
+      "views": 4359,
       "likes": 4,
       "comments": 0,
       "created_at": 1772782373,
@@ -18060,7 +18060,7 @@
     {
       "id": 104232,
       "title": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "views": 35515,
+      "views": 35532,
       "likes": 69,
       "comments": 29,
       "created_at": 1764643711,
@@ -18096,7 +18096,7 @@
     {
       "id": 96151,
       "title": "新的一年，不妨试试自己分析支付宝账单",
-      "views": 54247,
+      "views": 54280,
       "likes": 70,
       "comments": 28,
       "created_at": 1738996270,
@@ -18133,7 +18133,7 @@
     {
       "id": 86747,
       "title": "自我记录、量化与回溯的数字之旅",
-      "views": 82581,
+      "views": 82592,
       "likes": 111,
       "comments": 36,
       "created_at": 1709106003,
@@ -18172,7 +18172,7 @@
     {
       "id": 85355,
       "title": "App+1 | Rond 与世界迷雾：现实世界的塞尔达传说地图册",
-      "views": 55403,
+      "views": 55424,
       "likes": 77,
       "comments": 117,
       "created_at": 1703551973,
@@ -18209,7 +18209,7 @@
     }
   ],
   "totals": {
-    "views": 232093,
+    "views": 232187,
     "likes": 331,
     "comments": 210,
     "article_count": 5
@@ -18230,16 +18230,16 @@
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
       "created_at": 1772782373,
-      "ageHours": 3306.9
+      "ageHours": 3330.9
     },
     "recentGrowth": {
-      "hours": 22.92,
-      "from": "2026-07-20T03:30:06.625Z",
-      "to": "2026-07-21T02:25:30.715Z",
+      "hours": 24.08,
+      "from": "2026-07-22T02:24:13.868Z",
+      "to": "2026-07-23T02:28:53.421Z",
       "articleId": 96151,
       "articleTitle": "新的一年，不妨试试自己分析支付宝账单",
-      "deltaViews": 31,
-      "ratePer24h": 32.5
+      "deltaViews": 33,
+      "ratePer24h": 32.9
     }
   }
 }
