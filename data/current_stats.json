@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-08-13T01:44:29.179Z",
+  "timestamp": "2026-08-14T01:42:04.532Z",
   "user": {
     "nickname": "Hessel",
     "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
     "slug": "cemq1hts",
     "created_at": 1485946514,
     "liked_count": 331,
-    "article_view_count": 233933,
+    "article_view_count": 234017,
     "article_count": 5,
     "user_reward_badges": [
       {
@@ -10368,7 +10368,7 @@
             },
             "created_at": 1577241969,
             "banner": "2018/08/08/4c9b7cf1d09f4736c664fa882bf8b607.jpg",
-            "summary": "GitHub 上有成千上万的实用工具和有趣项目，如何在其中找到自己需要的资源？按照热度、开发者和项目来搜索，是 3 个最简单有效的思路。",
+            "summary": "GitHub 上有成千上万的实用工具和有趣项目，如何在其中找到自己需要的资源？按照热度、开发者和项目来搜索，是 3 个最简单有效���思路。",
             "tags": [
               "应用",
               "一日一技"
@@ -17837,7 +17837,7 @@
     {
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
-      "views": 4505,
+      "views": 4511,
       "likes": 4,
       "comments": 0,
       "created_at": 1772782373,
@@ -17850,7 +17850,7 @@
     {
       "id": 104232,
       "title": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "views": 35829,
+      "views": 35846,
       "likes": 69,
       "comments": 29,
       "created_at": 1764643711,
@@ -17886,7 +17886,7 @@
     {
       "id": 96151,
       "title": "新的一年，不妨试试自己分析支付宝账单",
-      "views": 54878,
+      "views": 54915,
       "likes": 70,
       "comments": 28,
       "created_at": 1738996270,
@@ -17923,7 +17923,7 @@
     {
       "id": 86747,
       "title": "自我记录、量化与回溯的数字之旅",
-      "views": 82884,
+      "views": 82892,
       "likes": 111,
       "comments": 36,
       "created_at": 1709106003,
@@ -17962,7 +17962,7 @@
     {
       "id": 85355,
       "title": "App+1 | Rond 与世界迷雾：现实世界的塞尔达传说地图册",
-      "views": 55837,
+      "views": 55853,
       "likes": 77,
       "comments": 117,
       "created_at": 1703551973,
@@ -17999,7 +17999,7 @@
     }
   ],
   "totals": {
-    "views": 233933,
+    "views": 234017,
     "likes": 331,
     "comments": 210,
     "article_count": 5
@@ -18020,16 +18020,16 @@
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
       "created_at": 1772782373,
-      "ageHours": 3834.2
+      "ageHours": 3858.2
     },
     "recentGrowth": {
-      "hours": 24.28,
-      "from": "2026-08-11T01:24:50.248Z",
-      "to": "2026-08-12T01:41:25.874Z",
+      "hours": 23.96,
+      "from": "2026-08-13T01:44:29.179Z",
+      "to": "2026-08-14T01:42:04.532Z",
       "articleId": 96151,
       "articleTitle": "新的一年，不妨试试自己分析支付宝账单",
-      "deltaViews": 28,
-      "ratePer24h": 27.7
+      "deltaViews": 37,
+      "ratePer24h": 37.1
     }
   }
 }
