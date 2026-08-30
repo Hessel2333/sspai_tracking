@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-08-29T05:32:38.947Z",
+  "timestamp": "2026-08-30T03:30:42.377Z",
   "user": {
     "nickname": "Hessel",
     "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
     "slug": "cemq1hts",
     "created_at": 1485946514,
     "liked_count": 331,
-    "article_view_count": 235234,
+    "article_view_count": 235304,
     "article_count": 5,
     "user_reward_badges": [
       {
@@ -1083,42 +1083,7 @@
                   "remuneration_fee": 0
                 }
               ],
-              "user_badges": [
-                {
-                  "id": 17,
-                  "key": "member_2022",
-                  "name": "少数派会员",
-                  "description": "少数派会员",
-                  "icon_id": 0,
-                  "icon": "https://cdn-static.sspai.com/ui/badge/prime_S03_512.png",
-                  "url": "https://sspai.com/prime",
-                  "status": 1,
-                  "weight": 97,
-                  "color": "#CFC8C8",
-                  "type": 1,
-                  "sub_type": 1,
-                  "object_id": 0,
-                  "allow_add_user": false,
-                  "allow_delete_user": false,
-                  "allow_update_status": false,
-                  "icon_app": "",
-                  "icon_app_id": 0,
-                  "icon_unlighted": "",
-                  "icon_unlighted_id": 0,
-                  "tag": "",
-                  "icon_unlighted_show_on": false,
-                  "admin_id": 0,
-                  "user_get_on": false,
-                  "icon_3d_id": 0,
-                  "icon_3d": "",
-                  "icon_app_3d_id": 0,
-                  "icon_app_3d": "",
-                  "created_at": 0,
-                  "updated_at": 0,
-                  "recommend_to_home_on": false,
-                  "remuneration_fee": 0
-                }
-              ],
+              "user_badges": [],
               "user_plan_flags": [
                 {
                   "id": 14,
@@ -1308,7 +1273,7 @@
             },
             "created_at": 1673112595,
             "banner": "2022/08/24/171e177e04ef45848b724309cdc5e964.png",
-            "summary": "世界上难办的事情分为两种：一种是困难的，一种是麻烦的。密码管理是第二种。密码管理，是属于那种如果简单了，就容易被盗，而如果复杂了，又容易记不住的事情。本期内容就来彻底帮大家解决这个问题。��、密码是怎么 ...",
+            "summary": "世界上难办的事情分为两种：一种是困难的，一种是麻烦的。密码管理是第二种。密码管理，是属于那种如果简单了，就容易被盗，而如果复杂了，又容易记不住的事情。本期内容就来彻底帮大家解决这个问题。一、密码是怎么 ...",
             "tags": []
           },
           {
@@ -9526,7 +9491,7 @@
             },
             "created_at": 1583666595,
             "banner": "article/324503ba-3e93-cbc7-1d52-8f6bdb9fa031.jpg",
-            "summary": "不管是 996 还是朝九晚五，日子总会一天天过去，而正是这些一页页撕下的日历，让我逐渐成为了自己喜欢的样子。",
+            "summary": "不管是 996 还是朝九晚五，日子总会一天天过去，而正是这些一页页撕下的日历，让我逐渐成为��自己喜欢的样子。",
             "tags": [
               "2019年度征文",
               "生活方式",
@@ -13934,7 +13899,7 @@
                 {
                   "id": 3,
                   "key": "role_admin",
-                  "name": "少数派��员",
+                  "name": "少���派成员",
                   "description": "少数派成员",
                   "icon_id": 0,
                   "icon": "https://cdn-static.sspai.com/ui/badge/sspaichengyuan180x180.png",
@@ -14515,7 +14480,7 @@
             },
             "created_at": 1535800054,
             "banner": "article/e3559089-e88b-6162-83d4-7685dced9119.jpg",
-            "summary": "九月发布会邀请函火热出炉，已经有设计师将它做成了好看的壁纸。除此之外，还有很多历届苹果的发布会邀请函和各地 Apple Store 的宣传海报也被做成了各种天马行空的壁纸。一起来看��吧～",
+            "summary": "九月发布会邀请函火热出炉，已经有设计师将它做成了好看的壁纸。除此之外，还有很多历届苹果的发布会邀请函和各地 Apple Store 的宣传海报也被做成了各种天马行空的壁纸。一起���看看吧～",
             "tags": [
               "iPhone",
               "Apple",
@@ -17837,7 +17802,7 @@
     {
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
-      "views": 4619,
+      "views": 4625,
       "likes": 4,
       "comments": 0,
       "created_at": 1772782373,
@@ -17850,7 +17815,7 @@
     {
       "id": 104232,
       "title": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "views": 36068,
+      "views": 36081,
       "likes": 69,
       "comments": 29,
       "created_at": 1764643711,
@@ -17886,7 +17851,7 @@
     {
       "id": 96151,
       "title": "新的一年，不妨试试自己分析支付宝账单",
-      "views": 55348,
+      "views": 55371,
       "likes": 70,
       "comments": 28,
       "created_at": 1738996270,
@@ -17923,7 +17888,7 @@
     {
       "id": 86747,
       "title": "自我记录、量化与回溯的数字之旅",
-      "views": 83094,
+      "views": 83107,
       "likes": 111,
       "comments": 36,
       "created_at": 1709106003,
@@ -17962,7 +17927,7 @@
     {
       "id": 85355,
       "title": "App+1 | Rond 与世界迷雾：现实世界的塞尔达传说地图册",
-      "views": 56105,
+      "views": 56120,
       "likes": 77,
       "comments": 117,
       "created_at": 1703551973,
@@ -17999,7 +17964,7 @@
     }
   ],
   "totals": {
-    "views": 235234,
+    "views": 235304,
     "likes": 331,
     "comments": 210,
     "article_count": 5
@@ -18020,7 +17985,7 @@
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
       "created_at": 1772782373,
-      "ageHours": 4222
+      "ageHours": 4244
     },
     "recentGrowth": {
       "hours": 20.58,
