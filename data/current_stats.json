@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-10-09T04:28:50.351Z",
+  "timestamp": "2026-10-10T04:14:15.936Z",
   "user": {
     "nickname": "Hessel",
     "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
     "slug": "cemq1hts",
     "created_at": 1485946514,
     "liked_count": 335,
-    "article_view_count": 239321,
+    "article_view_count": 239405,
     "article_count": 5,
     "user_reward_badges": [
       {
@@ -5269,42 +5269,7 @@
                   "remuneration_fee": 0
                 }
               ],
-              "user_badges": [
-                {
-                  "id": 17,
-                  "key": "member_2022",
-                  "name": "少数派会员",
-                  "description": "少数派会员",
-                  "icon_id": 0,
-                  "icon": "https://cdn-static.sspai.com/ui/badge/prime_S03_512.png",
-                  "url": "https://sspai.com/prime",
-                  "status": 1,
-                  "weight": 97,
-                  "color": "#CFC8C8",
-                  "type": 1,
-                  "sub_type": 1,
-                  "object_id": 0,
-                  "allow_add_user": false,
-                  "allow_delete_user": false,
-                  "allow_update_status": false,
-                  "icon_app": "",
-                  "icon_app_id": 0,
-                  "icon_unlighted": "",
-                  "icon_unlighted_id": 0,
-                  "tag": "",
-                  "icon_unlighted_show_on": false,
-                  "admin_id": 0,
-                  "user_get_on": false,
-                  "icon_3d_id": 0,
-                  "icon_3d": "",
-                  "icon_app_3d_id": 0,
-                  "icon_app_3d": "",
-                  "created_at": 0,
-                  "updated_at": 0,
-                  "recommend_to_home_on": false,
-                  "remuneration_fee": 0
-                }
-              ],
+              "user_badges": [],
               "user_plan_flags": [],
               "user_id_verify_flags": []
             },
@@ -6211,42 +6176,7 @@
                   "remuneration_fee": 0
                 }
               ],
-              "user_badges": [
-                {
-                  "id": 17,
-                  "key": "member_2022",
-                  "name": "少数派会员",
-                  "description": "少数派会员",
-                  "icon_id": 0,
-                  "icon": "https://cdn-static.sspai.com/ui/badge/prime_S03_512.png",
-                  "url": "https://sspai.com/prime",
-                  "status": 1,
-                  "weight": 97,
-                  "color": "#CFC8C8",
-                  "type": 1,
-                  "sub_type": 1,
-                  "object_id": 0,
-                  "allow_add_user": false,
-                  "allow_delete_user": false,
-                  "allow_update_status": false,
-                  "icon_app": "",
-                  "icon_app_id": 0,
-                  "icon_unlighted": "",
-                  "icon_unlighted_id": 0,
-                  "tag": "",
-                  "icon_unlighted_show_on": false,
-                  "admin_id": 0,
-                  "user_get_on": false,
-                  "icon_3d_id": 0,
-                  "icon_3d": "",
-                  "icon_app_3d_id": 0,
-                  "icon_app_3d": "",
-                  "created_at": 0,
-                  "updated_at": 0,
-                  "recommend_to_home_on": false,
-                  "remuneration_fee": 0
-                }
-              ],
+              "user_badges": [],
               "user_plan_flags": [],
               "user_id_verify_flags": []
             },
@@ -9283,42 +9213,7 @@
                   "remuneration_fee": 0
                 }
               ],
-              "user_badges": [
-                {
-                  "id": 17,
-                  "key": "member_2022",
-                  "name": "少数派会员",
-                  "description": "少数派会员",
-                  "icon_id": 0,
-                  "icon": "https://cdn-static.sspai.com/ui/badge/prime_S03_512.png",
-                  "url": "https://sspai.com/prime",
-                  "status": 1,
-                  "weight": 97,
-                  "color": "#CFC8C8",
-                  "type": 1,
-                  "sub_type": 1,
-                  "object_id": 0,
-                  "allow_add_user": false,
-                  "allow_delete_user": false,
-                  "allow_update_status": false,
-                  "icon_app": "",
-                  "icon_app_id": 0,
-                  "icon_unlighted": "",
-                  "icon_unlighted_id": 0,
-                  "tag": "",
-                  "icon_unlighted_show_on": false,
-                  "admin_id": 0,
-                  "user_get_on": false,
-                  "icon_3d_id": 0,
-                  "icon_3d": "",
-                  "icon_app_3d_id": 0,
-                  "icon_app_3d": "",
-                  "created_at": 0,
-                  "updated_at": 0,
-                  "recommend_to_home_on": false,
-                  "remuneration_fee": 0
-                }
-              ],
+              "user_badges": [],
               "user_plan_flags": [],
               "user_id_verify_flags": []
             },
@@ -9733,7 +9628,7 @@
                   "id": 14,
                   "key": "matrix_plan_member",
                   "name": "Matrix 共创计划成员",
-                  "description": "Matrix 共创计划成员，立即加入>",
+                  "description": "Matrix 共创计划成员，立���加入>",
                   "icon_id": 0,
                   "icon": "https://cdnfile.sspai.com/ui/badge/matrix_gongchuangjihua.png",
                   "url": "",
@@ -15563,7 +15458,7 @@
           },
           {
             "id": 45574,
-            "title": "蔚来 ES8 真��体验，这是一款怎样的电动汽车？",
+            "title": "蔚来 ES8 真车体验，这是一款怎样的电动汽车？",
             "slug": 45574,
             "author": {
               "id": 0,
@@ -17837,7 +17732,7 @@
     {
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
-      "views": 4825,
+      "views": 4834,
       "likes": 4,
       "comments": 0,
       "created_at": 1772782373,
@@ -17850,7 +17745,7 @@
     {
       "id": 104232,
       "title": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "views": 36726,
+      "views": 36741,
       "likes": 70,
       "comments": 29,
       "created_at": 1764643711,
@@ -17886,7 +17781,7 @@
     {
       "id": 96151,
       "title": "新的一年，不妨试试自己分析支付宝账单",
-      "views": 56610,
+      "views": 56641,
       "likes": 71,
       "comments": 28,
       "created_at": 1738996270,
@@ -17923,7 +17818,7 @@
     {
       "id": 86747,
       "title": "自我记录、量化与回溯的数字之旅",
-      "views": 84261,
+      "views": 84274,
       "likes": 112,
       "comments": 36,
       "created_at": 1709106003,
@@ -17954,7 +17849,7 @@
         {
           "nickname": "Sennhei",
           "avatar": "https://cdnfile.sspai.com/2022/04/01/avatar/d78f810ab0ada0c299071a51664cc058.png",
-          "content": "好多软件我也在用，Rond前段时间更新了导出至日历功能我觉得相当好；上面任意一个app我都没信心说到我老的时候还能存活，但是日历app肯定可以，以后不用苹果了日历也能轻松导出，现在所有能在日历显示的类目（睡眠时间，影视记录评分，上下班打卡，每天吃的东西，汽车里程变化等等）我都在日历上记录了，回顾起来更加方便",
+          "content": "好多软件我也在用，Rond前段时间更新了导出至日历功能我觉得相当好；上面任意一个app我都没信心���到我老的时候还能存活，但是日历app肯定可以，以后不用苹果了日历也能轻松导出，现在所有能在日历显示的类目（睡眠时间，影视记录评分，上下班打卡，每天吃的东西，汽车里程变化等等）我都在日历上记录了，回顾起来更加方便",
           "likes": 2
         }
       ]
@@ -17962,7 +17857,7 @@
     {
       "id": 85355,
       "title": "App+1 | Rond 与世界迷雾：现实世界的塞尔达传说地图册",
-      "views": 56899,
+      "views": 56915,
       "likes": 78,
       "comments": 117,
       "created_at": 1703551973,
@@ -17999,7 +17894,7 @@
     }
   ],
   "totals": {
-    "views": 239321,
+    "views": 239405,
     "likes": 335,
     "comments": 210,
     "article_count": 5
@@ -18020,7 +17915,7 @@
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
       "created_at": 1772782373,
-      "ageHours": 5204.9
+      "ageHours": 5228.7
     },
     "recentGrowth": {
       "hours": 24.08,
