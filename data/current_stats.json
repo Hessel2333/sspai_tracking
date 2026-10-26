@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-10-25T03:06:30.986Z",
+  "timestamp": "2026-10-26T03:06:18.314Z",
   "user": {
     "nickname": "Hessel",
     "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
     "slug": "cemq1hts",
     "created_at": 1485946514,
     "liked_count": 335,
-    "article_view_count": 240999,
+    "article_view_count": 241087,
     "article_count": 5,
     "user_reward_badges": [
       {
@@ -14340,7 +14340,7 @@
             },
             "created_at": 1535800054,
             "banner": "article/e3559089-e88b-6162-83d4-7685dced9119.jpg",
-            "summary": "九月发布会邀请函火热出炉，已经有设计师将它做成了好看的壁纸。除此之外，还有很多历届苹果的发布会邀请函和各地 Apple Store 的宣传海报也被做成了各种天马行空���壁纸。一起来看看吧～",
+            "summary": "九月发布会邀请函火热出炉，已经有设计师将它做成了好看的壁纸。除此之外，还有很多历届苹果的发布会邀请函和各地 Apple Store 的宣传海报也被做成了各种天马行空的壁纸。一起来看看吧～",
             "tags": [
               "iPhone",
               "Apple",
@@ -14584,7 +14584,7 @@
             },
             "created_at": 1534424417,
             "banner": "article/8be08289-4f4d-46bb-7090-a7b069711d05.jpg",
-            "summary": "本次「福利派」由少数派 x 惟物商店联合呈现，以非常优惠的价格购买 HHKB 键盘。",
+            "summary": "本次「福利派」由少数派 x 惟物商店联合呈现，以非常优惠的价格购��� HHKB 键盘。",
             "tags": [
               "福利派"
             ]
@@ -15388,7 +15388,7 @@
           },
           {
             "id": 45574,
-            "title": "蔚来 ES8 真��体验，这是一款怎样的电动汽车？",
+            "title": "蔚来 ES8 真车体验，这是一款怎样的电动汽车？",
             "slug": 45574,
             "author": {
               "id": 0,
@@ -17662,7 +17662,7 @@
     {
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
-      "views": 4949,
+      "views": 4952,
       "likes": 4,
       "comments": 0,
       "created_at": 1772782373,
@@ -17675,7 +17675,7 @@
     {
       "id": 104232,
       "title": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "views": 37021,
+      "views": 37038,
       "likes": 70,
       "comments": 29,
       "created_at": 1764643711,
@@ -17711,7 +17711,7 @@
     {
       "id": 96151,
       "title": "新的一年，不妨试试自己分析支付宝账单",
-      "views": 57243,
+      "views": 57283,
       "likes": 71,
       "comments": 28,
       "created_at": 1738996270,
@@ -17748,7 +17748,7 @@
     {
       "id": 86747,
       "title": "自我记录、量化与回溯的数字之旅",
-      "views": 84541,
+      "views": 84559,
       "likes": 112,
       "comments": 36,
       "created_at": 1709106003,
@@ -17779,7 +17779,7 @@
         {
           "nickname": "Sennhei",
           "avatar": "https://cdnfile.sspai.com/2022/04/01/avatar/d78f810ab0ada0c299071a51664cc058.png",
-          "content": "好多软件我也在用，Rond前段时间更新了导出至日历功能我觉得相当好；上面任意一个app我都没信心说到我老的时候还能存活，但是日历app肯定可以，以后不用苹果了日历也能轻松导出，现在所有能在日历显示的类目（睡眠时间，影视记录评分，上下班打卡，每天吃的东西，汽车里程变化等等）我都在日历上记录了，回顾起来更加方便",
+          "content": "好多软件我也在用，Rond前段时间更新了导出至日历功能我觉得相当好；上面任意一个app我都没信心���到我老的时候还能存活，但是日历app肯定可以，以后不用苹果了日历也能轻松导出，现在所有能在日历显示的类目（睡眠时间，影视记录评分，上下班打卡，每天吃的东西，汽车里程变化等等）我都在日历上记录了，回顾起来更加方便",
           "likes": 2
         }
       ]
@@ -17787,7 +17787,7 @@
     {
       "id": 85355,
       "title": "App+1 | Rond 与世界迷雾：现实世界的塞尔达传说地图册",
-      "views": 57245,
+      "views": 57255,
       "likes": 78,
       "comments": 117,
       "created_at": 1703551973,
@@ -17824,7 +17824,7 @@
     }
   ],
   "totals": {
-    "views": 240999,
+    "views": 241087,
     "likes": 335,
     "comments": 210,
     "article_count": 5
@@ -17845,7 +17845,7 @@
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
       "created_at": 1772782373,
-      "ageHours": 5587.6
+      "ageHours": 5611.6
     },
     "recentGrowth": {
       "hours": 23.89,
