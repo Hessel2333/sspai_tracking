@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-11-06T05:00:40.474Z",
+  "timestamp": "2026-11-07T04:32:39.130Z",
   "user": {
     "nickname": "Hessel",
     "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
     "slug": "cemq1hts",
     "created_at": 1485946514,
     "liked_count": 335,
-    "article_view_count": 242461,
+    "article_view_count": 242581,
     "article_count": 5,
     "user_reward_badges": [
       {
@@ -2610,7 +2610,7 @@
             },
             "created_at": 1650146653,
             "banner": "2022/04/01/ec4d18af9f871a0249c8682efcefb988.png",
-            "summary": "这款扩展一直都是我配合 Obsidian 使用的利器，但是自从我将 safari 当做主流浏览器（���错它现在很棒了）后就遇到麻烦了，由于有大量的文章需要摘录，就会不停的在两个浏览器来回切换，为了解决这个问题，我就想有没有可能在 Safari 中实现同样的扩展。于是就开始着手研究如何开发 Safari 浏览器扩展，经过一番折腾，终于顺利上架 Mac App Store，所以今天就在少数派跟大家介绍一下插件的使用。",
+            "summary": "这款扩展一直都是我配合 Obsidian 使用的利器，但是自从我将 safari 当做主流浏览器（没错它现在很棒了）后就遇到麻烦了，由于有大量的文章需要摘录，就会不停的在两个浏览器来回切换，为了解决这个问题，我就想有没有可能在 Safari 中实现同样的扩展。于是就开始着手研究如何开发 Safari 浏览器扩展，经过一番折腾，终于顺利上架 Mac App Store，所以今天就在少数派跟大家介绍一下插件的使用。",
             "tags": [
               "浏览器",
               "笔记"
@@ -3033,7 +3033,7 @@
                 {
                   "id": 19,
                   "key": "writer",
-                  "name": "少数派作者",
+                  "name": "少数���作者",
                   "description": "少数派作者",
                   "icon_id": 0,
                   "icon": "https://cdn-static.sspai.com/ui/badge/zuozhe_180x180.png",
@@ -17732,7 +17732,7 @@
     {
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
-      "views": 5050,
+      "views": 5060,
       "likes": 4,
       "comments": 0,
       "created_at": 1772782373,
@@ -17745,7 +17745,7 @@
     {
       "id": 104232,
       "title": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "views": 37305,
+      "views": 37327,
       "likes": 70,
       "comments": 29,
       "created_at": 1764643711,
@@ -17781,7 +17781,7 @@
     {
       "id": 96151,
       "title": "新的一年，不妨试试自己分析支付宝账单",
-      "views": 57819,
+      "views": 57873,
       "likes": 71,
       "comments": 28,
       "created_at": 1738996270,
@@ -17818,7 +17818,7 @@
     {
       "id": 86747,
       "title": "自我记录、量化与回溯的数字之旅",
-      "views": 84784,
+      "views": 84803,
       "likes": 112,
       "comments": 36,
       "created_at": 1709106003,
@@ -17849,7 +17849,7 @@
         {
           "nickname": "Sennhei",
           "avatar": "https://cdnfile.sspai.com/2022/04/01/avatar/d78f810ab0ada0c299071a51664cc058.png",
-          "content": "好多软件我也在用，Rond前段时间更新了导出至日历功能我觉得相当好；上面任意一个app我都没信心���到我老的时候还能存活，但是日历app肯定可以，以后不用苹果了日历也能轻松导出，现在所有能在日历显示的类目（睡眠时间，影视记录评分，上下班打卡，每天吃的东西，汽车里程变化等等）我都在日历上记录了，回顾起来更加方便",
+          "content": "好多软件我也在用，Rond前段时间更新了导出至日历功能我觉得相当好；上面任意一个app我都没信心说到我老的时候还能存活，但是日历app肯定可以，以后不用苹果了日历也能轻松导出，现在所有能在日历显示的类目（睡眠时间，影视记录评分，上下班打卡，每天吃的东西，汽车里程变化等等）我都在日历上记录了，回顾起来更加方便",
           "likes": 2
         }
       ]
@@ -17857,7 +17857,7 @@
     {
       "id": 85355,
       "title": "App+1 | Rond 与世界迷雾：现实世界的塞尔达传说地图册",
-      "views": 57503,
+      "views": 57518,
       "likes": 78,
       "comments": 117,
       "created_at": 1703551973,
@@ -17894,7 +17894,7 @@
     }
   ],
   "totals": {
-    "views": 242461,
+    "views": 242581,
     "likes": 335,
     "comments": 210,
     "article_count": 5
@@ -17915,16 +17915,16 @@
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
       "created_at": 1772782373,
-      "ageHours": 5877.5
+      "ageHours": 5901
     },
     "recentGrowth": {
-      "hours": 23.49,
-      "from": "2026-11-03T05:15:51.596Z",
-      "to": "2026-11-04T04:45:31.853Z",
+      "hours": 23.53,
+      "from": "2026-11-06T05:00:40.474Z",
+      "to": "2026-11-07T04:32:39.130Z",
       "articleId": 96151,
       "articleTitle": "新的一年，不妨试试自己分析支付宝账单",
-      "deltaViews": 62,
-      "ratePer24h": 63.3
+      "deltaViews": 54,
+      "ratePer24h": 55.1
     }
   }
 }
