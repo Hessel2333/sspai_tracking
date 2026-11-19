@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-11-18T05:50:48.016Z",
+  "timestamp": "2026-11-19T05:50:06.463Z",
   "user": {
     "nickname": "Hessel",
     "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
     "slug": "cemq1hts",
     "created_at": 1485946514,
     "liked_count": 336,
-    "article_view_count": 244071,
+    "article_view_count": 244237,
     "article_count": 5,
     "user_reward_badges": [
       {
@@ -5409,7 +5409,42 @@
                   "remuneration_fee": 0
                 }
               ],
-              "user_badges": [],
+              "user_badges": [
+                {
+                  "id": 17,
+                  "key": "member_2022",
+                  "name": "少数派会员",
+                  "description": "少数派会员",
+                  "icon_id": 0,
+                  "icon": "https://cdn-static.sspai.com/ui/badge/prime_S03_512.png",
+                  "url": "https://sspai.com/prime",
+                  "status": 1,
+                  "weight": 97,
+                  "color": "#CFC8C8",
+                  "type": 1,
+                  "sub_type": 1,
+                  "object_id": 0,
+                  "allow_add_user": false,
+                  "allow_delete_user": false,
+                  "allow_update_status": false,
+                  "icon_app": "",
+                  "icon_app_id": 0,
+                  "icon_unlighted": "",
+                  "icon_unlighted_id": 0,
+                  "tag": "",
+                  "icon_unlighted_show_on": false,
+                  "admin_id": 0,
+                  "user_get_on": false,
+                  "icon_3d_id": 0,
+                  "icon_3d": "",
+                  "icon_app_3d_id": 0,
+                  "icon_app_3d": "",
+                  "created_at": 0,
+                  "updated_at": 0,
+                  "recommend_to_home_on": false,
+                  "remuneration_fee": 0
+                }
+              ],
               "user_plan_flags": [],
               "user_id_verify_flags": []
             },
@@ -6316,7 +6351,42 @@
                   "remuneration_fee": 0
                 }
               ],
-              "user_badges": [],
+              "user_badges": [
+                {
+                  "id": 17,
+                  "key": "member_2022",
+                  "name": "少数派会员",
+                  "description": "少数派会员",
+                  "icon_id": 0,
+                  "icon": "https://cdn-static.sspai.com/ui/badge/prime_S03_512.png",
+                  "url": "https://sspai.com/prime",
+                  "status": 1,
+                  "weight": 97,
+                  "color": "#CFC8C8",
+                  "type": 1,
+                  "sub_type": 1,
+                  "object_id": 0,
+                  "allow_add_user": false,
+                  "allow_delete_user": false,
+                  "allow_update_status": false,
+                  "icon_app": "",
+                  "icon_app_id": 0,
+                  "icon_unlighted": "",
+                  "icon_unlighted_id": 0,
+                  "tag": "",
+                  "icon_unlighted_show_on": false,
+                  "admin_id": 0,
+                  "user_get_on": false,
+                  "icon_3d_id": 0,
+                  "icon_3d": "",
+                  "icon_app_3d_id": 0,
+                  "icon_app_3d": "",
+                  "created_at": 0,
+                  "updated_at": 0,
+                  "recommend_to_home_on": false,
+                  "remuneration_fee": 0
+                }
+              ],
               "user_plan_flags": [],
               "user_id_verify_flags": []
             },
@@ -9318,7 +9388,42 @@
                   "remuneration_fee": 0
                 }
               ],
-              "user_badges": [],
+              "user_badges": [
+                {
+                  "id": 17,
+                  "key": "member_2022",
+                  "name": "少数派会员",
+                  "description": "少数派会员",
+                  "icon_id": 0,
+                  "icon": "https://cdn-static.sspai.com/ui/badge/prime_S03_512.png",
+                  "url": "https://sspai.com/prime",
+                  "status": 1,
+                  "weight": 97,
+                  "color": "#CFC8C8",
+                  "type": 1,
+                  "sub_type": 1,
+                  "object_id": 0,
+                  "allow_add_user": false,
+                  "allow_delete_user": false,
+                  "allow_update_status": false,
+                  "icon_app": "",
+                  "icon_app_id": 0,
+                  "icon_unlighted": "",
+                  "icon_unlighted_id": 0,
+                  "tag": "",
+                  "icon_unlighted_show_on": false,
+                  "admin_id": 0,
+                  "user_get_on": false,
+                  "icon_3d_id": 0,
+                  "icon_3d": "",
+                  "icon_app_3d_id": 0,
+                  "icon_app_3d": "",
+                  "created_at": 0,
+                  "updated_at": 0,
+                  "recommend_to_home_on": false,
+                  "remuneration_fee": 0
+                }
+              ],
               "user_plan_flags": [],
               "user_id_verify_flags": []
             },
@@ -9733,7 +9838,7 @@
                   "id": 14,
                   "key": "matrix_plan_member",
                   "name": "Matrix 共创计划成员",
-                  "description": "Matrix 共创计划成员，立���加入>",
+                  "description": "Matrix 共创计划成员，立即加入>",
                   "icon_id": 0,
                   "icon": "https://cdnfile.sspai.com/ui/badge/matrix_gongchuangjihua.png",
                   "url": "",
@@ -17837,7 +17942,7 @@
     {
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
-      "views": 5138,
+      "views": 5143,
       "likes": 4,
       "comments": 0,
       "created_at": 1772782373,
@@ -17850,7 +17955,7 @@
     {
       "id": 104232,
       "title": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "views": 37630,
+      "views": 37658,
       "likes": 70,
       "comments": 29,
       "created_at": 1764643711,
@@ -17886,7 +17991,7 @@
     {
       "id": 96151,
       "title": "新的一年，不妨试试自己分析支付宝账单",
-      "views": 58564,
+      "views": 58657,
       "likes": 71,
       "comments": 28,
       "created_at": 1738996270,
@@ -17923,9 +18028,9 @@
     {
       "id": 86747,
       "title": "自我记录、量化与回溯的数字之旅",
-      "views": 84999,
+      "views": 85012,
       "likes": 113,
-      "comments": 36,
+      "comments": 37,
       "created_at": 1709106003,
       "tags": [
         "热门文章",
@@ -17962,7 +18067,7 @@
     {
       "id": 85355,
       "title": "App+1 | Rond 与世界迷雾：现实世界的塞尔达传说地图册",
-      "views": 57740,
+      "views": 57767,
       "likes": 78,
       "comments": 117,
       "created_at": 1703551973,
@@ -17999,9 +18104,9 @@
     }
   ],
   "totals": {
-    "views": 244071,
+    "views": 244237,
     "likes": 336,
-    "comments": 210,
+    "comments": 211,
     "article_count": 5
   },
   "health": {
@@ -18020,7 +18125,7 @@
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
       "created_at": 1772782373,
-      "ageHours": 6166.3
+      "ageHours": 6190.3
     },
     "recentGrowth": {
       "hours": 23.4,
