@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-11-19T05:50:06.463Z",
+  "timestamp": "2026-11-20T05:40:26.796Z",
   "user": {
     "nickname": "Hessel",
     "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
     "slug": "cemq1hts",
     "created_at": 1485946514,
     "liked_count": 336,
-    "article_view_count": 244237,
+    "article_view_count": 244398,
     "article_count": 5,
     "user_reward_badges": [
       {
@@ -17942,7 +17942,7 @@
     {
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
-      "views": 5143,
+      "views": 5148,
       "likes": 4,
       "comments": 0,
       "created_at": 1772782373,
@@ -17955,7 +17955,7 @@
     {
       "id": 104232,
       "title": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "views": 37658,
+      "views": 37696,
       "likes": 70,
       "comments": 29,
       "created_at": 1764643711,
@@ -17991,7 +17991,7 @@
     {
       "id": 96151,
       "title": "新的一年，不妨试试自己分析支付宝账单",
-      "views": 58657,
+      "views": 58740,
       "likes": 71,
       "comments": 28,
       "created_at": 1738996270,
@@ -18028,7 +18028,7 @@
     {
       "id": 86747,
       "title": "自我记录、量化与回溯的数字之旅",
-      "views": 85012,
+      "views": 85024,
       "likes": 113,
       "comments": 37,
       "created_at": 1709106003,
@@ -18059,7 +18059,7 @@
         {
           "nickname": "Sennhei",
           "avatar": "https://cdnfile.sspai.com/2022/04/01/avatar/d78f810ab0ada0c299071a51664cc058.png",
-          "content": "好多软件我也在用，Rond前段时间更新了导出至日历功能我觉得相当好；上面任意一个app我都没信心说到我老的时候还能存活，但是日历app肯定可以，以后不用苹果了日历也能轻松导出，现在所有能在日历显示的类目（睡眠时间，影视记录评分，上下班打卡，每天吃的东西，汽车里程变化等等）我都在日历上记录了，回顾起来更加方便",
+          "content": "好多软件我也在用，Rond前段时间更新了导出至日历功能我觉得相当好；上面任意一个app我都没信心���到我老的时候还能存活，但是日历app肯定可以，以后不用苹果了日历也能轻松导出，现在所有能在日历显示的类目（睡眠时间，影视记录评分，上下班打卡，每天吃的东西，汽车里程变化等等）我都在日历上记录了，回顾起来更加方便",
           "likes": 2
         }
       ]
@@ -18067,7 +18067,7 @@
     {
       "id": 85355,
       "title": "App+1 | Rond 与世界迷雾：现实世界的塞尔达传说地图册",
-      "views": 57767,
+      "views": 57790,
       "likes": 78,
       "comments": 117,
       "created_at": 1703551973,
@@ -18104,7 +18104,7 @@
     }
   ],
   "totals": {
-    "views": 244237,
+    "views": 244398,
     "likes": 336,
     "comments": 211,
     "article_count": 5
@@ -18125,7 +18125,7 @@
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
       "created_at": 1772782373,
-      "ageHours": 6190.3
+      "ageHours": 6214.1
     },
     "recentGrowth": {
       "hours": 23.4,
