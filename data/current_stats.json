@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-11-20T05:40:26.796Z",
+  "timestamp": "2026-11-21T05:32:21.565Z",
   "user": {
     "nickname": "Hessel",
     "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
     "slug": "cemq1hts",
     "created_at": 1485946514,
     "liked_count": 336,
-    "article_view_count": 244398,
+    "article_view_count": 244567,
     "article_count": 5,
     "user_reward_badges": [
       {
@@ -115,8 +115,102 @@
         "list": []
       },
       "favorites": {
-        "total": 335,
+        "total": 336,
         "list": [
+          {
+            "id": 91511,
+            "title": "城市漫步指南：关西的夏日重现",
+            "slug": 91511,
+            "author": {
+              "id": 0,
+              "slug": "ov9kfy96",
+              "avatar": "https://cdnfile.sspai.com/2022/09/15/avatar/b581a64e50b9cdac7b26e004dca995d1.png",
+              "nickname": "Journey",
+              "user_flags": [
+                {
+                  "id": 19,
+                  "key": "writer",
+                  "name": "少数派作者",
+                  "description": "少数派作者",
+                  "icon_id": 0,
+                  "icon": "https://cdn-static.sspai.com/ui/badge/zuozhe_180x180.png",
+                  "url": "",
+                  "status": 1,
+                  "weight": 2,
+                  "color": "",
+                  "type": 2,
+                  "sub_type": 1,
+                  "object_id": 0,
+                  "allow_add_user": false,
+                  "allow_delete_user": false,
+                  "allow_update_status": false,
+                  "icon_app": "",
+                  "icon_app_id": 0,
+                  "icon_unlighted": "",
+                  "icon_unlighted_id": 0,
+                  "tag": "",
+                  "icon_unlighted_show_on": false,
+                  "admin_id": 0,
+                  "user_get_on": false,
+                  "icon_3d_id": 0,
+                  "icon_3d": "",
+                  "icon_app_3d_id": 0,
+                  "icon_app_3d": "",
+                  "created_at": 0,
+                  "updated_at": 1768720750,
+                  "recommend_to_home_on": false,
+                  "remuneration_fee": 0
+                }
+              ],
+              "user_badges": [],
+              "user_plan_flags": [
+                {
+                  "id": 14,
+                  "key": "matrix_plan_member",
+                  "name": "Matrix 共创计划成员",
+                  "description": "Matrix 共创计划成员，立即加入>",
+                  "icon_id": 0,
+                  "icon": "https://cdnfile.sspai.com/ui/badge/matrix_gongchuangjihua.png",
+                  "url": "",
+                  "status": 1,
+                  "weight": 1,
+                  "color": "",
+                  "type": 3,
+                  "sub_type": 1,
+                  "object_id": 0,
+                  "allow_add_user": false,
+                  "allow_delete_user": false,
+                  "allow_update_status": false,
+                  "icon_app": "",
+                  "icon_app_id": 0,
+                  "icon_unlighted": "",
+                  "icon_unlighted_id": 0,
+                  "tag": "",
+                  "icon_unlighted_show_on": false,
+                  "admin_id": 0,
+                  "user_get_on": false,
+                  "icon_3d_id": 0,
+                  "icon_3d": "",
+                  "icon_app_3d_id": 0,
+                  "icon_app_3d": "",
+                  "created_at": 0,
+                  "updated_at": 0,
+                  "recommend_to_home_on": false,
+                  "remuneration_fee": 0
+                }
+              ],
+              "user_id_verify_flags": []
+            },
+            "created_at": 1795159349,
+            "banner": "2024/08/19/5edde42a671c8a0d23166979ec19b750.JPEG",
+            "summary": "島のどこにても、潮の音が聞こえる。その音を追えば、会える気がした。不管在岛的哪里，都能听见潮水的声音。感觉跟着这个声音，就能遇见她。——《夏日重现》夏日就要去海边啊。今年夏天去日本是我们一早就决定的。 ...",
+            "tags": [
+              "城市漫步指南",
+              "旅行",
+              "摄影爱好者",
+              "FUN开玩"
+            ]
+          },
           {
             "id": 96715,
             "title": "少数派首页「潜规则」：2024 数据分析 & 创作指南",
@@ -612,7 +706,7 @@
                   "id": 14,
                   "key": "matrix_plan_member",
                   "name": "Matrix 共创计划成员",
-                  "description": "Matrix 共创计划���员，立即加入>",
+                  "description": "Matrix 共创计划成员，立即加入>",
                   "icon_id": 0,
                   "icon": "https://cdnfile.sspai.com/ui/badge/matrix_gongchuangjihua.png",
                   "url": "",
@@ -1250,7 +1344,7 @@
             },
             "created_at": 1673600774,
             "banner": "2023/1/10/article/06830b78-9d42-32dc-ce75-91d98da3bbc0.png",
-            "summary": "时隔 5 年之久，老牌的记录足迹应用《世界迷雾》迎来了大版本更新。世界迷雾 3.0 版本主要带来的变化，是 UI 界面的更新：新增了导航栏，重新设计「地图相机」，应用内的地图、护照、徽章等板块以更加现代化的方式展示。",
+            "summary": "时隔 5 年之久，老牌的记录足迹应用《世界迷雾》迎来了大版本更新。世界迷雾 3.0 版本主要带来的变化，是 UI 界面的更新：新增了导航栏，重新设计「地图相机」，���用内的地图、护照、徽章等板块以更加现代化的方式展示。",
             "tags": [
               "应用推荐",
               "iOS",
@@ -1308,7 +1402,7 @@
             },
             "created_at": 1673112595,
             "banner": "2022/08/24/171e177e04ef45848b724309cdc5e964.png",
-            "summary": "世界上难办的事情分为两种：一种是困难的，一种是麻烦的。密码管理是第二种。密码管理，是属于那种如果简单了，就容易被盗，而如果复杂了，又容易记不住的事情。本期内容就来彻底帮大家解决这个问题。��、密码是怎么 ...",
+            "summary": "世界上难办的事情分为两种：一种是困难的，一种是麻烦的。密码管理是第二种。密码管理，是属于那种如果简单了，就容易被盗，而如果复杂了，又容易记不住的事情。本期内容就来彻底帮大家解决这个问题。一、密码是怎么 ...",
             "tags": []
           },
           {
@@ -3809,7 +3903,7 @@
             },
             "created_at": 1641895558,
             "banner": "2021/12/26/df94d810ae7fa43079a03f174e8a0ea9.png",
-            "summary": "有着完善开发和社区支持的 PlayCover 的确是如今在 M1 Mac 上安装运行 iOS 应用的不二之选 —— 不论是游戏还是常规应用。",
+            "summary": "有着完善开发���社区支持的 PlayCover 的确是如今在 M1 Mac 上安装运行 iOS 应用的不二之选 —— 不论是游戏还是常规应用。",
             "tags": [
               "macOS",
               "应用推荐"
@@ -6297,7 +6391,7 @@
             },
             "created_at": 1626490856,
             "banner": "article/2c200587-7051-0068-3645-b4df37b7ec90.jpg",
-            "summary": "本文以 Windows 为例介绍符号链接和硬链接的原理及应用，包括用云盘保存那些不方便改变位置的文件、使用完全不同的路径编辑同一文件、实现更省空间的增量备份等。",
+            "summary": "本文以 Windows 为例介绍符号链接和硬链接的原理及应用，包括用云盘保存那些不方便改变位置的��件、使用完全不同的路径编辑同一文件、实现更省空间的增量备份等。",
             "tags": [
               "科普",
               "文件管理",
@@ -9192,7 +9286,7 @@
             },
             "created_at": 1590733224,
             "banner": "2020/05/24/6670bb233a7754eba6dfed1ec024aacd.jpg",
-            "summary": "Intro：HHKB是一把被推荐时会有些尴尬的键盘，首要的一个原因，它并不是一把机械键盘，在被提及的大多数时候却在和机械键盘们并列，这很像是在被问及「有哪些全画幅单反相机值得推荐？」的时候，索尼α7系 ...",
+            "summary": "Intro：HHKB是一��被推荐时会有些尴尬的键盘，首要的一个原因，它并不是一把机械键盘，在被提及的大多数时候却在和机械键盘们并列，这很像是在被问及「有哪些全画幅单反相机值得推荐？」的时候，索尼α7系 ...",
             "tags": [
               "评测",
               "键盘"
@@ -10416,7 +10510,7 @@
             },
             "created_at": 1577850621,
             "banner": "article/244c9f2a-8a68-b181-abdf-711bfbf2ee16.jpg",
-            "summary": "记录喝了多少水不是终极目的，只是辅助喝水的一种手段，起到提醒的作用罢了，而多喝水、喝好水才是我们要追求的。",
+            "summary": "记录喝了多少水不是终极目的，只是辅助喝水的一种手段，起到提��的作用罢了，而多喝水、喝好水才是我们要追求的。",
             "tags": [
               "健康",
               "生活方式"
@@ -10473,7 +10567,7 @@
             },
             "created_at": 1577241969,
             "banner": "2018/08/08/4c9b7cf1d09f4736c664fa882bf8b607.jpg",
-            "summary": "GitHub 上有成千上万的实用工具和有趣项目，如何在其中找到自己需要的资源？按照热度、开发者和项目来搜索，是 3 个最简单有效���思路。",
+            "summary": "GitHub 上有成千上万的实用工具和有趣项目，如何在其中找到自己需要的资源？按照热度、开发者和项目来搜索，是 3 个最简单有效的思路。",
             "tags": [
               "应用",
               "一日一技"
@@ -11212,7 +11306,7 @@
             },
             "created_at": 1572948214,
             "banner": "article/2834f85d-7508-a65a-0a64-132ab40fafac.jpg",
-            "summary": "看书的时候一边听歌到底是更专心还是会分心？无论是学习还是工作，我们都需要足够的专注时间，问题在于，我们如何确保调整自己的注意力放在主要目标上？",
+            "summary": "看书的时候一边听��到底是更专心还是会分心？无论是学习还是工作，我���都需要足够的专注时间，问题在于，我们如何确保调整自己的注意力放在主要目标上？",
             "tags": [
               "技巧",
               "生活方式"
@@ -14620,7 +14714,7 @@
             },
             "created_at": 1535800054,
             "banner": "article/e3559089-e88b-6162-83d4-7685dced9119.jpg",
-            "summary": "九月发布会邀请函火热出炉，已经有设计师将它做成了好看的壁纸。除此之外，还有很多历届苹果的发布会邀请函和各地 Apple Store 的宣传海报也被做成了各种天马行空���壁纸。一起来看看吧～",
+            "summary": "九月发布会邀请函火热出炉，已经有设计师将它做成了好看的壁纸。除此之外，还有很多历届苹果的发布会邀请函和各地 Apple Store 的宣传海报也被做成了各种天马行空的壁纸。一起来看看吧～",
             "tags": [
               "iPhone",
               "Apple",
@@ -16313,106 +16407,26 @@
               "游戏",
               "资讯"
             ]
-          },
-          {
-            "id": 44544,
-            "title": "用了那么久 Siri，这些技巧你都知道了吗",
-            "slug": 44544,
-            "author": {
-              "id": 0,
-              "slug": "tpamazing",
-              "avatar": "https://cdnfile.sspai.com/2022/03/31/avatar/318ea40f95131badf593632870fec9e7.png",
-              "nickname": "Tp",
-              "user_flags": [
-                {
-                  "id": 19,
-                  "key": "writer",
-                  "name": "少数派作者",
-                  "description": "少数派作者",
-                  "icon_id": 0,
-                  "icon": "https://cdn-static.sspai.com/ui/badge/zuozhe_180x180.png",
-                  "url": "",
-                  "status": 1,
-                  "weight": 2,
-                  "color": "",
-                  "type": 2,
-                  "sub_type": 1,
-                  "object_id": 0,
-                  "allow_add_user": false,
-                  "allow_delete_user": false,
-                  "allow_update_status": false,
-                  "icon_app": "",
-                  "icon_app_id": 0,
-                  "icon_unlighted": "",
-                  "icon_unlighted_id": 0,
-                  "tag": "",
-                  "icon_unlighted_show_on": false,
-                  "admin_id": 0,
-                  "user_get_on": false,
-                  "icon_3d_id": 0,
-                  "icon_3d": "",
-                  "icon_app_3d_id": 0,
-                  "icon_app_3d": "",
-                  "created_at": 0,
-                  "updated_at": 1768720750,
-                  "recommend_to_home_on": false,
-                  "remuneration_fee": 0
-                }
-              ],
-              "user_badges": [],
-              "user_plan_flags": [
-                {
-                  "id": 14,
-                  "key": "matrix_plan_member",
-                  "name": "Matrix 共创计划成员",
-                  "description": "Matrix 共创计划成员，立即加入>",
-                  "icon_id": 0,
-                  "icon": "https://cdnfile.sspai.com/ui/badge/matrix_gongchuangjihua.png",
-                  "url": "",
-                  "status": 1,
-                  "weight": 1,
-                  "color": "",
-                  "type": 3,
-                  "sub_type": 1,
-                  "object_id": 0,
-                  "allow_add_user": false,
-                  "allow_delete_user": false,
-                  "allow_update_status": false,
-                  "icon_app": "",
-                  "icon_app_id": 0,
-                  "icon_unlighted": "",
-                  "icon_unlighted_id": 0,
-                  "tag": "",
-                  "icon_unlighted_show_on": false,
-                  "admin_id": 0,
-                  "user_get_on": false,
-                  "icon_3d_id": 0,
-                  "icon_3d": "",
-                  "icon_app_3d_id": 0,
-                  "icon_app_3d": "",
-                  "created_at": 0,
-                  "updated_at": 0,
-                  "recommend_to_home_on": false,
-                  "remuneration_fee": 0
-                }
-              ],
-              "user_id_verify_flags": []
-            },
-            "created_at": 1527688472,
-            "banner": "2018/05/13/e3ead0ae7f652c22f12c78367258f799.png",
-            "summary": "学会这些指令，除了「调戏」Siri，你还可以让它实现查节假日、抛硬币、搜菜谱、打急救电话等实用功能。",
-            "tags": [
-              "Siri",
-              "技巧",
-              "iPhone",
-              "iOS"
-            ]
           }
         ]
       },
-      "likes_given_total": 30,
+      "likes_given_total": 31,
       "comments_made_total": 51,
       "all_activities": [
+        {
+          "key": "like_article",
+          "action": "喜欢了文章",
+          "created_at": 1795159350,
+          "target_title": "城市漫步指南：关西的夏日重现",
+          "target_id": 91511,
+          "target_slug": null,
+          "comment_content": null,
+          "type": "article",
+          "author": "Journey",
+          "author_slug": "ov9kfy96",
+          "author_avatar": "https://cdnfile.sspai.com/2022/09/15/avatar/b581a64e50b9cdac7b26e004dca995d1.png",
+          "tags": []
+        },
         {
           "key": "release_article",
           "action": "发布了文章",
@@ -16571,7 +16585,7 @@
           "key": "like_article",
           "action": "喜欢了文章",
           "created_at": 1747707656,
-          "target_title": "从AIGC到MCP：普通人需要了解的AI新进��及其技术本质",
+          "target_title": "从AIGC到MCP：普通人需要了解的AI新进展及其技术本质",
           "target_id": 99102,
           "target_slug": null,
           "comment_content": null,
@@ -17633,7 +17647,7 @@
         },
         {
           "key": "like_article",
-          "action": "喜欢了文章",
+          "action": "喜欢了���章",
           "created_at": 1502600919,
           "target_title": "原价 ￥163，现在 ￥6 就能系统学习人体精妙构造：人体解剖学图谱",
           "target_id": 40386,
@@ -17816,11 +17830,11 @@
           },
           {
             "name": "技巧",
-            "count": 14
+            "count": 13
           },
           {
             "name": "iOS",
-            "count": 12
+            "count": 11
           },
           {
             "name": "Windows",
@@ -17942,7 +17956,7 @@
     {
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
-      "views": 5148,
+      "views": 5153,
       "likes": 4,
       "comments": 0,
       "created_at": 1772782373,
@@ -17955,7 +17969,7 @@
     {
       "id": 104232,
       "title": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "views": 37696,
+      "views": 37735,
       "likes": 70,
       "comments": 29,
       "created_at": 1764643711,
@@ -17991,7 +18005,7 @@
     {
       "id": 96151,
       "title": "新的一年，不妨试试自己分析支付宝账单",
-      "views": 58740,
+      "views": 58811,
       "likes": 71,
       "comments": 28,
       "created_at": 1738996270,
@@ -18028,7 +18042,7 @@
     {
       "id": 86747,
       "title": "自我记录、量化与回溯的数字之旅",
-      "views": 85024,
+      "views": 85044,
       "likes": 113,
       "comments": 37,
       "created_at": 1709106003,
@@ -18067,7 +18081,7 @@
     {
       "id": 85355,
       "title": "App+1 | Rond 与世界迷雾：现实世界的塞尔达传说地图册",
-      "views": 57790,
+      "views": 57824,
       "likes": 78,
       "comments": 117,
       "created_at": 1703551973,
@@ -18104,7 +18118,7 @@
     }
   ],
   "totals": {
-    "views": 244398,
+    "views": 244567,
     "likes": 336,
     "comments": 211,
     "article_count": 5
@@ -18125,16 +18139,16 @@
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
       "created_at": 1772782373,
-      "ageHours": 6214.1
+      "ageHours": 6238
     },
     "recentGrowth": {
-      "hours": 23.4,
-      "from": "2026-11-17T06:26:40.104Z",
-      "to": "2026-11-18T05:50:48.016Z",
+      "hours": 23.99,
+      "from": "2026-11-18T05:50:48.016Z",
+      "to": "2026-11-19T05:50:06.463Z",
       "articleId": 96151,
       "articleTitle": "新的一年，不妨试试自己分析支付宝账单",
-      "deltaViews": 117,
-      "ratePer24h": 120
+      "deltaViews": 93,
+      "ratePer24h": 93
     }
   }
 }
