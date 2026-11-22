@@ -21757,7 +21757,7 @@
       "author": {
         "id": 0,
         "slug": "ov9kfy96",
-        "avatar": "2022/09/15/avatar/b581a64e50b9cdac7b26e004dca995d1.png",
+        "avatar": "https://cdnfile.sspai.com/2022/09/15/avatar/b581a64e50b9cdac7b26e004dca995d1.png",
         "nickname": "Journey",
         "followed": false,
         "bio": "城市地理学爱好者｜悦读者｜Living elsewhere",
@@ -24027,5 +24027,5 @@
       "avatar": "https://cdnfile.sspai.com/2022/09/15/avatar/b581a64e50b9cdac7b26e004dca995d1.png"
     }
   },
-  "last_updated": 1795239141669
+  "last_updated": 1795323507239
 }
