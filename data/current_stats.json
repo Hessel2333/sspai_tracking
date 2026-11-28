@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-11-27T06:37:31.305Z",
+  "timestamp": "2026-11-28T06:12:15.557Z",
   "user": {
     "nickname": "Hessel",
     "avatar": "https://cdn-static.sspai.com/ui/otter_avatar_placeholder_240511.png",
     "slug": "cemq1hts",
     "created_at": 1485946514,
     "liked_count": 336,
-    "article_view_count": 245608,
+    "article_view_count": 245761,
     "article_count": 5,
     "user_reward_badges": [
       {
@@ -16812,7 +16812,7 @@
           "target_title": "App+1 | Rond 与世界迷雾：现实世界的塞尔达传说地图册",
           "target_id": 375841,
           "target_slug": null,
-          "comment_content": "各位有付费意愿的朋友可以稍等一下下，我跟作者大大私信了这篇文章，他觉得写得很好，可能可以搞一些优惠活动给大家😆。",
+          "comment_content": "各位有付费意愿的朋友可以稍等一下下，我跟作者大大私信了这篇文章，他觉得写得很好，可能可以搞一些��惠活动给大家😆。",
           "type": "article",
           "author": "Hessel",
           "author_slug": "cemq1hts",
@@ -17647,7 +17647,7 @@
         },
         {
           "key": "like_article",
-          "action": "喜欢了���章",
+          "action": "喜欢了文章",
           "created_at": 1502600919,
           "target_title": "原价 ￥163，现在 ￥6 就能系统学习人体精妙构造：人体解剖学图谱",
           "target_id": 40386,
@@ -17956,7 +17956,7 @@
     {
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
-      "views": 5192,
+      "views": 5201,
       "likes": 4,
       "comments": 0,
       "created_at": 1772782373,
@@ -17969,7 +17969,7 @@
     {
       "id": 104232,
       "title": "借 AntiGravity，给个人消费一次「年度盘点」",
-      "views": 37960,
+      "views": 38001,
       "likes": 70,
       "comments": 29,
       "created_at": 1764643711,
@@ -18005,7 +18005,7 @@
     {
       "id": 96151,
       "title": "新的一年，不妨试试自己分析支付宝账单",
-      "views": 59313,
+      "views": 59379,
       "likes": 71,
       "comments": 28,
       "created_at": 1738996270,
@@ -18042,7 +18042,7 @@
     {
       "id": 86747,
       "title": "自我记录、量化与回溯的数字之旅",
-      "views": 85190,
+      "views": 85214,
       "likes": 113,
       "comments": 37,
       "created_at": 1709106003,
@@ -18081,7 +18081,7 @@
     {
       "id": 85355,
       "title": "App+1 | Rond 与世界迷雾：现实世界的塞尔达传说地图册",
-      "views": 57953,
+      "views": 57966,
       "likes": 78,
       "comments": 117,
       "created_at": 1703551973,
@@ -18118,7 +18118,7 @@
     }
   ],
   "totals": {
-    "views": 245608,
+    "views": 245761,
     "likes": 336,
     "comments": 211,
     "article_count": 5
@@ -18139,7 +18139,7 @@
       "id": 106898,
       "title": "从 FARS 出发，聊聊 AI 如何改写科研与工作流",
       "created_at": 1772782373,
-      "ageHours": 6383.1
+      "ageHours": 6406.7
     },
     "recentGrowth": {
       "hours": 23.84,
